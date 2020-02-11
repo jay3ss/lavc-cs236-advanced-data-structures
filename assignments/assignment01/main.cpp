@@ -2,5 +2,10 @@
 
 int main()
 {
+    ticTacToe game;
 
+    while (game.gameStatus() == CONTINUE)
+    {
+
+    }
 }
