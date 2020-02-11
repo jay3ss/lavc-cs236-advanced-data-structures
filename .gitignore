@@ -36,3 +36,6 @@ texts/
 
 # Build folders
 build/
+
+# VS Code settings
+.vscode/
