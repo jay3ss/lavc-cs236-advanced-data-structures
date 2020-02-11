@@ -33,3 +33,6 @@
 
 # Texts
 texts/
+
+# Build folders
+build/
