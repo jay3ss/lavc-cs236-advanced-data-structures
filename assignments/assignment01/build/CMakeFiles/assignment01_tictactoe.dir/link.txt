@@ -1,0 +1,2 @@
+/usr/bin/ar qc libassignment01_tictactoe.a  CMakeFiles/assignment01_tictactoe.dir/TicTacToe.cpp.o
+/usr/bin/ranlib libassignment01_tictactoe.a
