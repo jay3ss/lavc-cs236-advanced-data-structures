@@ -10,20 +10,26 @@ ticTacToe::ticTacToe()
 void ticTacToe::displayBoard() const
 {
     const int numCellsAndRows = 3;
+    const string spaceString = "      |     |\n";
 
-    cout << "1   2   3\n\n";
+    cout << "1     2     3\n\n";
 
     for (int i = 0; i < numCellsAndRows; i++)
     {
+        if (i == 1)
+        {
+            cout << spaceString;
+        }
+
         cout << i + 1;
 
         for (int j = 0; j < numCellsAndRows; j++)
         {
-            cout << "  " << board[i][j] << (j < 2 ? "|" : "\n");
+            cout << "   " << board[i][j] << (j < 2 ? " |" : "\n");
 
         }
 
-        cout << (i < 2 ? "____|___|___\n" : "    |   |\n");
+        cout << (i < 2 ? "______|_____|_____\n" : spaceString);
     }
 }
 
