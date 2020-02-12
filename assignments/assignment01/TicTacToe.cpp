@@ -10,6 +10,7 @@ ticTacToe::ticTacToe()
 void ticTacToe::displayBoard() const
 {
     const int numCellsAndRows = 3;
+    const string dividerString = "______|_____|_____\n";
     const string spaceString = "      |     |\n";
 
     cout << "1     2     3\n\n";
@@ -29,7 +30,7 @@ void ticTacToe::displayBoard() const
 
         }
 
-        cout << (i < 2 ? "______|_____|_____\n" : spaceString);
+        cout << (i < 2 ? dividerString : spaceString);
     }
 }
 
@@ -63,6 +64,14 @@ status ticTacToe::gameStatus()
 
     // Otherwise, the game can continue
     return CONTINUE;
+}
+
+// Returns the current player's symbol
+char ticTacToe::currentPalyer()
+{
+    const char symbols[] = {'X', 'O'};
+
+    return symbols[noOfMoves % 2];
 }
 
 // Gets the move for a player

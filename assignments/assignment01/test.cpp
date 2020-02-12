@@ -27,9 +27,11 @@ int main()
 
     // - 'X' starts the game
     assert(game.getXOMove('X'));
+    assert(game.currentPalyer() == 'X');
 
     // - 'O' doesn't start the game
     assert(!game.getXOMove('O'));
+    assert(game.currentPalyer() != 'O');
 
     game.displayBoard();
 }

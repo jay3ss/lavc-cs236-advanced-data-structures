@@ -22,6 +22,9 @@ public:
     // Precondition: the board must have been initialized
     bool isValidMove(const int x, const int y) const;
 
+    // Returns the current player's symbol
+    char currentPalyer();
+
     // Gets the move for a player
     bool getXOMove(const char moveSymbol);
 
