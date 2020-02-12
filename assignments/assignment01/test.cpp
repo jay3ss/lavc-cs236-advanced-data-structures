@@ -28,11 +28,11 @@ int main()
 
     // - 'X' starts the game
     assert(game.getXOMove('X'));
-    assert(game.currentPalyer() == 'X');
+    assert(game.currentPlayer() == 'X');
 
     // - 'O' doesn't start the game
     assert(!game.getXOMove('O'));
-    assert(game.currentPalyer() != 'O');
+    assert(game.currentPlayer() != 'O');
 
     // A move can be made
     assert(game.makeMove(1, 1));
@@ -41,8 +41,8 @@ int main()
     assert(!game.isValidMove(1, 1));
 
     // - the current player has changed
-    assert(game.currentPalyer() == 'O');
-    assert(game.currentPalyer() != 'X');
+    assert(game.currentPlayer() == 'O');
+    assert(game.currentPlayer() != 'X');
 
     game.displayBoard();
 }
