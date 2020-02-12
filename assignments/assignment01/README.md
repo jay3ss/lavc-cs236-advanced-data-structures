@@ -15,5 +15,26 @@ operations as needed.  You are giving the TicTacToe.h header file with the
 ticTacToe class as follows:
 
 TicTacToe.h header file | Sample Output
------------- | -------------
+----------------------- | -------------
 ![tictactoe.png](tictactoe.png) | ![SampleOutput-TicTac.png](SampleOutput-TicTac.png)
+
+## Requirements
+
+- `cmake` >= 3.10
+- C++ 11
+
+## Building and Running
+
+To build out-of-source, run the following commands:
+
+1. `mkdir build && cd build`
+2. `cmake ..`
+3. `make`
+
+To run the tests, run the following command
+
+- `./tictactoetest`
+
+and to run the main program, run the following command
+
+- `./tictactoemain`
