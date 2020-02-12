@@ -39,6 +39,12 @@ int main()
     assert(game.currentPlayer() == 'O');
     assert(game.currentPlayer() != 'X');
 
+    // Restart the game
+    game.restart();
+
+    // All moves should now be valid
+    areAllMovesValid(game);
+
     game.displayBoard();
 }
 
