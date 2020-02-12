@@ -5,6 +5,7 @@
 using namespace std;
 
 void displayStatus(ticTacToe &);
+void areAllMovesValid(ticTacToe &);
 
 int main()
 {
@@ -18,13 +19,7 @@ int main()
     displayStatus(game);
 
     // - every move should be a valid move
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            assert(game.isValidMove(i, j));
-        }
-    }
+
 
     // - 'X' starts the game
     assert(game.getXOMove('X'));
@@ -62,5 +57,16 @@ void displayStatus(ticTacToe &game)
     default:
         cout << "CONTINUE\n";
         break;
+    }
+}
+
+void areAllMovesValid(ticTacToe &game)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            assert(game.isValidMove(i, j));
+        }
     }
 }
