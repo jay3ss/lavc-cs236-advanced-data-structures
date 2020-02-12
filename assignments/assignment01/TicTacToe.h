@@ -23,7 +23,7 @@ public:
     bool isValidMove(const int x, const int y) const;
 
     // Returns the current player's symbol
-    char currentPlayer();
+    char currentPlayer() const;
 
     // Gets the move for a player
     bool getXOMove(const char moveSymbol);

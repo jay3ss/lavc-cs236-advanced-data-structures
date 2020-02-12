@@ -67,7 +67,7 @@ status ticTacToe::gameStatus()
 }
 
 // Returns the current player's symbol
-char ticTacToe::currentPlayer()
+char ticTacToe::currentPlayer() const
 {
     const char symbols[] = {'X', 'O'};
 
@@ -85,6 +85,7 @@ bool ticTacToe::makeMove(const int row, const int col)
     {
         const char symbol = currentPlayer();
         board[col][row] = symbol;
+        noOfMoves++;
     }
 
     return validMove;
