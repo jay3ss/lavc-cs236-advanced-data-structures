@@ -31,6 +31,11 @@ public:
     // Determines the current status of the game
     status gameStatus();
 
+    // Puts the player's character at the desired postion (row, column) on the
+    // board. Must be a valid move (space not already occupied by a player
+    // character)
+    bool makeMove(const int row, const int col);
+
     // Restarts the game
     void restart();
 

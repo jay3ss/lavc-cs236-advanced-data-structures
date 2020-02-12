@@ -10,6 +10,7 @@ int main()
 {
 
     ticTacToe game;
+    game.displayBoard();
 
     // When starting the game:
     // - its status should be CONTINUE
@@ -32,6 +33,16 @@ int main()
     // - 'O' doesn't start the game
     assert(!game.getXOMove('O'));
     assert(game.currentPalyer() != 'O');
+
+    // A move can be made
+    assert(game.makeMove(1, 1));
+
+    // - attempting to make a move on that position is invalid
+    assert(!game.isValidMove(1, 1));
+
+    // - the current player has changed
+    assert(game.currentPalyer() == 'O');
+    assert(game.currentPalyer() != 'X');
 
     game.displayBoard();
 }

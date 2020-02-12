@@ -74,6 +74,22 @@ char ticTacToe::currentPalyer()
     return symbols[noOfMoves % 2];
 }
 
+// Puts the player's character at the desired postion (row, column) on the
+// board. Must be a valid move (space not already occupied by a player
+// character)
+bool ticTacToe::makeMove(const int row, const int col)
+{
+    bool validMove = isValidMove(row, col);
+
+    if (validMove)
+    {
+        const char symbol = currentPalyer();
+        board[col][row] = symbol;
+    }
+
+    return validMove;
+}
+
 // Gets the move for a player
 bool ticTacToe::getXOMove(const char moveSymbol)
 {
