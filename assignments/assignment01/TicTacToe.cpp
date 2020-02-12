@@ -100,7 +100,7 @@ bool ticTacToe::getXOMove(const char moveSymbol)
 
 bool ticTacToe::isValidMove(const int x, const int y) const
 {
-    return (board[x][y] != 'X') || (board[x][y] != 'O');
+    return (board[x][y] != 'X') && (board[x][y] != 'O');
 }
 
 // Restarts the game
