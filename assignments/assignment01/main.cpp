@@ -3,9 +3,5 @@
 int main()
 {
     ticTacToe game;
-
-    while (game.gameStatus() == CONTINUE)
-    {
-
-    }
+    game.play();
 }

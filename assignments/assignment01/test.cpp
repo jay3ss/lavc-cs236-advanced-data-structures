@@ -19,7 +19,7 @@ int main()
     displayStatus(game);
 
     // - every move should be a valid move
-
+    areAllMovesValid(game);
 
     // - 'X' starts the game
     assert(game.getXOMove('X'));
@@ -46,6 +46,7 @@ int main()
     areAllMovesValid(game);
 
     game.displayBoard();
+    game.play();
 }
 
 void displayStatus(ticTacToe &game)
@@ -68,9 +69,9 @@ void displayStatus(ticTacToe &game)
 
 void areAllMovesValid(ticTacToe &game)
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 1; i < 4; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 1; j < 4; j++)
         {
             assert(game.isValidMove(i, j));
         }

@@ -74,6 +74,39 @@ char ticTacToe::currentPlayer() const
     return symbols[noOfMoves % 2];
 }
 
+// Starts the game
+void ticTacToe::play()
+{
+    int row, col;
+    char player;
+
+    while (gameStatus() == CONTINUE)
+    {
+        player = currentPlayer();
+
+        // Keep looping until a valid move is entered
+        while (!makeMove(row, col))
+        {
+            cout << "\nPlayer " << player << " enter move (row col): ";
+            cin >> row >> col;
+            cin.ignore();
+        }
+
+        cout << endl;
+        displayBoard();
+    }
+
+    switch (gameStatus())
+    {
+        case DRAW:
+            cout << "\nThis game is a draw!\n";
+            break;
+        case WIN:
+            cout << "\nPlayer " << player <<  " wins!\n";
+            break;
+    }
+}
+
 // Puts the player's character at the desired postion (row, column) on the
 // board. Must be a valid move (space not already occupied by a player
 // character)
@@ -84,7 +117,7 @@ bool ticTacToe::makeMove(const int row, const int col)
     if (validMove)
     {
         const char symbol = currentPlayer();
-        board[col][row] = symbol;
+        board[row - 1][col - 1] = symbol;
         noOfMoves++;
     }
 
@@ -101,7 +134,11 @@ bool ticTacToe::getXOMove(const char moveSymbol)
 
 bool ticTacToe::isValidMove(const int x, const int y) const
 {
-    return (board[x][y] != 'X') && (board[x][y] != 'O');
+    bool spaceIsntOccupied = board[x - 1][y - 1] == ' ';
+    bool xIsInRange = (0 < x) && (x < 4);
+    bool yIsInRange = (0 < y) && (y < 4);
+
+    return spaceIsntOccupied && xIsInRange && yIsInRange;
 }
 
 // Restarts the game
