@@ -139,13 +139,22 @@ void ticTacToe::getPlayerMove(int &row, int &col) const
     cin.ignore();
 }
 
+// Determines if a move is valid. A valid move is one in which the x- and
+// y-coordinates are both 1 <= (x, y) <= 3 and the space is not occupied
+// (neither and 'X' or 'O' character occupies that space)
 bool ticTacToe::isValidMove(const int x, const int y) const
 {
-    bool spaceIsntOccupied = board[x - 1][y - 1] == ' ';
-    bool xIsInRange = (0 < x) && (x < 4);
-    bool yIsInRange = (0 < y) && (y < 4);
+    bool coordsInRange = (0 < x && x < 4) && (0 < y && y < 4);
+    bool spaceIsntOccupied = false;
 
-    return spaceIsntOccupied && xIsInRange && yIsInRange;
+    // make sure that the coordinates are in range, otherwise we may be
+    // checking space that's out of range for the board array
+    if (coordsInRange)
+    {
+        spaceIsntOccupied = board[x - 1][y - 1] == ' ';
+    }
+
+    return spaceIsntOccupied && coordsInRange;
 }
 
 // Restarts the game
