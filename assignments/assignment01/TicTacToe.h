@@ -10,15 +10,17 @@ enum status {WIN, DRAW, CONTINUE};
 class ticTacToe
 {
 public:
-    // Default constructor
-    // Postcondition: initializes the board to an empty state
+    /** Constructor
+    @post: initializes the board to an empty state and sets the number of moves
+    to zero (0) */
     ticTacToe();
 
-    // Starts the game
+    /** Starts and plays the game of tic tac toe.
+    @post: the board will change according to the choices of the players */
     void play();
 
-    // Prints the board
-    // Precondition: the board must have been initialized
+    /** Prints the board to the terminal
+    @pre: the board must have been initialized */
     void displayBoard() const;
 
     // Determines if a move is valid
@@ -32,7 +34,7 @@ public:
     bool getXOMove(const char moveSymbol);
 
     // Gets a player's move
-    void getPlayerMove(int *row, int *col) const;
+    void getPlayerMove(int &row, int &col) const;
 
     // Determines the current status of the game
     status gameStatus();

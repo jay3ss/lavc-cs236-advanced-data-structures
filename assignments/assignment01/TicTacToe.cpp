@@ -83,12 +83,12 @@ void ticTacToe::play()
     while (gameStatus() == CONTINUE)
     {
         player = currentPlayer();
-        getPlayerMove(&row, &col);
+        getPlayerMove(row, col);
 
         // Keep looping until a valid move is entered
         while (!makeMove(row, col))
         {
-            getPlayerMove(&row, &col);
+            getPlayerMove(row, col);
         }
 
         cout << endl;
@@ -132,10 +132,10 @@ bool ticTacToe::getXOMove(const char moveSymbol)
 }
 
 // Gets the move for a player
-void ticTacToe::getPlayerMove(int *row, int *col) const
+void ticTacToe::getPlayerMove(int &row, int &col) const
 {
     cout << "\nPlayer " << currentPlayer() << " enter move (row col): ";
-    cin >> *row >> *col;
+    cin >> row >> col;
     cin.ignore();
 }
 
