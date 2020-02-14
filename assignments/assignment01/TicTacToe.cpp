@@ -78,23 +78,22 @@ char ticTacToe::currentPlayer() const
 void ticTacToe::play()
 {
     int row, col;
-    char player;
 
     while (gameStatus() == CONTINUE)
     {
-        player = currentPlayer();
+        getPlayerMove(&row, &col);
 
         // Keep looping until a valid move is entered
         while (!makeMove(row, col))
         {
-            cout << "\nPlayer " << player << " enter move (row col): ";
-            cin >> row >> col;
-            cin.ignore();
+            getPlayerMove(&row, &col);
         }
 
         cout << endl;
         displayBoard();
     }
+
+    char player = currentPlayer();
 
     switch (gameStatus())
     {
@@ -130,6 +129,14 @@ bool ticTacToe::getXOMove(const char moveSymbol)
     // 'X' goes on even numbered turns while 'O' goes on odd ones
     bool isXsMove = noOfMoves % 2 == 0;
     return (isXsMove && moveSymbol == 'X') || (!isXsMove && moveSymbol == 'O');
+}
+
+// Gets the move for a player
+void ticTacToe::getPlayerMove(int *row, int *col) const
+{
+    cout << "\nPlayer " << currentPlayer() << " enter move (row col): ";
+    cin >> *row >> *col;
+    cin.ignore();
 }
 
 bool ticTacToe::isValidMove(const int x, const int y) const
