@@ -1,3 +1,6 @@
+#ifndef TICTACTOE_H
+#define TICTACTOE_H
+
 #include <iostream>
 #include <string>
 
@@ -68,3 +71,5 @@ private:
     // Determines if either of the diagonals is all 'X's or 'O's
     bool areDiagonalsAllXOrO() const;
 };
+
+#endif // TICTACTOE_H
