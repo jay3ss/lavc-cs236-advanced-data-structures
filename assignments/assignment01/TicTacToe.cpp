@@ -78,9 +78,11 @@ char ticTacToe::currentPlayer() const
 void ticTacToe::play()
 {
     int row, col;
+    char player;
 
     while (gameStatus() == CONTINUE)
     {
+        player = currentPlayer();
         getPlayerMove(&row, &col);
 
         // Keep looping until a valid move is entered
@@ -92,8 +94,6 @@ void ticTacToe::play()
         cout << endl;
         displayBoard();
     }
-
-    char player = currentPlayer();
 
     switch (gameStatus())
     {
