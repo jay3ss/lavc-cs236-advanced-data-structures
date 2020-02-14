@@ -28,6 +28,9 @@ public:
     // Gets the move for a player
     bool getXOMove(const char moveSymbol);
 
+    // Gets a player's move
+    void getPlayerMove(int *row, int *col) const;
+
     // Determines the current status of the game
     status gameStatus();
 
