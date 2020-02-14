@@ -131,7 +131,7 @@ bool ticTacToe::getXOMove(const char moveSymbol)
     return (isXsMove && moveSymbol == 'X') || (!isXsMove && moveSymbol == 'O');
 }
 
-// Gets the move for a player
+// Gets a valid (1 <= (row, col) <= 3) move for a player
 void ticTacToe::getPlayerMove(int &row, int &col) const
 {
     cout << "\nPlayer " << currentPlayer() << " enter move (row col): ";
@@ -145,14 +145,10 @@ void ticTacToe::getPlayerMove(int &row, int &col) const
 bool ticTacToe::isValidMove(const int x, const int y) const
 {
     bool coordsInRange = (0 < x && x < 4) && (0 < y && y < 4);
-    bool spaceIsntOccupied = false;
 
     // make sure that the coordinates are in range, otherwise we may be
     // checking space that's out of range for the board array
-    if (coordsInRange)
-    {
-        spaceIsntOccupied = board[x - 1][y - 1] == ' ';
-    }
+    bool spaceIsntOccupied = coordsInRange ? board[x - 1][y - 1] == ' ' : false;
 
     return spaceIsntOccupied && coordsInRange;
 }
