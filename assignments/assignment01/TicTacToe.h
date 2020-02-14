@@ -68,8 +68,7 @@ public:
         not */
     bool getXOMove(const char moveSymbol);
 
-    /** Gets a player's move
-    @pre: 1 <= (row, col) <= 3
+    /** Gets a valid (1 <= (row, col) <= 3) move for a player
     @param row: the desired row
     @param col: the desired column
     @post: will change the board to be the player's character at the desired
