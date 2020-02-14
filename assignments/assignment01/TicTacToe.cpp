@@ -178,8 +178,7 @@ bool ticTacToe::isEntireRowSame(const int row) const
 // Determines if an entire row has the same character in each cell
 bool ticTacToe::isEntireRowXOrO(const int row) const
 {
-    bool rowIsSame = isEntireRowSame(row);
-    return (rowIsSame && (board[row][0] == 'X' || board[row][0] == 'O'));
+    return isEntireRowSame(row) && board[row][0] != ' ';
 }
 
 // Determines if an entire column is an 'X' or a 'O'
@@ -191,8 +190,7 @@ bool ticTacToe::isEntireColumnSame(const int col) const
 // Determines if an entire column has the same character in each cell
 bool ticTacToe::isEntireColumnXOrO(const int col) const
 {
-    bool colIsSame = isEntireColumnSame(col);
-    return (colIsSame && (board[0][col] == 'X' || board[0][col] == 'O'));
+    return isEntireColumnSame(col) && board[0][col] != ' ';
 }
 
 // Determines if either of the diagonals is all 'X's or 'O's
@@ -206,5 +204,5 @@ bool ticTacToe::areDiagonalsSame() const
 // Determines if either of the diagonals is all 'X's or 'O's
 bool ticTacToe::areDiagonalsAllXOrO() const
 {
-    return areDiagonalsSame() && (board[1][1] == 'X' || board[1][1] == 'O');
+    return areDiagonalsSame() && board[1][1] != ' ';
 }
