@@ -1,22 +1,36 @@
-# Tic-Tac-Toe Program (Assignment 1)
+# Array-based List Program (Assignment 2)
 
 ## Objectives
 
-Apply Software Engineering design and implementation concept and object class:
-Tic-Tac-Toe program
+Insert and delete an item of an unsorted array list.
 
 ## Description
 
-Write a program that allows two players (X and O) to play the tic-tac-toe game
-on a 3 by 3 two-dimensional array board.  Some of the operations on a
-ticTacToe object are printing the current board, getting a move, checking if a
-move is valid and determining the winner after each move.  Add additional
-operations as needed.  You are giving the TicTacToe.h header file with the
-ticTacToe class as follows:
+1. Your primary tasks for this exercise are to complete the header file by
+writing the definition of four functions with its description below:
 
-TicTacToe.h header file | Sample Output
------------------------ | -------------
-![tictactoe.png](tictactoe.png) | ![SampleOutput-TicTac.png](SampleOutput-TicTac.png)
+- `removeAt` function – to remove the item from the list at the position
+specified by location.  Because the list elements are in no particular order
+(unsorted list), you could simply remove the element by swapping the last
+element of the list with the item to be removed and reducing the length of the
+list.
+
+- `insertAt` function - to insert an item in the list at the position specified
+by location.  The item to be inserted is passed as a parameter to the function.
+
+- `print` function – to output the elements of the list.
+
+- `min` function – to output the smallest element of the list
+
+2. And demonstrate the class `arrayListType` by write the main program (cpp)
+thatasks a user to enter 5 integers. After displaying the entered 5 integers,
+askthe user the position of the item to be deleted and inserted.  Your program
+should include error checking if the position is out of range or array is full,
+display the final list of array and find the minimum value.
+
+Sample Output 1 | Sample Output 2 | Sample Output 3
+----------------------- | ------------- | -----------
+![Output 1](sampleOutput1.png) | ![Output 2](sampleOutput2.png) | ![Output 3](sampleOutput3.png)
 
 ## Requirements
 
