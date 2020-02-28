@@ -3,7 +3,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 project(assignment02)
 
-add_library(${PROJECT_NAME}_arrlist arrayListType.cpp)
+add_library(${PROJECT_NAME}_arrlist arrayListType.h)
+set_target_properties(${PROJECT_NAME}_arrlist PROPERTIES LINKER_LANGUAGE CXX)
 
 add_executable(main main.cpp)
 target_link_libraries(main ${PROJECT_NAME}_arrlist)
