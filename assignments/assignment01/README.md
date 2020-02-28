@@ -33,8 +33,8 @@ To build out-of-source, run the following commands:
 
 To run the tests, run the following command
 
-- `./tictactoetest`
+- `./tests`
 
 and to run the main program, run the following command
 
-- `./tictactoemain`
+- `./main`

@@ -5,8 +5,8 @@ project(assignment01)
 
 add_library(${PROJECT_NAME}_tictactoe TicTacToe.cpp)
 
-add_executable(tictactoemain main.cpp)
-target_link_libraries(tictactoemain ${PROJECT_NAME}_tictactoe)
+add_executable(main main.cpp)
+target_link_libraries(main ${PROJECT_NAME}_tictactoe)
 
-add_executable(tictactoetest test.cpp)
-target_link_libraries(tictactoetest ${PROJECT_NAME}_tictactoe)
+add_executable(tests test.cpp)
+target_link_libraries(tests ${PROJECT_NAME}_tictactoe)

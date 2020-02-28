@@ -38,12 +38,13 @@ void ticTacToe::displayBoard() const
 status ticTacToe::gameStatus()
 {
     const int numCellsAndRows = 3;
+    status currentStatus = CONTINUE;
 
     // if the number of moves is equal to the maximum number of possible
     // moves, then the game is at a draw
     if (noOfMoves == maxNoOfMoves)
     {
-        return DRAW;
+        currentStatus = DRAW;
     }
 
     // check if any rows, columns, or diagonals are the same
@@ -52,18 +53,18 @@ status ticTacToe::gameStatus()
     {
         if (isEntireRowXOrO(i) || isEntireColumnXOrO(i))
         {
-            return WIN;
+            currentStatus = WIN;
         }
     }
 
     // Diagonals
     if (areDiagonalsAllXOrO())
     {
-        return WIN;
+        currentStatus = WIN;
     }
 
     // Otherwise, the game can continue
-    return CONTINUE;
+    return currentStatus;
 }
 
 // Returns the current player's symbol

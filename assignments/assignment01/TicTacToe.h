@@ -95,8 +95,8 @@ public:
 
 private:
     char board[3][3];
-    int noOfMoves;
-    const int maxNoOfMoves = 9; // corresponds to a draw
+    int noOfMoves;              // current number of moves
+    const int maxNoOfMoves = 9; // max. number of moves (corresponds to a draw)
 
     /** Initializes the board to have all empty cells (' ' character)
     @post: the board array will consist entirely of ' ' characters */
