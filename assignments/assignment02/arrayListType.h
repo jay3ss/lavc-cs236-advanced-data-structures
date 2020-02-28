@@ -16,12 +16,12 @@ public:
 
 	void print() const;
 	//Function to output the elements of the list
-	//Postcondition: Elements of the list are output on the 
+	//Postcondition: Elements of the list are output on the
 	//   standard output device.
 
 	void insertAt(int location, const elemType& insertItem);
-	//Function to insert an item in the list at the 
-	//position specified by location. The item to be inserted 
+	//Function to insert an item in the list at the
+	//position specified by location. The item to be inserted
 	//is passed as a parameter to the function.
 	//Postcondition: Starting at location, the elements of the
 	//    list are shifted down, list[location] = insertItem;,
@@ -29,10 +29,10 @@ public:
 	//    out of range, an appropriate message is displayed.
 
 	void removeAt(int location);
-	//Function to remove the item from the list at the 
-	//position specified by location 
+	//Function to remove the item from the list at the
+	//position specified by location
 	//Postcondition: The list element at list[location] is removed
-	//    and length is decremented by 1. If location is out of 
+	//    and length is decremented by 1. If location is out of
 	//    range,an appropriate message is displayed.
 
 	elemType min() const;
@@ -40,9 +40,9 @@ public:
 
 	arrayListType(int size = 5);
 	//constructor
-	//Creates an array of the size specified by the 
+	//Creates an array of the size specified by the
 	//parameter size. The default array size is 5.
-	//Postcondition: The list points to the array, length = 0, 
+	//Postcondition: The list points to the array, length = 0,
 	//    and maxSize = size
 
 	~arrayListType();
