@@ -124,6 +124,7 @@ template <class elemType>
 arrayListType<elemType>::~arrayListType()
 {
 	delete[] list;
+	list = nullptr;
 }
 
 #endif
