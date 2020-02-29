@@ -60,9 +60,17 @@ protected:
 template <class elemType>
 void arrayListType<elemType>::print() const
 {
-
-	// your code here
-	// your code here
+	if (length == 0)
+	{
+		cout << "";
+	}
+	else
+	{
+		for (int i = 0; i < length; i++)
+		{
+			cout << list[i] << " ";
+		}
+	}
 
 } // end print function
 
@@ -81,11 +89,29 @@ template <class elemType>
 void arrayListType<elemType>::insertAt
 (int location, const elemType& insertItem)
 {
-
-	// your code here
-	// your code here
-
-
+	// Check preconditions: 0 <= location <= length
+	if (length == maxSize)
+	{
+		cerr << "ERROR: list is full\n";
+	}
+	else if (0 <= location && location <= length)
+	{
+		// If the insertion point is not at the end then we have to move all
+		// elements that succeed the insertion point back by one spot
+		if (location != length)
+		{
+			// Go backwards through the list and move each element "up"
+			for (int i = length; i > location; i--)
+			{
+				list[i] = list[i - 1];
+			}
+		}
+		list[location] = insertItem;
+		length++;
+	}
+	else {
+		cerr << "ERROR: location must be be between 0 and " << length << endl;
+	}
 } //end insertAt function
 
 // removeAt function definition
