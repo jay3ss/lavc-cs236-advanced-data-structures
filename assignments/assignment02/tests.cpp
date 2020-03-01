@@ -70,5 +70,9 @@ int main()
     cout << "\nInsert data into a full list:\n";
     arrList.insertAt(51, 17);
 
+    cout << "\nFind the smallest element in the list (should be 0):\n";
+    cout << "The smallest element in the list is: " << arrList.min();
+    cout << endl;
+
     return 0;
 }
