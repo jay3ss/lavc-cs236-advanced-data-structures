@@ -129,7 +129,8 @@ void arrayListType<elemType>::insertAt
 	// The preconditions have not been met. Print an error message
 	else
 	{
-		cerr << "ERROR: location must be be between 0 and " << length << endl;
+		cerr << "ERROR: location must be be between 0 and " << length
+			 << " (inclusive)\n";
 	}
 } //end insertAt function
 
