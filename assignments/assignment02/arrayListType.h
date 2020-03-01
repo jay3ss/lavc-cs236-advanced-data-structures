@@ -152,7 +152,7 @@ void arrayListType<elemType>::removeAt(int location)
 		// list to remove the last item
 		if (location != length)
 		{
-			list[location] = list[length-1]
+			list[location] = list[length-1];
 		}
 
 		length--;
