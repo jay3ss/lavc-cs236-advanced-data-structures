@@ -138,8 +138,29 @@ template <class elemType>
 void arrayListType<elemType>::removeAt(int location)
 {
 
-	// your code here
-	// your code here
+	// If the list is full then we cannot add any more elements to it
+	if (length == maxSize)
+	{
+		cerr << "ERROR: list is full\n";
+	}
+	// Check preconditions: 0 <= location < length
+	else if (0 <= location && location < length)
+	{
+		// If the item to be removed is not the last item, then swap it with
+		// the last item. Otherwise, we can simply decrease the length of the
+		// list to remove the last item
+		if (location != length)
+		{
+			list[location] = list[length-1]
+		}
+
+		length--;
+	}
+	// The preconditions have not been met. Print an error message
+	else
+	{
+		cerr << "ERROR: location must be be between 0 and " << length << endl;
+	}
 
 } //end removeAt function
 
