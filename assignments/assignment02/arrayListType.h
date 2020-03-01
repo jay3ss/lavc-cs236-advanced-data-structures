@@ -82,9 +82,21 @@ void arrayListType<elemType>::print() const
 template <class elemType>
 elemType arrayListType<elemType>::min() const
 {
+	// Assert that the list isn't empty
+	assert(length != 0);
 
-	// your code here
-	// your code here
+	// Iterate through each element in the list to find the minimum value
+	elemType smallest = list[0];
+
+	for (int i = 1; i < length; i++)
+	{
+		if (smallest > list[i])
+		{
+			smallest = list[i];
+		}
+	}
+
+	return smallest;
 
 } // end min function
 
