@@ -60,16 +60,20 @@ protected:
 template <class elemType>
 void arrayListType<elemType>::print() const
 {
+	// If the list is empty, print out an empty string. Otherwise, go through
+	// the list element-by-element and print each one separated by a space
 	if (length == 0)
 	{
 		cout << "";
 	}
 	else
 	{
-		for (int i = 0; i < length; i++)
+		// Print each element separated by a space except for the last one
+		for (int i = 0; i < length - 1; i++)
 		{
 			cout << list[i] << " ";
 		}
+		cout << list[length-1];
 	}
 
 } // end print function
@@ -89,11 +93,12 @@ template <class elemType>
 void arrayListType<elemType>::insertAt
 (int location, const elemType& insertItem)
 {
-	// Check preconditions: 0 <= location <= length
+	// If the list is full then we cannot add any more elements to it
 	if (length == maxSize)
 	{
 		cerr << "ERROR: list is full\n";
 	}
+	// Check preconditions: 0 <= location <= length
 	else if (0 <= location && location <= length)
 	{
 		// If the insertion point is not at the end then we have to move all
@@ -109,7 +114,9 @@ void arrayListType<elemType>::insertAt
 		list[location] = insertItem;
 		length++;
 	}
-	else {
+	// The preconditions have not been met. Print an error message
+	else
+	{
 		cerr << "ERROR: location must be be between 0 and " << length << endl;
 	}
 } //end insertAt function
