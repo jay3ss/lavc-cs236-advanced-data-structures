@@ -70,8 +70,28 @@ int main()
     cout << "\nInsert data into a full list:\n";
     arrList.insertAt(51, 17);
 
-    cout << "\nFind the smallest element in the list (should be 0):\n";
-    cout << "The smallest element in the list is: " << arrList.min();
+    cout << "\nFind the smallest item in the list (should be 0):\n";
+    cout << "The smallest item in the list is: " << arrList.min();
+    cout << endl;
+
+    cout << "\nRemove an item from the middle of the list (location 15, item: 196):\n";
+    arrList.removeAt(15);
+    arrList.print();
+    cout << endl;
+
+    cout << "\nRemove an item from the end of the list (location 48, item: 2304):\n";
+    arrList.removeAt(48);
+    arrList.print();
+    cout << endl;
+
+    cout << "\nAttempt to remove an item from the end of the list (location 48, item: 2304):\n";
+    arrList.removeAt(48);
+    arrList.print();
+    cout << endl;
+
+    cout << "\nRemove an item from the end of the list (location 48, item: 2304):\n";
+    arrList.removeAt(48);
+    arrList.print();
     cout << endl;
 
     return 0;
