@@ -129,8 +129,7 @@ void arrayListType<elemType>::insertAt
 	// The preconditions have not been met. Print an error message
 	else
 	{
-		cerr << "ERROR: location must be be between 0 and " << length
-			 << " (inclusive)\n";
+		cerr << "Position is out of range. The list does not change.\n";
 	}
 } //end insertAt function
 
@@ -139,13 +138,8 @@ template <class elemType>
 void arrayListType<elemType>::removeAt(int location)
 {
 
-	// If the list is full then we cannot add any more elements to it
-	if (length == maxSize)
-	{
-		cerr << "ERROR: list is full\n";
-	}
-	// Check preconditions: 0 <= location < length
-	else if (0 <= location && location < length)
+	// Check the preconditions: 0 <= location < length
+	if (0 <= location && location < length)
 	{
 		// If the item to be removed is not the last item, then swap it with
 		// the last item. Otherwise, we can simply decrease the length of the
@@ -160,7 +154,8 @@ void arrayListType<elemType>::removeAt(int location)
 	// The preconditions have not been met. Print an error message
 	else
 	{
-		cerr << "ERROR: location must be be between 0 and " << length << endl;
+		cerr << "The location of the item to be removed is out of range.\n"
+			 << "The list does not change.\n";
 	}
 
 } //end removeAt function
