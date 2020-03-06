@@ -60,7 +60,10 @@ void LinkedList<E>::prev()
 template <class E>
 void LinkedList<E>::next()
 {
-
+    if (curr != tail)
+    {
+        curr = curr->next;
+    }
 }
 
 template <class E>
