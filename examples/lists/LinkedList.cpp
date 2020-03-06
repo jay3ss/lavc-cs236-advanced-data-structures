@@ -24,7 +24,15 @@ void LinkedList<E>::clear()
 template <class E>
 void LinkedList<E>::insert(const E &item)
 {
+    Node<E>* nodeToInsert = new Node<E>(item, curr->next);
+    curr->next = nodeToInsert;
 
+    // Make sure to update the tail if necessary
+    if (tail == curr)
+    {
+        tail = curr->next;
+    }
+    count++;
 }
 
 template <class E>
