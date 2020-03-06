@@ -73,6 +73,8 @@ void LinkedList<E>::prev()
 template <class E>
 void LinkedList<E>::next()
 {
+    // If we're at the tail of the list then we don't need to
+    // go anywhere
     if (curr != tail)
     {
         curr = curr->next;
