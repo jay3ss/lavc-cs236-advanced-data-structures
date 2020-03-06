@@ -38,12 +38,22 @@ void LinkedList<E>::insert(const E &item)
 template <class E>
 void LinkedList<E>::append(const E &item)
 {
-    // To append a new item to the list, we simply create a new
+    // If the list is empty then we can simply put the new item
+    // as the item of the Node that's already in place. Otherwise,
+    // to append a new item to the list, we simply create a new
     // Node, add it to the end of the list, and have the tail
     // pointer point to it
-    Node<E>* nodeToAppend = new Node<E>(item, nullptr);
-    tail->next = nodeToAppend;
-    tail = tail->next;
+    if (count == 0)
+    {
+        head->element = item;
+    }
+    else
+    {
+        Node<E> *nodeToAppend = new Node<E>(item, nullptr);
+        tail->next = nodeToAppend;
+        tail = tail->next;
+    }
+
     count++;
 }
 
