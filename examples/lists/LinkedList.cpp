@@ -90,7 +90,7 @@ void LinkedList<E>::next()
 template <class E>
 int LinkedList<E>::length() const
 {
-
+    return count;
 }
 
 template <class E>
