@@ -8,10 +8,17 @@ template <class E>
 class LinkedList : public ListInterface<E>
 {
 private:
-    Node<E>* head;
+    Node<E>* head;  // Points to first element in list
+    Node<E>* curr;  // Points to element before the current element
+    Node<E>* tail;  // Points to last element in list
+
+    int count;
+
+    void init();
+    void removeall();
 public:
-    LinkedList() {}  // Default constructor
-    ~LinkedList() {} // Base destructor
+    LinkedList(int maxSize = 0);    // Default constructor
+    ~LinkedList();                  // Base destructor
 
     // Clear contents from the list, to make it empty
     void clear();
@@ -55,5 +62,7 @@ public:
     // Return: The current element
     const E &getValue() const;
 };
+
+#include "LinkedList.cpp"
 
 #endif // LINKED_LIST_H
