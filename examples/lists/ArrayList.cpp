@@ -64,3 +64,42 @@ E ArrayList<E>::remove()
     listSize--;
     return toRemove;
 }
+
+template <class E>
+void ArrayList<E>::moveToStart()
+{
+    curr = 0;
+}
+
+template <class E>
+void ArrayList<E>::moveToEnd()
+{
+    curr = listSize;
+}
+
+template <class E>
+void ArrayList<E>::moveToPos(int pos)
+{
+    // Assert precondition that the new position must be within the
+    // bounds of the list
+    assert(0 <= pos && pos <= listSize);
+    curr = pos;
+}
+
+template <class E>
+void ArrayList<E>::next()
+{
+    if (curr < listSize)
+    {
+        curr++;
+    }
+}
+
+template <class E>
+void ArrayList<E>::prev()
+{
+    if (curr > 0)
+    {
+        curr--;
+    }
+}
