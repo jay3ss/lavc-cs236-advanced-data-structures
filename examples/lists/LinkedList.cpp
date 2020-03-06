@@ -54,7 +54,7 @@ void LinkedList<E>::moveToStart()
 template <class E>
 void LinkedList<E>::moveToEnd()
 {
-
+    curr = tail;
 }
 
 template <class E>
@@ -97,12 +97,23 @@ template <class E>
 int LinkedList<E>::currPos() const
 {
     int position = 0;
-    Node<E>* temp = head;
 
-    while (curr != temp)
+    if (curr == head)
     {
-        temp = temp->next;
-        position++;
+        position = 0;
+    }
+    else if (curr == tail)
+    {
+        position = count - 1;
+    }
+    else
+    {
+        Node<E>* temp = head;
+        while (curr != temp)
+        {
+            temp = temp->next;
+            position++;
+        }
     }
 
     return position;
