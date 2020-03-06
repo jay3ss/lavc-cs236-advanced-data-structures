@@ -47,3 +47,20 @@ void ArrayList<E>::append(const E& it)
     listArray[listSize] = it;
     listSize++;
 }
+
+template <class E>
+E ArrayList<E>::remove()
+{
+    // Assert precondition that the list isn't empty
+    assert(listSize > 0);
+
+    // Get the item that's being removed, move all list items down one
+    // position, decrease the list size, and then return the item
+    E toRemove = listArray[curr];
+    for (int i = curr; i < listSize-1; i++)
+    {
+        listArray[i] = listArray[i+1];
+    }
+    listSize--;
+    return toRemove;
+}
