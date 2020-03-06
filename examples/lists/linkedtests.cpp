@@ -48,12 +48,12 @@ int main()
     std::cout << "Current position is: " << list.currPos() << std::endl;
     assert(list.currPos() == 0);
 
-    // Calling prev should'nt move the list's current position from 0
+    // Calling prev shouldn't move the list's current position from 0
     list.prev();
     std::cout << "Current position is: " << list.currPos() << std::endl;
     assert(list.currPos() == 0);
 
-    // Calling next should'nt move the list's current position from LENGTH - 1
+    // Calling next shouldn't move the list's current position from LENGTH - 1
     list.moveToEnd();
     list.next();
     std::cout << "Current position is: " << list.currPos() << std::endl;
@@ -65,6 +65,9 @@ int main()
         std::cout << list.getValue() << ", ";
     }
     std::cout << list.getValue() << std::endl;
+
+
+    //
 
     return 0;
 }
