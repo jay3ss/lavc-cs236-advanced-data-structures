@@ -103,3 +103,15 @@ void ArrayList<E>::prev()
         curr--;
     }
 }
+
+template <class E>
+int ArrayList<E>::length() const
+{
+    return listSize;
+}
+
+template <class E>
+int ArrayList<E>::currPos() const
+{
+    return curr;
+}
