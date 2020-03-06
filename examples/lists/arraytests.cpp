@@ -66,5 +66,19 @@ int main()
     }
     std::cout << list.getValue() << std::endl;
 
+    // Removing an item should return the correct item
+    int toRemove = 5;
+    int value = toRemove * toRemove - toRemove;
+    list.moveToPos(toRemove);
+    int removed = list.remove();
+    assert(removed == value);
+    std::cout << "Item removed: " << removed << "\n";
+    for (list.moveToStart(); list.currPos() < list.length() - 1; list.next())
+    {
+        std::cout << list.getValue() << ", ";
+    }
+    std::cout << list.getValue() << std::endl;
+
+
     return 0;
 }
