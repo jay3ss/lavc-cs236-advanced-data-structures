@@ -122,6 +122,21 @@ int LinkedList<E>::currPos() const
 template <class E>
 void LinkedList<E>::moveToPos(int pos)
 {
+    if (pos == 0)
+    {
+        moveToStart();
+    }
+    else if (pos == count - 1)
+    {
+        moveToEnd();
+    }
+    else
+    {
+        for (int i = currPos(); i < pos; i++)
+        {
+            curr = curr->next;
+        }
+    }
 
 }
 
