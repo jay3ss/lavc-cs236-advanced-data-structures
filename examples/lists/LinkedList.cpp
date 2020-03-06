@@ -48,7 +48,7 @@ E LinkedList<E>::remove()
 template <class E>
 void LinkedList<E>::moveToStart()
 {
-
+    curr = head;
 }
 
 template <class E>
