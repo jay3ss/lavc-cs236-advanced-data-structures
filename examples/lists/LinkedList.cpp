@@ -72,7 +72,15 @@ int LinkedList<E>::length() const
 template <class E>
 int LinkedList<E>::currPos() const
 {
+    int position;
+    Node<E>* temp = head;
 
+    for (position = 0; curr != temp; position++)
+    {
+        temp = temp->next;
+    }
+
+    return position;
 }
 
 template <class E>
