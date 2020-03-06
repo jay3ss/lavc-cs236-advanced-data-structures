@@ -115,3 +115,11 @@ int ArrayList<E>::currPos() const
 {
     return curr;
 }
+
+template <class E>
+const E& ArrayList<E>::getValue() const
+{
+    // Assert precondition that the list isn't empty
+    assert(listSize > 0);
+    return listArray[curr];
+}
