@@ -17,7 +17,8 @@ LinkedList<E>::~LinkedList()
 template <class E>
 void LinkedList<E>::clear()
 {
-
+    removeall();
+    init();
 }
 
 template <class E>
