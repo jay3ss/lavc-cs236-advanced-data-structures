@@ -74,7 +74,7 @@ void ArrayList<E>::moveToStart()
 template <class E>
 void ArrayList<E>::moveToEnd()
 {
-    curr = listSize;
+    curr = listSize - 1;
 }
 
 template <class E>
@@ -82,7 +82,7 @@ void ArrayList<E>::moveToPos(int pos)
 {
     // Assert precondition that the new position must be within the
     // bounds of the list
-    assert(0 <= pos && pos <= listSize);
+    assert(0 <= pos && pos < listSize);
     curr = pos;
 }
 
