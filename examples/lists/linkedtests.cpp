@@ -5,7 +5,7 @@
 int main()
 {
     const int LENGTH = 10;
-    LinkedList<int> list(LENGTH);
+    LinkedList<int> list;
 
     // The list's current position should start at 0
     assert(list.currPos() == 0);
@@ -16,7 +16,7 @@ int main()
         list.append(i * i - i);
     }
 
-    // The list's current position should stil be at 0
+    // The list's current position should still be at 0
     assert(list.currPos() == 0);
 
     // Calling next should move the list's current position to 1
