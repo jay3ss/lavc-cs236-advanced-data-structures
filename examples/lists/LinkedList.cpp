@@ -161,7 +161,7 @@ void LinkedList<E>::moveToPos(int pos)
 template <class E>
 const E &LinkedList<E>::getValue() const
 {
-
+    return curr->element;
 }
 
 
