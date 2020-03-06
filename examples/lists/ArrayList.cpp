@@ -21,3 +21,19 @@ void ArrayList<E>::clear()
     listSize = 0;
     curr = 0;
 }
+
+template <class E>
+void ArrayList<E>::insert(const E& it)
+{
+    // Assert the precondition that the list isn't full
+    assert(listSize < maxSize);
+
+    // Move all the elements up one space, insert the new item into the current
+    // position, and then increment the list size
+    for (int i = listSize; i > curr; i--)
+    {
+        listArray[i] = listArray[i-1];
+    }
+    listArray[curr] = it;
+    listSize++;
+}
