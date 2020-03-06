@@ -54,7 +54,20 @@ void LinkedList<E>::moveToEnd()
 template <class E>
 void LinkedList<E>::prev()
 {
+    // If we're at the head of the list then we don't need to
+    // go anywhere
+    if (curr != head)
+    {
+        Node<E>* temp = head;
 
+        // Traverse the list until we get to the Node before the
+        // current one
+        while (temp->next != curr)
+        {
+            temp = temp->next;
+        }
+        curr = temp;
+    }
 }
 
 template <class E>
