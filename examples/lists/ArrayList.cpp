@@ -7,6 +7,6 @@ ArrayList<E>::ArrayList(int size) : maxSize(size), listSize(0), curr(0)
 template <class E>
 ArrayList<E>::~ArrayList()
 {
-    delete listArray;
+    delete[] listArray;
     listArray = nullptr;
 }
