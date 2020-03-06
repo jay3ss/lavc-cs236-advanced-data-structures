@@ -89,6 +89,7 @@ void ticTacToe::play()
         // Keep looping until a valid move is entered
         while (!makeMove(row, col))
         {
+            cout << "Invalid move, please try again.\n";
             getPlayerMove(row, col);
         }
 
