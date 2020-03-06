@@ -89,7 +89,9 @@ void ArrayList<E>::moveToPos(int pos)
 template <class E>
 void ArrayList<E>::next()
 {
-    if (curr < listSize)
+    // Enforce the boundaries of the underlying array. Don't go beyond
+    // the length of the array
+    if (curr < listSize - 1)
     {
         curr++;
     }
