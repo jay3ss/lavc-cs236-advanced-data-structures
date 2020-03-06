@@ -37,3 +37,13 @@ void ArrayList<E>::insert(const E& it)
     listArray[curr] = it;
     listSize++;
 }
+
+template <class E>
+void ArrayList<E>::append(const E& it)
+{
+    // Assert the precondition that the list isn't full
+    assert(listSize < maxSize);
+
+    listArray[listSize] = it;
+    listSize++;
+}
