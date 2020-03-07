@@ -1,3 +1,7 @@
+// file name: main.cpp
+// Spring 2020
+// Joshua Saunders
+// #Array - based List Program(Assignment 2)
 #include <iostream>
 #include "arrayListType.h"
 
