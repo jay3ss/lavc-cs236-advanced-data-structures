@@ -150,6 +150,10 @@ void arrayListType<elemType>::removeAt(int location)
 		}
 
 		length--;
+		cout << "After removing the element at position " << location
+			 << ", the list is: ";
+		print();
+		cout << endl;
 	}
 	// The preconditions have not been met. Print an error message
 	else

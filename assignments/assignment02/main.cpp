@@ -28,9 +28,6 @@ int main()
     int position;
     cin >> position;
     intList.removeAt(position);
-    cout << "After removing the element at position " << position
-         << ", the list is: ";
-    intList.print();
 
     // Prompt the user to insert an integer, then display the list
     cout << "\n\nEnter the position and an integer to be inserted: ";
