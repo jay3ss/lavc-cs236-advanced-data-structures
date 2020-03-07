@@ -108,7 +108,7 @@ void arrayListType<elemType>::insertAt
 	// If the list is full then we cannot add any more elements to it
 	if (length == maxSize)
 	{
-		cerr << "ERROR: list is full\n";
+		cerr << "The list is full. The list does not change.\n";
 	}
 	// Check preconditions: 0 <= location <= length
 	else if (0 <= location && location <= length)
@@ -144,9 +144,9 @@ void arrayListType<elemType>::removeAt(int location)
 		// If the item to be removed is not the last item, then swap it with
 		// the last item. Otherwise, we can simply decrease the length of the
 		// list to remove the last item
-		if (location != length)
+		for (int i = location; i < length; i++)
 		{
-			list[location] = list[length-1];
+			list[i] = list[i+1];
 		}
 
 		length--;
