@@ -30,7 +30,7 @@ int main()
     intList.removeAt(position);
 
     // Prompt the user to insert an integer, then display the list
-    cout << "\n\nEnter the position and an integer to be inserted: ";
+    cout << "\nEnter the position and an integer to be inserted: ";
     int toInsert;
     cin >> position >> toInsert;
     intList.insertAt(position, toInsert);
