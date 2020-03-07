@@ -23,8 +23,8 @@ by location.  The item to be inserted is passed as a parameter to the function.
 - `min` function – to output the smallest element of the list
 
 2. And demonstrate the class `arrayListType` by write the main program (cpp)
-thatasks a user to enter 5 integers. After displaying the entered 5 integers,
-askthe user the position of the item to be deleted and inserted.  Your program
+tha tasks a user to enter 5 integers. After displaying the entered 5 integers,
+ask the user the position of the item to be deleted and inserted.  Your program
 should include error checking if the position is out of range or array is full,
 display the final list of array and find the minimum value.
 
