@@ -51,6 +51,12 @@ public:
 
     // Return: The current element
     virtual const E& getValue() const = 0;
+
+    // Return: true if current position is at end of list
+    virtual bool isAtEnd() const = 0;
+
+    // Return: true if list is empty
+    virtual bool isEmpty() const = 0;
 };
 
 #endif // LIST_INTERFACE_H

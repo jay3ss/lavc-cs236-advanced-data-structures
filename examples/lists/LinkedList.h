@@ -61,6 +61,9 @@ public:
 
     // Return: The current element
     const E &getValue() const;
+
+    bool isAtEnd() const; // Determine if current position at end
+    bool isEmpyt() const; // Determine if list is empty
 };
 
 #include "LinkedList.cpp"

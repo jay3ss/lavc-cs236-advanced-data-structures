@@ -1,3 +1,5 @@
+#include "ArrayList.h"
+
 template <class E>
 ArrayList<E>::ArrayList(int size) : maxSize(size), listSize(0), curr(0)
 {
