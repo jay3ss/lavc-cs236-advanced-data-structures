@@ -8,7 +8,16 @@ int main()
     LinkedList<int> list;
 
     // The list's current position should start at 0
+    std::cout << "Current position is: " << list.currPos() << "\n";
     assert(list.currPos() == 0);
+
+    // A new list should be empty
+    std::cout << "New list is empty: " << list.isEmpty() << "\n";
+    assert(list.isEmpty());
+
+    // A new list's current position should be at the end
+    std::cout << "Current position is at the end: " << list.isAtEnd() << "\n";
+    assert(list.isAtEnd());
 
     // Append 10 numbers to the list
     for (int i = 0; i < LENGTH; i++)
@@ -23,10 +32,10 @@ int main()
     list.next();
     assert(list.currPos() == 1);
 
-    // Calling moveToEnd should move the list's current position to LENGTH -1
+    // Calling moveToEnd should move the list's current position to LENGTH
     list.moveToEnd();
     std::cout << "Current position is: " << list.currPos() << std::endl;
-    assert(list.currPos() == LENGTH - 1);
+    assert(list.currPos() == LENGTH);
 
     // Calling moveToStart should move the list's current position to 0
     list.moveToStart();
@@ -38,10 +47,10 @@ int main()
     std::cout << "Current position is: " << list.currPos() << std::endl;
     assert(list.currPos() == 3);
 
-    // Calling moveToPos(LENGTH-1) should move the list's current position LENGTH - 1
-    list.moveToPos(LENGTH - 1);
+    // Calling moveToPos(LENGTH) should move the list's current position LENGTH
+    list.moveToPos(LENGTH);
     std::cout << "Current position is: " << list.currPos() << std::endl;
-    assert(list.currPos() == LENGTH - 1);
+    assert(list.currPos() == LENGTH);
 
     // Calling moveToPos(0) should move the list's current position 0
     list.moveToPos(0);
@@ -53,11 +62,11 @@ int main()
     std::cout << "Current position is: " << list.currPos() << std::endl;
     assert(list.currPos() == 0);
 
-    // Calling next shouldn't move the list's current position from LENGTH - 1
+    // Calling next shouldn't move the list's current position from LENGTH
     list.moveToEnd();
     list.next();
     std::cout << "Current position is: " << list.currPos() << std::endl;
-    assert(list.currPos() == LENGTH - 1);
+    assert(list.currPos() == LENGTH);
 
     // Traverse the list and print out its contents
     for (list.moveToStart(); list.currPos() < list.length() - 1; list.next())
