@@ -1,6 +1,7 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <cassert>
 #include "ListInterface.h"
 #include "Node.h"
 
@@ -63,7 +64,7 @@ public:
     const E &getValue() const;
 
     bool isAtEnd() const; // Determine if current position at end
-    bool isEmpyt() const; // Determine if list is empty
+    bool isEmpty() const; // Determine if list is empty
 };
 
 #include "LinkedList.cpp"

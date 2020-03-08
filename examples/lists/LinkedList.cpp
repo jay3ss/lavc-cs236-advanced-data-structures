@@ -24,35 +24,37 @@ void LinkedList<E>::clear()
 template <class E>
 void LinkedList<E>::insert(const E &item)
 {
-    Node<E>* nodeToInsert = new Node<E>(item, curr->next);
-    curr->next = nodeToInsert;
+    // How to insert a new item
+    // 1. Create a new node
+    // 2. Set curr's data to the new node's data
+    // 3. Set the new node's next pointer to curr's next pointer
+    // 4. Have curr point to the new node
+    // 5. Update the number of nodes
+    // 6. Update the tail, if necessary
+    Node<E>* newNode = new Node<E>(curr->element, curr->next);
+    curr->next = newNode;
+    curr->element = item;
 
-    // Make sure to update the tail if necessary
-    if (tail == curr)
+    if(tail == curr)
     {
         tail = curr->next;
     }
+
     count++;
 }
 
 template <class E>
 void LinkedList<E>::append(const E &item)
 {
-    // If the list is empty then we can simply put the new item
-    // as the item of the Node that's already in place. Otherwise,
-    // to append a new item to the list, we simply create a new
-    // Node, add it to the end of the list, and have the tail
-    // pointer point to it
-    if (count == 0)
-    {
-        head->element = item;
-    }
-    else
-    {
-        Node<E> *nodeToAppend = new Node<E>(item, nullptr);
-        tail->next = nodeToAppend;
-        tail = tail->next;
-    }
+    // To append, we simply need to
+    // 1. Create a new node
+    // 2. Store the item in the tail node
+    // 3.
+
+    Node<E> *newTail = new Node<E>;
+    tail->next = newTail;
+    tail->element = item;
+    tail = tail->next;
 
     count++;
 }
@@ -60,13 +62,31 @@ void LinkedList<E>::append(const E &item)
 template <class E>
 E LinkedList<E>::remove()
 {
+    // Assert precondition that the list isn't empty
+    assert(curr != tail);
 
+    E item = curr->element;
+    Node<E> *nextNode = curr->next;
+    curr->element = nextNode->element;
+    curr->next = nextNode->next;
+
+    delete nextNode;
+    nextNode = nullptr;
+
+    if (curr->next == tail)
+    {
+        tail = curr;
+    }
+
+    count--;
+
+    return item;
 }
 
 template <class E>
 void LinkedList<E>::moveToStart()
 {
-    curr = head;
+    curr = head->next;
 }
 
 template <class E>
@@ -80,7 +100,7 @@ void LinkedList<E>::prev()
 {
     // If we're at the head of the list then we don't need to
     // go anywhere
-    if (curr != head)
+    if (curr != head->next)
     {
         Node<E>* temp = head;
 
@@ -114,24 +134,12 @@ int LinkedList<E>::length() const
 template <class E>
 int LinkedList<E>::currPos() const
 {
-    int position = 0;
+    Node<E> *temp = head->next;
+    int position;
 
-    if (curr == head)
+    for (position = 0; curr != temp; position++)
     {
-        position = 0;
-    }
-    else if (curr == tail)
-    {
-        position = count - 1;
-    }
-    else
-    {
-        Node<E>* temp = head;
-        while (curr != temp)
-        {
-            temp = temp->next;
-            position++;
-        }
+        temp = temp->next;
     }
 
     return position;
@@ -144,18 +152,18 @@ void LinkedList<E>::moveToPos(int pos)
     {
         moveToStart();
     }
-    else if (pos == count - 1)
+    else if (pos == count)
     {
         moveToEnd();
     }
     else
     {
-        for (int i = currPos(); i < pos; i++)
+        curr = head->next->next;
+        for (int i = 1; i < pos; i++)
         {
             curr = curr->next;
         }
     }
-
 }
 
 template <class E>
@@ -164,7 +172,17 @@ const E &LinkedList<E>::getValue() const
     return curr->element;
 }
 
+template <class E>
+bool LinkedList<E>::isAtEnd() const
+{
+    return curr == tail;
+}
 
+template <class E>
+bool LinkedList<E>::isEmpty() const
+{
+    return count == 0;
+}
 
 // Private methods
 template <class E>
@@ -174,7 +192,7 @@ void LinkedList<E>::init()
     // insertion and removal operations later
     curr = new Node<E>;
     tail = curr;
-    head = curr;
+    head = new Node<E>(tail);
 
     count = 0;
 }
