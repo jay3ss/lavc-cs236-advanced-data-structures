@@ -30,7 +30,7 @@ public:
     int currPos() const;        // Return current position
     const E& getValue() const;  // Return current element
     bool isAtEnd() const;       // Determine if current position at end
-    bool isEmpyt() const;       // Determine if list is empty
+    bool isEmpty() const;       // Determine if list is empty
 };
 
 #include "ArrayList.cpp"

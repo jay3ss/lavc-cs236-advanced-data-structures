@@ -127,3 +127,15 @@ const E& ArrayList<E>::getValue() const
     assert(listSize > 0);
     return listArray[curr];
 }
+
+template <class E>
+bool ArrayList<E>::isAtEnd() const
+{
+    return curr == listSize;
+}
+
+template <class E>
+bool ArrayList<E>::isEmpty() const
+{
+    return false;
+}
