@@ -135,13 +135,8 @@ template <class elemType>
 void arrayListType<elemType>::insertAt
 (int location, const elemType& insertItem)
 {
-	// If the list is full then we cannot add any more elements to it
-	if (length == maxSize)
-	{
-		cerr << "The list is full. The list does not change.\n";
-	}
-	// Check preconditions: 0 <= location <= length
-	else if (0 <= location && location <= length)
+	// Check preconditions: 0 <= location <= length and the list isn't full
+	if (0 <= location && location <= length + 1 && length < maxSize)
 	{
 		// If the insertion point is not at the end then we have to move all
 		// elements that succeed the insertion point back by one spot
@@ -156,10 +151,15 @@ void arrayListType<elemType>::insertAt
 		list[location] = insertItem;
 		length++;
 	}
-	// The preconditions have not been met. Print an error message
-	else
+	// The insertion location is out of range
+	else if (location < 0 || length < location)
 	{
-		cerr << "Position is out of range. The list does not change.\n";
+		cerr << "Position is out of range.\n";
+	}
+	// If the list is full then we cannot add any more elements to it
+	else if (length == maxSize)
+	{
+		cerr << "The list is full.\n";
 	}
 } //end insertAt function
 
@@ -180,16 +180,11 @@ void arrayListType<elemType>::removeAt(int location)
 		}
 
 		length--;
-		cout << "After removing the element at position " << location
-			 << ", the list is: ";
-		print();
-		cout << endl;
 	}
 	// The preconditions have not been met. Print an error message
 	else
 	{
-		cerr << "The location of the item to be removed is out of range.\n"
-			 << "The list does not change.\n";
+		cerr << "The location of the item to be removed is out of range.\n";
 	}
 
 } //end removeAt function
