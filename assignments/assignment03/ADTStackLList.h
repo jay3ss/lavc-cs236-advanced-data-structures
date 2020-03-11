@@ -103,7 +103,7 @@ public:
         while (temp != nullptr)
         {
             cout << "|" << temp->data << "|\n";
-            if (temp != nullptr)
+            if (temp->next != nullptr)
             {
                 cout << endl;
             }
