@@ -31,6 +31,8 @@
 #include <iostream>
 #include "ADTStackLList.h"
 
+using namespace std;
+
 enum  Choice { PUSH, POP, DISPLAY, EXIT };
 
 void displayMenu();
@@ -40,6 +42,7 @@ int main()
 {
     stack<int> intStack;
     Choice userChoice;
+    int item;
 
     while (userChoice != Choice::EXIT)
     {
@@ -49,27 +52,55 @@ int main()
         switch (userChoice)
         {
         case Choice::PUSH:
-            /* code */
+            cout << "Enter an item to be pushed: ";
+            cin >> item;
+            cout << "\nPushed Successfully\n\n";
+            intStack.push(item);
             break;
         case Choice::POP:
-
+            if (!intStack.isEmpty())
+            {
+                item = intStack.getTop();
+                intStack.pop();
+                cout << endl << item << " is popped Successfully\n\n";
+            }
+            else
+            {
+                cout << "Stack is empty, cannot pop\n\n";
+            }
             break;
         case Choice::DISPLAY:
+            cout << "\nThe elements in the Stack are\n\n";
             intStack.display();
+            cout << endl;
             break;
         default:
+            cout << "\nGoodbye!\n";
             break;
         }
     }
-
 }
 
 void displayMenu()
 {
-
+    cout << "*** Menu for Stack operations ***\n\n"
+         << "1. PUSH (insert)\n"
+         << "2. POP (remove)\n"
+         << "3. DISPLAY\n"
+         << "4. EXIT\n"
+         << "Enter Choice: ";
 }
 
 Choice getUserChoice()
 {
+    int userChoice;
+    cin >> userChoice;
 
+    while (userChoice < 1 || 4 < userChoice)
+    {
+        cout << "Invalid choice. Choose again: ";
+        cin >> userChoice;
+    }
+
+    return static_cast<Choice>(userChoice - 1);
 }
