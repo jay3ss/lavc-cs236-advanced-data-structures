@@ -72,6 +72,8 @@ public:
         newItem->data = item;
         newItem->next = top;
         top = newItem;
+
+        size++;
     }
 
     /** to remove an item from the stack */
@@ -85,6 +87,8 @@ public:
 
             delete toDelete;
             toDelete = nullptr;
+
+            size--;
         }
     }
 
