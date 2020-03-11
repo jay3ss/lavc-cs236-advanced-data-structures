@@ -45,10 +45,25 @@ class stack
 {
 public:
     /** constructor */
-    stack();
+    stack()
+    {
+        top = nullptr;
+        size = 0;
+    }
 
     /** destructor */
-    ~stack();
+    ~stack()
+    {
+        node<T> *toDelete;
+        while (top != nullptr)
+        {
+            toDelete = top;
+            top = top->next;
+
+            delete toDelete;
+            toDelete = nullptr;
+        }
+    }
 
     /** to insert an item on to the stack */
     void push();
@@ -65,6 +80,7 @@ public:
 private:
     T item;
     node<T> *top;
+    int size;
 };
 
 #endif // ADT_STACK_LL_H
