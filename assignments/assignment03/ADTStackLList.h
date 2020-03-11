@@ -61,11 +61,7 @@ public:
         node<T> *toDelete;
         while (!isEmpty())
         {
-            toDelete = top;
-            top = top->next;
-
-            delete toDelete;
-            toDelete = nullptr;
+            pop();
         }
     }
 
