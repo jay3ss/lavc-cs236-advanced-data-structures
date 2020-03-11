@@ -66,7 +66,13 @@ public:
     }
 
     /** to insert an item on to the stack */
-    void push();
+    void push(const T &item)
+    {
+        node<T> newItem = new node<T>;
+        newItem->data = item;
+        newItem->next = top;
+        top = newItem;
+    }
 
     /** to remove an item from the stack */
     void pop();
