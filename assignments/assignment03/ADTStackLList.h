@@ -52,7 +52,6 @@ public:
     stack()
     {
         top = nullptr;
-        size = 0;
     }
 
     /** destructor */
@@ -72,8 +71,6 @@ public:
         newItem->data = item;
         newItem->next = top;
         top = newItem;
-
-        size++;
     }
 
     /** to remove an item from the stack */
@@ -87,8 +84,6 @@ public:
 
             delete toDelete;
             toDelete = nullptr;
-
-            size--;
         }
     }
 
@@ -122,7 +117,6 @@ public:
 private:
     T item;
     node<T> *top;
-    int size;
 };
 
 #endif // ADT_STACK_LL_H
