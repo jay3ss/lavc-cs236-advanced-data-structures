@@ -11,12 +11,12 @@
 // be inserted and deleted at one end called the “TOP” of stack
 //
 // To implement stack using linked list we need to define a node which in turn
-// consist of data of pointer to the next node.The advantage of representing
+// consist of data of pointer to the next node. The advantage of representing
 // stack using linked lists is that we can decide which end should be top of a
 // stack. And since the array size is fixed, in the array (linear)
 // representation of stack, only fixed number of elements can be pushed onto
 // the stack.If in a program the number of elements to be pushed exceeds the
-// size of the array, the program may terminate in an error.We must overcome
+// size of the array, the program may terminate in an error. We must overcome
 // these problems.
 //
 // By using linked lists, we can dynamically organize data (such as an ordered
