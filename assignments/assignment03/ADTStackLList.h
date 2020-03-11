@@ -81,7 +81,10 @@ public:
     void display();
 
     /** to get the item at the top of the stack */
-    T getTop() const;
+    T getTop() const
+    {
+        return top->data;
+    }
 
 private:
     T item;
