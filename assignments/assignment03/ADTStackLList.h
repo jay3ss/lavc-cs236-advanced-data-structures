@@ -72,7 +72,7 @@ public:
     /** to insert an item on to the stack */
     void push(const T &item)
     {
-        node<T> newItem = new node<T>;
+        node<T> *newItem = new node<T>;
         newItem->data = item;
         newItem->next = top;
         top = newItem;
