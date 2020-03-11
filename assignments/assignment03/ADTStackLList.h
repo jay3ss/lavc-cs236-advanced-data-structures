@@ -65,10 +65,10 @@ public:
     }
 
     /** to insert an item on to the stack */
-    void push(const T &item)
+    void push(const T &it)
     {
         node<T> *newItem = new node<T>;
-        newItem->data = item;
+        newItem->data = it;
         newItem->next = top;
         top = newItem;
     }
@@ -90,7 +90,7 @@ public:
     /** to display the stack elements on screen */
     void display()
     {
-        node<T> *temp;
+        node<T> *temp = top;
         while (temp != nullptr)
         {
             cout << "|" << temp->data << "|\n";
