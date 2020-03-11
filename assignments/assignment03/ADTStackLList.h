@@ -59,7 +59,7 @@ public:
     ~stack()
     {
         node<T> *toDelete;
-        while (top != nullptr)
+        while (!isEmpty())
         {
             toDelete = top;
             top = top->next;
@@ -84,7 +84,7 @@ public:
     void pop()
     {
         // only attempt to remove items if the stack isn't empty
-        if (top != nullptr)
+        if (!isEmpty())
         {
             node<T> *toDelete = top;
             top = top->next;
@@ -115,6 +115,12 @@ public:
     T getTop() const
     {
         return top->data;
+    }
+
+    /** returns true if the stack is empty, false otherwise */
+    bool isEmpty() const
+    {
+        return top == nullptr;
     }
 
 private:
