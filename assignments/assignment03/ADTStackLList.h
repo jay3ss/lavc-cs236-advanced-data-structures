@@ -59,6 +59,9 @@ public:
     /** to display the stack elements on screen */
     void display();
 
+    /** to get the item at the top of the stack */
+    T getTop() const;
+
 private:
     T item;
     node<T> *top;
