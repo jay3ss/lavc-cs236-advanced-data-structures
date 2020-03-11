@@ -75,7 +75,18 @@ public:
     }
 
     /** to remove an item from the stack */
-    void pop();
+    void pop()
+    {
+        // only attempt to remove items if the stack isn't empty
+        if (top != nullptr)
+        {
+            node<T> *toDelete = top;
+            top = top->next;
+
+            delete toDelete;
+            toDelete = nullptr;
+        }
+    }
 
     /** to display the stack elements on screen */
     void display();
