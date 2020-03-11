@@ -28,9 +28,48 @@
 // header file ADTStackLList.h and the driver program ADTStackLList.cpp to
 // test your functions.
 
+#include <iostream>
 #include "ADTStackLList.h"
+
+enum  Choice { PUSH, POP, DISPLAY, EXIT };
+
+void displayMenu();
+Choice getUserChoice();
 
 int main()
 {
     stack<int> intStack;
+    Choice userChoice;
+
+    while (userChoice != Choice::EXIT)
+    {
+        displayMenu();
+        userChoice = getUserChoice();
+
+        switch (userChoice)
+        {
+        case Choice::PUSH:
+            /* code */
+            break;
+        case Choice::POP:
+
+            break;
+        case Choice::DISPLAY:
+            intStack.display();
+            break;
+        default:
+            break;
+        }
+    }
+
+}
+
+void displayMenu()
+{
+
+}
+
+Choice getUserChoice()
+{
+
 }
