@@ -31,6 +31,10 @@
 #ifndef ADT_STACK_LL_H
 #define ADT_STACK_LL_H
 
+#include <iostream>
+
+using namespace std;
+
 // to implement a stack using a linked list
 template <class T>
 class node
@@ -93,7 +97,19 @@ public:
     }
 
     /** to display the stack elements on screen */
-    void display();
+    void display()
+    {
+        node<T> *temp;
+        while (temp != nullptr)
+        {
+            cout << "|" << temp->data << "|\n";
+            if (temp != nullptr)
+            {
+                cout << endl;
+            }
+            temp = temp->next;
+        }
+    }
 
     /** to get the item at the top of the stack */
     T getTop() const
