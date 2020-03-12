@@ -33,7 +33,7 @@
 
 using namespace std;
 
-enum  Choice { PUSH, POP, DISPLAY, EXIT };
+enum class Choice { PUSH, POP, DISPLAY, EXIT };
 
 void displayMenu();
 Choice getUserChoice();
