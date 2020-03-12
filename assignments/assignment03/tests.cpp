@@ -1,3 +1,4 @@
+#include <cassert>
 #include "ADTStackLList.h"
 
 int main()
@@ -10,4 +11,19 @@ int main()
     }
 
     intStack.display();
+    cout << endl;
+
+    stack<int> copyStack = intStack;
+    copyStack.display();
+
+    while (!intStack.isEmpty())
+    {
+        int stack1Item = intStack.getTop();
+        int stack2Item = copyStack.getTop();
+
+        intStack.pop();
+        copyStack.pop();
+
+        assert(stack1Item == stack2Item);
+    }
 }
