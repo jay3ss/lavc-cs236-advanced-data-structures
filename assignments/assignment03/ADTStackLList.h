@@ -152,7 +152,6 @@ public:
     }
 
 private:
-    T item;
     node<T> *top;
 };
 
