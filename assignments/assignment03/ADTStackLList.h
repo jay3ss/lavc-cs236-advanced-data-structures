@@ -40,6 +40,9 @@ template <class T>
 class node
 {
 public:
+    node(T &item, node<T> *nextPtr) : data(item), next(nextPtr) {}
+    node(T &item) : data(item), next(nullptr) {}
+    node() {}
     T data;
     node<T> *next;
 };
@@ -61,6 +64,40 @@ public:
         while (!isEmpty())
         {
             pop();
+        }
+    }
+
+    /** copy constructor */
+    stack(const stack &obj)
+    {
+        if (obj.isEmpty())
+        {
+            top = nullptr;
+        }
+        else {
+            // 1. Copy the object's first node
+            // 2. Point to the first node in the chain
+            // 3. Copy the remianing nodes
+            node<T> *objNodePtr = obj.top;
+
+            top = new node<T>;
+            top->data = objNodePtr->data;
+            node<T> *newChainPtr = top;
+
+            while (objNodePtr->next != nullptr)
+            {
+                // 1. Advance the object's chain pointer
+                // 2. Get the next item from the object
+                // 3. Create a new node containing the item
+                // 4. Link new node to end of new chain
+                // 5. Advance pointer to new last node
+                objNodePtr = objNodePtr->next;
+                node<T>* newNodePtr = new node<T>(objNodePtr->data);
+                newChainPtr->next = newNodePtr;
+                newChainPtr = newChainPtr->next;
+            }
+            // Now mark the end of the chain
+            newChainPtr = nullptr;
         }
     }
 
