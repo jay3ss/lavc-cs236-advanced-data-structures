@@ -37,6 +37,8 @@ enum class Choice { PUSH, POP, DISPLAY, EXIT };
 
 void displayMenu();
 Choice getUserChoice();
+void push(stack<int> &st);
+void pop(stack<int> &st);
 
 int main()
 {
@@ -52,22 +54,10 @@ int main()
         switch (userChoice)
         {
         case Choice::PUSH:
-            cout << "Enter an item to be pushed: ";
-            cin >> item;
-            cout << "\nPushed Successfully\n\n";
-            intStack.push(item);
+            push(intStack);
             break;
         case Choice::POP:
-            if (!intStack.isEmpty())
-            {
-                item = intStack.getTop();
-                intStack.pop();
-                cout << endl << item << " is popped Successfully\n\n";
-            }
-            else
-            {
-                cout << "Stack is empty, cannot pop\n\n";
-            }
+            pop(intStack);
             break;
         case Choice::DISPLAY:
             cout << "\nThe elements in the Stack are\n\n";
@@ -103,4 +93,28 @@ Choice getUserChoice()
     }
 
     return static_cast<Choice>(userChoice - 1);
+}
+
+void push(stack<int> &st)
+{
+    int item;
+    cout << "Enter an item to be pushed: ";
+    cin >> item;
+    cout << "\nPushed Successfully\n\n";
+    st.push(item);
+}
+
+void pop(stack<int> &st)
+{
+    int item;
+    if (!st.isEmpty())
+    {
+        item = st.getTop();
+        st.pop();
+        cout << endl << item << " is popped Successfully\n\n";
+    }
+    else
+    {
+        cout << "Stack is empty, cannot pop\n\n";
+    }
 }
