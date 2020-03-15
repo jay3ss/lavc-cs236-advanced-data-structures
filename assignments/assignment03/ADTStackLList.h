@@ -31,6 +31,7 @@
 #ifndef ADT_STACK_LL_H
 #define ADT_STACK_LL_H
 
+#include <cassert>
 #include <iostream>
 
 using namespace std;
@@ -142,6 +143,8 @@ public:
     /** to get the item at the top of the stack */
     T getTop() const
     {
+        // Assert the precondition that the stack is not empty
+        assert(!isEmpty() && "Error, stack is empty");
         return top->data;
     }
 
