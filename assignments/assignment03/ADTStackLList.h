@@ -61,7 +61,7 @@ public:
     /** destructor */
     ~stack()
     {
-        node<T> *toDelete;
+        // keep removing the top item until the stack is empty
         while (!isEmpty())
         {
             pop();
