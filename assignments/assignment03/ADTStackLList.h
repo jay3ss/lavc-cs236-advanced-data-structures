@@ -61,7 +61,7 @@ public:
     /** destructor */
     ~stack()
     {
-        // keep removing the top item until the stack is empty
+        // keep popping until the stack is empty
         while (!isEmpty())
         {
             pop();
@@ -71,6 +71,7 @@ public:
     /** copy constructor */
     stack(const stack &obj)
     {
+        // If the obj is empty, then there's nothing copy
         if (obj.isEmpty())
         {
             top = nullptr;
@@ -78,7 +79,7 @@ public:
         else {
             // 1. Copy the object's first node
             // 2. Point to the first node in the chain
-            // 3. Copy the remianing nodes
+            // 3. Copy the remaining nodes
             node<T> *objNodePtr = obj.top;
 
             top = new node<T>;
@@ -102,7 +103,9 @@ public:
         }
     }
 
-    /** to insert an item on to the stack */
+    /** to insert an item on to the stack
+    @post if successful, the new entry will be added to the top of the stack
+    @param it the item to be added to the top of the stack */
     void push(const T &it)
     {
         node<T> *newItem = new node<T>;
@@ -111,21 +114,28 @@ public:
         top = newItem;
     }
 
-    /** to remove an item from the stack */
+    /** to remove an item from the stack
+    @post if the stack isn't empty, the top of the stack will have been
+    removed */
     void pop()
     {
         // only attempt to remove items if the stack isn't empty
         if (!isEmpty())
         {
+            // copy the top pointer & advance the original to the next
+            // item in the chain
             node<T> *toDelete = top;
             top = top->next;
 
+            // delete the pointer and set it to nullptr to prevent having a
+            // dangling pointer
             delete toDelete;
             toDelete = nullptr;
         }
     }
 
-    /** to display the stack elements on screen */
+    /** to display the stack elements on screen
+    @post the contents of the stack will be printed to the terminal */
     void display()
     {
         node<T> *temp = top;
@@ -140,7 +150,9 @@ public:
         }
     }
 
-    /** to get the item at the top of the stack */
+    /** returns the item at the top of the stack
+    @pre the stack is not empty
+    @return the item at the top of the stack */
     T getTop() const
     {
         // Assert the precondition that the stack is not empty
@@ -148,14 +160,15 @@ public:
         return top->data;
     }
 
-    /** returns true if the stack is empty, false otherwise */
+    /** determines if the stack is empty
+    @return true if the stack is empty, false otherwise */
     bool isEmpty() const
     {
         return top == nullptr;
     }
 
 private:
-    node<T> *top;
+    node<T> *top;   // keep track of the first item in the stack
 };
 
 #endif // ADT_STACK_LL_H
