@@ -40,6 +40,10 @@ public:
     /** Returns the number of items currently in the stack
     @return the number of items in the stack */
     virtual const int length() const = 0;
+
+    /** Returns the stack to its inital state - empty
+    @post the stack will be empty and in its initial state */
+    virtual void clear() = 0;
 private:
     // Protect the copy constructor and assignment operator
     /** Copy constructor */

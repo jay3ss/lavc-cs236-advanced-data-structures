@@ -27,6 +27,9 @@ public:
 
     // Returns the number of items currently in the stack
     const int length() const;
+
+    // Returns the stack to its inital state - empty
+    void clear();
 private:
     int maxSize;
     int numItems;
