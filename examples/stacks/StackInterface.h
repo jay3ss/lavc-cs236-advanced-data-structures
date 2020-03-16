@@ -37,6 +37,9 @@ public:
     @return a copy of the item at the top of the stack */
     virtual const T& top() const = 0;
 
+    /** Returns the number of items currently in the stack
+    @return the number of items in the stack */
+    virtual const int length() const = 0;
 private:
     // Protect the copy constructor and assignment operator
     /** Copy constructor */
