@@ -32,7 +32,7 @@ public:
     void clear();
 private:
     int maxSize;    // maximum number of items in stack
-    int top;        // points to top of stack
+    int topItem;    // points to top of stack
     T* items;       // array to hold items in stack
 };
 
