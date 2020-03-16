@@ -1,9 +1,17 @@
 #include "ArrayStack.h"
 
-ArrayStack::ArrayStack(/* args */)
+template<class T>
+ArrayStack<T>::ArrayStack(const int maxNumItems) :
+    maxSize(maxNumItems),
+    numItems(0)
 {
+    items = new T[maxSize];
+    numItems = 0;
 }
 
-ArrayStack::~ArrayStack()
+template<class T>
+ArrayStack<T>::~ArrayStack()
 {
+    delete[] items;
+    items = nullptr;
 }
