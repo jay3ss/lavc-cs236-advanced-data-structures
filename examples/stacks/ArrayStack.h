@@ -6,12 +6,32 @@
 template <class T>
 class ArrayStack : StackInterface<T>
 {
-private:
-    /* data */
 public:
-    ArrayStack(/* args */);
+    ArrayStack(const int maxNumItems = 5);
     ~ArrayStack();
+
+    // Determines if the stack is empty
+    bool isEmpty() const;
+
+    // Determines if the stack is full
+    bool isFull() const;
+
+    // Removes the top item from the stack
+    bool pop();
+
+    // Adds an item to the top of the stack
+    bool push();
+
+    // Returns the top item from the stack without modifying the stack
+    const T& top() const;
+
+    // Returns the number of items currently in the stack
+    const int length() const;
+private:
+    int maxSize;
+    int numItems;
+    T* items;
 };
 
-
+#include "ArrayStack.cpp"
 #endif // ARRAY_STACK_H
