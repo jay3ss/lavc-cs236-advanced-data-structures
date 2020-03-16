@@ -38,7 +38,7 @@ bool ArrayStack<T>::pop()
 
 // Adds an item to the top of the stack
 template <class T>
-bool ArrayStack<T>::push()
+bool ArrayStack<T>::push(const T &item)
 {
     return false;
 }

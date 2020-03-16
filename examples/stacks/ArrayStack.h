@@ -20,7 +20,7 @@ public:
     bool pop();
 
     // Adds an item to the top of the stack
-    bool push();
+    bool push(const T& item);
 
     // Returns the top item from the stack without modifying the stack
     const T& top() const;
