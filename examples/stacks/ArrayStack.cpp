@@ -1,12 +1,9 @@
 #include "ArrayStack.h"
 
 template<class T>
-ArrayStack<T>::ArrayStack(const int maxNumItems) :
-    maxSize(maxNumItems),
-    numItems(0)
+ArrayStack<T>::ArrayStack(const int maxNumItems) : maxSize(maxNumItems), top(-1)
 {
     items = new T[maxSize];
-    numItems = 0;
 }
 
 template<class T>
