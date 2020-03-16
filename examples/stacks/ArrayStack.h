@@ -31,9 +31,9 @@ public:
     // Returns the stack to its inital state - empty
     void clear();
 private:
-    int maxSize;
-    int numItems;
-    T* items;
+    int maxSize;    // maximum number of items in stack
+    int top;        // points to top of stack
+    T* items;       // array to hold items in stack
 };
 
 #include "ArrayStack.cpp"
