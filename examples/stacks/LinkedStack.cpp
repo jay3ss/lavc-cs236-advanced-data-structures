@@ -16,7 +16,7 @@ LinkedStack<T>::~LinkedStack()
 template <class T>
 bool LinkedStack<T>::isEmpty() const
 {
-    return false;
+    return topPtr == nullptr;
 }
 
 // Determines if the stack is full
