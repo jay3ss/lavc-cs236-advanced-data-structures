@@ -37,7 +37,19 @@ bool LinkedStack<T>::pop()
 template <class T>
 bool LinkedStack<T>::push(const T& item)
 {
-    return false;
+    Node<T>* newNodePtr = new Node<T>(item);
+    if (isEmpty())
+    {
+        topPtr = newNodePtr;
+    }
+    else
+    {
+        newNodePtr->next(topPtr);
+        topPtr = newNodePtr;
+    }
+
+    numItems++;
+    return true;
 }
 
 // Returns the top item from the stack without modifying the stack
