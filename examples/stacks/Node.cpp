@@ -1,10 +1,10 @@
 #include "Node.h"
 
 template <class T>
-Node<T>::Node() : next(nullptr) {}
+Node<T>::Node() : next_(nullptr) {}
 
 template <class T>
-Node<T>::Node(T newData, Node* nextPtr) : data(newData), next(nextPtr) {}
+Node<T>::Node(T newData, Node* nextPtr) : data_(newData), next_(nextPtr) {}
 
 template <class T>
 const T& Node<T>::data() const
