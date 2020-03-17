@@ -34,6 +34,12 @@ private:
     int maxSize;    // maximum number of items in stack
     int topItem;    // points to top of stack
     T* items;       // array to hold items in stack
+
+    // Copy constructor
+    ArrayStack(const ArrayStack& stack);
+
+    // Assignment operator
+    void operator=(const ArrayStack& stack);
 };
 
 #include "ArrayStack.cpp"
