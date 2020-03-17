@@ -12,5 +12,8 @@ int main()
     assert(stack.isEmpty());
     std::cout << "2.\tAn empty stack should be empty: PASSED\n";
 
+    assert(!stack.isFull());
+    std::cout << "3.\tAn empty stack should not be full: PASSED\n";
+
     return 0;
 }
