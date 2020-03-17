@@ -44,13 +44,14 @@ int main()
     std::cout << "11.\tPopping an item should decrease stack's length by 1: PASSED\n";
 
     // Filling the stack
-    for (int i = 0; i < MAX_STACK_SIZE; i++)
+    const int numItems = 100;
+    for (int i = 0; i < numItems; i++)
     {
         assert(stack.push(i * i - i));
     }
 
-    assert(stack.isFull());
-    std::cout << "12.\tA full stack should be full: PASSED\n";
+    assert(!stack.isFull());
+    std::cout << "12.\tThe stack should not be full: PASSED\n";
 
     assert(!stack.isEmpty());
     std::cout << "13.\tA full stack should not be empty: PASSED\n";
