@@ -25,7 +25,7 @@ const Node<T>* Node<T>::next() const
 }
 
 template <class T>
-void Node<T>::next(const Node<T>* newNextPtr)
+void Node<T>::next(Node<T>* newNextPtr)
 {
     next_ = newNextPtr;
 }

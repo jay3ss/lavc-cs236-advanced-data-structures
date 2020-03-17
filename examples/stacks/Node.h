@@ -12,7 +12,7 @@ public:
     void data(const T& newData);
 
     const Node* next() const;
-    void next(const Node* newNextPtr);
+    void next(Node* newNextPtr);
 private:
     T data_;
     Node* next_;
