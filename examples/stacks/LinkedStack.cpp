@@ -30,7 +30,20 @@ bool LinkedStack<T>::isFull() const
 template <class T>
 bool LinkedStack<T>::pop()
 {
-    return false;
+    bool canPop = !isEmpty();
+
+    if (canPop)
+    {
+        Node<T> *toDelete = topPtr;
+        topPtr = topPtr->next();
+
+        delete toDelete;
+        toDelete = nullptr;
+
+        numItems--;
+    }
+
+    return canPop;
 }
 
 // Adds an item to the top of the stack
