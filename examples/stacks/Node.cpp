@@ -19,7 +19,7 @@ void Node<T>::data(const T& newData)
 }
 
 template <class T>
-const Node<T>* Node<T>::next() const
+Node<T>* Node<T>::next() const
 {
     return next_;
 }

@@ -11,7 +11,7 @@ public:
     const T& data() const;
     void data(const T& newData);
 
-    const Node* next() const;
+    Node* next() const;
     void next(Node* newNextPtr);
 private:
     T data_;
