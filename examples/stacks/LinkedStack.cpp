@@ -3,7 +3,7 @@
 template <class T>
 LinkedStack<T>::LinkedStack(const int maxNumItems) : topPtr(nullptr)
 {
-
+    numItems = 0;
 }
 
 template <class T>
@@ -51,7 +51,7 @@ const T& LinkedStack<T>::top() const
 template <class T>
 const int LinkedStack<T>::length() const
 {
-    return -1;
+    return numItems;
 }
 
 // Returns the stack to its initial state - empty
