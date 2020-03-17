@@ -19,7 +19,7 @@ ArrayStack<T>::~ArrayStack()
 template <class T>
 bool ArrayStack<T>::isEmpty() const
 {
-    return top == -1;
+    return topItem == -1;
 }
 
 // Determines if the stack is full
@@ -47,8 +47,7 @@ bool ArrayStack<T>::push(const T &item)
 template <class T>
 const T& ArrayStack<T>::top() const
 {
-    T item;
-    return item;
+    return items[topItem];
 }
 
 // Returns the number of items currently in the stack
@@ -61,6 +60,20 @@ const int ArrayStack<T>::length() const
 // Returns the stack to its inital state - empty
 template <class T>
 void ArrayStack<T>::clear()
+{
+
+}
+
+// Copy constructor
+template <class T>
+ArrayStack<T>::ArrayStack(const ArrayStack &stack)
+{
+
+}
+
+// Assignment operator
+template <class T>
+void ArrayStack<T>::operator=(const ArrayStack &stack)
 {
 
 }
