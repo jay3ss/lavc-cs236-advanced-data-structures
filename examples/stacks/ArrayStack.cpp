@@ -26,21 +26,36 @@ bool ArrayStack<T>::isEmpty() const
 template <class T>
 bool ArrayStack<T>::isFull() const
 {
-    return false;
+    return topItem + 1 == maxSize;
 }
 
 // Removes the top item from the stack
 template <class T>
 bool ArrayStack<T>::pop()
 {
-    return false;
+    bool canPop = !isEmpty();
+
+    if (canPop)
+    {
+        topItem--;
+    }
+
+    return canPop;
 }
 
 // Adds an item to the top of the stack
 template <class T>
 bool ArrayStack<T>::push(const T &item)
 {
-    return false;
+    bool canPush = !isFull();
+
+    if (canPush)
+    {
+        topItem++;
+        items[topItem] = item;
+    }
+
+    return canPush;
 }
 
 // Returns the top item from the stack without modifying the stack
@@ -61,7 +76,7 @@ const int ArrayStack<T>::length() const
 template <class T>
 void ArrayStack<T>::clear()
 {
-
+    topItem = -1;
 }
 
 // Copy constructor
