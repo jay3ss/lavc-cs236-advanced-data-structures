@@ -7,10 +7,10 @@ int main()
     ArrayStack<int> stack;
 
     assert(stack.length() == 0);
-    std::cout << "An empty stack should have no items in it: PASSED\n\n";
+    std::cout << "1.\tAn empty stack should have no items in it: PASSED\n";
 
     assert(stack.isEmpty());
-    std::cout << "An empty stack should be empty: PASSED\n\n";
+    std::cout << "2.\tAn empty stack should be empty: PASSED\n";
 
     return 0;
 }

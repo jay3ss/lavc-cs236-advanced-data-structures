@@ -54,7 +54,7 @@ const T& ArrayStack<T>::top() const
 template <class T>
 const int ArrayStack<T>::length() const
 {
-    return -1;
+    return topItem + 1;
 }
 
 // Returns the stack to its inital state - empty
