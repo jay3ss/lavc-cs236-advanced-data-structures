@@ -6,10 +6,10 @@ class StackInterface
 {
 public:
     /** Constructor */
-    StackInterface();
+    StackInterface() {}
 
     /** Destructor */
-    virtual ~StackInterface();
+    virtual ~StackInterface() {}
 
     /** Determines if the stack is empty
     @return true if the stack is empty, false otherwise */
