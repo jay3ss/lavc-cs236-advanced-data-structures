@@ -83,5 +83,7 @@ const int LinkedStack<T>::length() const
 template <class T>
 void LinkedStack<T>::clear()
 {
-
+    // Keep popping until the stack is empty
+    while (pop())
+    {}
 }
