@@ -48,9 +48,9 @@ bool FixedQueue<T>::dequeue()
     {
         // move every entry after the front of the queue
         // up one position
-        for (int i = rear; i < 0; i--)
+        for (int i = 0; i < rear - 1; i++)
         {
-            queue[rear - 1] = queue[rear];
+            queue[i] = queue[i + 1];
         }
         rear--;
     }
