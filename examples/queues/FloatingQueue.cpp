@@ -2,7 +2,8 @@
 
 // Constructor
 template <class T>
-FloatingQueue<T>::FloatingQueue(const int maxSize)
+FloatingQueue<T>::FloatingQueue(const int maxSize) :
+    front(0), rear(0), count(0)
 {
     queue = new T[maxSize];
 }
@@ -61,5 +62,5 @@ void FloatingQueue<T>::clear()
 template <class T>
 int FloatingQueue<T>::length() const
 {
-    return -1;
+    return count;
 }
