@@ -9,7 +9,7 @@ LinkedStack<T>::LinkedStack(const int maxNumItems) : topPtr(nullptr)
 template <class T>
 LinkedStack<T>::~LinkedStack()
 {
-
+    clear();
 }
 
 // Determines if the stack is empty
