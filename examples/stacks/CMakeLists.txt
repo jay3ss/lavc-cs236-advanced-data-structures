@@ -25,3 +25,7 @@ target_link_libraries(linkedstack stackinterface node)
 # Tests for ArrayStack class
 add_executable(arraystacktests arraystacktests.cpp)
 target_link_libraries(arraystacktests arraystack)
+
+# Tests for LinkedStack class
+add_executable(linkedstacktests linkedstacktests.cpp)
+target_link_libraries(linkedstacktests linkedstack)
