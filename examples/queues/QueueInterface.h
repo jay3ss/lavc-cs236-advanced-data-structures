@@ -32,6 +32,18 @@ public:
     @pre the queue is not empty
     @return the front of the queue */
     virtual T peek() const = 0;
+
+    /** Determines if the queue is full
+    @return true if the queue is full, false otherwise */
+    virtual bool isFull() const = 0;
+
+    /** Removes all items from the queue
+    @post all items will be removed from the queue */
+    virtual void clear() = 0;
+
+    /** Returns the number of elements in the queue
+    @return the number of elements in the queue */
+    virtual int length() const = 0;
 };
 
 #endif // QUEUE_INTERFACE_H
