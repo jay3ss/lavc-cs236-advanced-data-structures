@@ -32,12 +32,6 @@ public:
     @pre the queue is not empty
     @return the front of the queue */
     virtual T peek() const = 0;
-private:
-    // Copy constructor
-    QueueInterface(const QueueInterface&);
-
-    // Assignment operator
-    void operator =(const QueueInterface&);
 };
 
 #endif // QUEUE_INTERFACE_H
