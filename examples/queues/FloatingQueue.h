@@ -8,7 +8,7 @@ class FloatingQueue : QueueInterface<T>
 {
 public:
     // Constructor
-    FloatingQueue(const int maxNumEntries = 5);
+    FloatingQueue(const int maxSize = 5);
 
     // Destructor
     ~FloatingQueue();
