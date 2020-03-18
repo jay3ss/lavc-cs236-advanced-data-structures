@@ -35,7 +35,7 @@ public:
     int length() const;
 private:
     T* queue;       // array to store the entries
-    int read;       // keep track of the rear of the queue
+    int rear;       // keep track of the rear of the queue
     int maxSize;    // maximum number of items allowable (array length)
 };
 
