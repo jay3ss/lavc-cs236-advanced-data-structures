@@ -4,8 +4,7 @@
 template <class T>
 FloatingQueue<T>::FloatingQueue(const int maxSize)
 {
-    // keep a space reserved for the position preceding the front
-    queue = new T[maxSize + 1];
+    queue = new T[maxSize];
 }
 
 // Destructor
