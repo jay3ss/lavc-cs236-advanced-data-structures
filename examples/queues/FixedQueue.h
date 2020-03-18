@@ -20,7 +20,7 @@ public:
     bool enqueue(const T& newEntry);
 
     // Removes the entry at the front of the queue
-    bool dequeue() const;
+    bool dequeue();
 
     // Returns the front of the queue
     T peek() const;
