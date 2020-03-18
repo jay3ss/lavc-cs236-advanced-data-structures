@@ -39,4 +39,6 @@ private:
     int maxSize;    // maximum number of items allowable (array length)
 };
 
+#include "FixedQueue.cpp"
+
 #endif // FIXED_QUEUE_H
