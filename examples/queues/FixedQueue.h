@@ -8,7 +8,7 @@ class FixedQueue : QueueInterface<T>
 {
 public:
     // Constructor
-    FixedQueue(const int maxNumEntries);
+    FixedQueue(const int maxNumEntries = 5);
 
     // Destructor
     ~FixedQueue();
