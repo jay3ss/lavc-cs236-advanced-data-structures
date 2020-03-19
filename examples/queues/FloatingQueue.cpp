@@ -20,14 +20,25 @@ FloatingQueue<T>::~FloatingQueue()
 template <class T>
 bool FloatingQueue<T>::isEmpty() const
 {
-    return false;
+    return count == 0;
 }
 
 // Adds a new entry to the back of the queue
 template <class T>
 bool FloatingQueue<T>::enqueue(const T &newEntry)
 {
-    return false;
+    bool canEnqueue = !isFull();
+
+    if (canEnqueue)
+    {
+        // Add the entry to it and increment the rear position
+        // Increment the count of entries in the queue
+        queue[rear] = newEntry;
+        rear++;
+        count++;
+    }
+
+    return canEnqueue;
 }
 
 // Removes the entry at the front of the queue
@@ -41,7 +52,7 @@ bool FloatingQueue<T>::dequeue()
 template <class T>
 T FloatingQueue<T>::peek() const
 {
-    return queue[0];
+    return queue[front];
 }
 
 // Determines if the queue is full
