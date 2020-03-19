@@ -37,12 +37,12 @@ int main()
     assert(!queue.isFull());
     std::cout << "9.\tA non-full queue should not be full: PASSED\n";
 
-    // Popping from the queue
+    // Dequeueing from the queue
     assert(queue.dequeue());
-    std::cout << "10.\tPopping the front item should return true: PASSED\n";
+    std::cout << "10.\tDequeueing the front item should return true: PASSED\n";
 
     assert(queue.length() == 0);
-    std::cout << "11.\tPopping an item should decrease queue's length by 1: PASSED\n";
+    std::cout << "11.\tDequeueing an item should decrease queue's length by 1: PASSED\n";
 
     // Filling the queue
     for (int i = 0; i < MAX_QUEUE_SIZE; i++)
