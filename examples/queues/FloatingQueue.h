@@ -35,10 +35,11 @@ public:
     int length() const;
 
 private:
-    T *queue;   // array to store the entries
-    int front;  // keep track of the front of the queue
-    int rear;   // keep track of the rear of the queue
-    int count;  // number of items currently in the queue
+    T *queue;       // array to store the entries
+    int front;      // keep track of the front of the queue
+    int rear;       // keep track of the rear of the queue
+    int count;      // number of items currently in the queue
+    int MAX_SIZE;   // max size of the queue array
 };
 
 #include "FloatingQueue.cpp"

@@ -3,9 +3,9 @@
 // Constructor
 template <class T>
 FloatingQueue<T>::FloatingQueue(const int maxSize) :
-    front(0), rear(0), count(0)
+    front(0), rear(0), count(0), MAX_SIZE(maxSize + 1)
 {
-    queue = new T[maxSize];
+    queue = new T[MAX_SIZE];
 }
 
 // Destructor
@@ -34,7 +34,7 @@ bool FloatingQueue<T>::enqueue(const T &newEntry)
         // Add the entry to it and increment the rear position
         // Increment the count of entries in the queue
         queue[rear] = newEntry;
-        rear++;
+        rear  = (rear + 1) % MAX_SIZE;
         count++;
     }
 
@@ -45,7 +45,15 @@ bool FloatingQueue<T>::enqueue(const T &newEntry)
 template <class T>
 bool FloatingQueue<T>::dequeue()
 {
-    return false;
+    bool canDequeue = !isEmpty();
+
+    if (canDequeue)
+    {
+        front = (front + 1) % MAX_SIZE;
+        count--;
+    }
+
+    return canDequeue;
 }
 
 // Returns the front of the queue
@@ -59,7 +67,7 @@ T FloatingQueue<T>::peek() const
 template <class T>
 bool FloatingQueue<T>::isFull() const
 {
-    return false;
+    return count == MAX_SIZE - 1;
 }
 
 // Removes all items from the queue
