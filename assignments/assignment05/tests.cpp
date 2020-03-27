@@ -19,7 +19,7 @@ int main()
     cout << "Should be able to add a new entry to the empty tree: PASSED\n";
 
     assert(bst.entry(entry) == entry && "FAILED: Should be able to get the item\n");
-    cout << "SHould be able to get an item from the tree: PASSED\n";
+    cout << "Should be able to get an item from the tree: PASSED\n";
 
     assert(bst.height() == 1 && "FAILED: The height of a tree with one entry should be 1\n");
     cout << "The height of a tree with one entry should be one: PASSED\n";
