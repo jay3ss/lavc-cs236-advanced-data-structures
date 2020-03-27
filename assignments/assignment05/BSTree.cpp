@@ -53,7 +53,7 @@ int BST::leafCounter(BTreeNode* tree) const
 
 bool BST::isEmpty() const
 {
-    return false;
+    return root == nullptr;
 }
 
 bool BST::remove(const double val)
