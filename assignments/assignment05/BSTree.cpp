@@ -12,12 +12,22 @@ BST::~BST()
 
 int BST::height() const
 {
-    return -1;
+    return height(root);
 }
 
 int BST::height(BTreeNode* tree)
 {
-    return -1;
+    if (tree == nullptr)
+    {
+        return 0;
+    }
+    else
+    {
+        // Traverse both subtrees and then find the greater of the two
+        int leftHeight = height(tree->left);
+        int rightHeight = height(tree->right);
+        return 1 + (leftHeight > rightHeight) ? leftHeight : rightHeight;
+    }
 }
 
 bool BST::insert(double x)
