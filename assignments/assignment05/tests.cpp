@@ -26,4 +26,7 @@ int main()
 
     assert(bst.height() == 1 && "FAILED: The height of a tree with one entry should be 1\n");
     cout << "The height of a tree with one entry should be one: PASSED\n";
+
+    assert(bst.leafCounter() == 1 && "FAILED: A tree with one entry should have one leaf\n");
+    cout << "A tree with one entry should have one leaf: PASSED\n";
 }
