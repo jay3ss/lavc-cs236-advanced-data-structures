@@ -32,13 +32,29 @@ int BST::height(BTreeNode* tree)
 
 bool BST::insert(double x)
 {
-
-    return false;
+    BTreeNode* newNode = new BTreeNode(x);
+    insert(root, newNode);
+    return true;
 }
 
 void BST::insert(BTreeNode* subTree, BTreeNode* newNode)
 {
-
+    // Using the convention that new values
+    // - less than or equal to the current node's value -> left
+    // - greater than the current node's value -> right
+    // We know that we've hit the insertion point when subTree is null
+    if (subTree == nullptr)
+    {
+        subTree = newNode;
+    }
+    else if (newNode->value <= subTree->value)
+    {
+        insert(subTree->left, newNode);
+    }
+    else
+    {
+        insert(subTree->right, newNode);
+    }
 }
 
 void BST::inorder(vector<double>& vect)
