@@ -8,5 +8,6 @@ int main()
 {
     BST bst;
 
-
+    assert(bst.isEmpty());
+    cout << "A new tree should be empty: PASSED\n\n";
 }
