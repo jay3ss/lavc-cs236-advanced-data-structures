@@ -44,3 +44,28 @@ int BST::leafCounter(BTreeNode* tree) const
 {
     return -1;
 }
+
+bool BST::isEmpty() const
+{
+    return false;
+}
+
+bool BST::add(const double val)
+{
+    return false;
+}
+
+bool BST::remove(const double val)
+{
+    return false;
+}
+
+bool BST::contains(const double val) const
+{
+    return false;
+}
+
+void BST::clear()
+{
+
+}

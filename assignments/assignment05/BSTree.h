@@ -26,12 +26,17 @@ private:
 class BST
 {
 public:
+    BST();
+    ~BST();
     int height() const;                                     // return the tree height
     void insert(double x);                                  // insert numbers into the binary tree
     void inorder(vector<double>& vect);                     // appends all nodes in subtree
     int leafCounter() const;                                // count the number of leaves
-    BST();
-    ~BST();
+    bool isEmpty() const;                                   // tests if the tree is empty
+    bool add(const double val);                             // adds data to the tree
+    bool remove(const double val);                          // removes data from the tree
+    bool contains(const double val) const;                  // determines if an item is in the tree
+    void clear();                                           // clears the tree of items
 private:
     BTreeNode *root;
 
