@@ -16,6 +16,8 @@ class BTreeNode
 public:
     BTreeNode(double x, BTreeNode *leftp = nullptr, BTreeNode *rightp = nullptr)
         : value(x), left(leftp), right(rightp) {}
+
+    bool isLeaf() const { return left == nullptr && right == nullptr; }
 private:
     double value;
     BTreeNode *left, *right;
