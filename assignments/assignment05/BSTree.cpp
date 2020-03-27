@@ -70,3 +70,8 @@ void BST::clear()
 {
 
 }
+
+double BST::entry(const double val) const
+{
+    return -3.14159;
+}

@@ -36,6 +36,7 @@ public:
     bool remove(const double val);                          // removes data from the tree
     bool contains(const double val) const;                  // determines if an item is in the tree
     void clear();                                           // clears the tree of items
+    double entry(const double val) const;                   // finds and returns the given entry
 private:
     BTreeNode *root;
 
