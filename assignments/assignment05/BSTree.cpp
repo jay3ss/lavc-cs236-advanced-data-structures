@@ -5,6 +5,11 @@ BST::BST()
     root = nullptr;
 }
 
+BST::~BST()
+{
+
+}
+
 int BST::height() const
 {
     return -1;

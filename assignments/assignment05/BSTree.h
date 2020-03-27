@@ -31,6 +31,7 @@ public:
     void inorder(vector<double>& vect);                     // appends all nodes in subtree
     int leafCounter() const;                                // count the number of leaves
     BST();
+    ~BST();
 private:
     BTreeNode *root;
 
