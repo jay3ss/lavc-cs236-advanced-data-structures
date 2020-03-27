@@ -22,7 +22,13 @@ int BST::height(BTreeNode* tree)
 
 bool BST::insert(double x)
 {
+
     return false;
+}
+
+void BST::insert(BTreeNode* subTree, BTreeNode* newNode)
+{
+
 }
 
 void BST::inorder(vector<double>& vect)

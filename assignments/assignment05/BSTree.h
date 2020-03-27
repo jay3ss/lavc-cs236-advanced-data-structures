@@ -42,5 +42,7 @@ private:
     void inorder(vector<double>& tlist, BTreeNode* tree);   // storing nodes in subtree
     int leafCounter(BTreeNode* tree) const;                 // count the number of leaves
     static int height(BTreeNode* tree);                     // calculate the height of the tree
+
+    void insert(BTreeNode* subTree, BTreeNode* newNode);    // helper to insert items into the tree
 };
 #endif // B_S_TREE_H
