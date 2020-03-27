@@ -20,9 +20,9 @@ int BST::height(BTreeNode* tree)
     return -1;
 }
 
-void BST::insert(double x)
+bool BST::insert(double x)
 {
-
+    return false;
 }
 
 void BST::inorder(vector<double>& vect)
@@ -46,11 +46,6 @@ int BST::leafCounter(BTreeNode* tree) const
 }
 
 bool BST::isEmpty() const
-{
-    return false;
-}
-
-bool BST::add(const double val)
 {
     return false;
 }
