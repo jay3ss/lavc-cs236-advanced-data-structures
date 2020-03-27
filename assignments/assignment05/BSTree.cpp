@@ -26,7 +26,7 @@ int BST::height(BTreeNode* tree)
         // Traverse both subtrees and then find the greater of the two
         int leftHeight = height(tree->left);
         int rightHeight = height(tree->right);
-        return 1 + (leftHeight > rightHeight) ? leftHeight : rightHeight;
+        return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
     }
 }
 
