@@ -69,12 +69,19 @@ void BST::inorder(vector<double>& tlist, BTreeNode* tree)
 
 int BST::leafCounter() const
 {
-    return -1;
+    return leafCounter(root);
 }
 
 int BST::leafCounter(BTreeNode* tree) const
 {
-    return -1;
+    if (tree == nullptr)
+    {
+        return 0;
+    }
+    else if (tree->isLeaf())
+    {
+        return 1 + leafCounter(tree->left) + leafCounter(tree->right);
+    }
 }
 
 bool BST::isEmpty() const
