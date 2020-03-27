@@ -44,6 +44,7 @@ private:
     int leafCounter(BTreeNode* tree) const;                 // count the number of leaves
     static int height(BTreeNode* tree);                     // calculate the height of the tree
 
-    void insert(BTreeNode* subTree, BTreeNode* newNode);    // helper to insert items into the tree
+    BTreeNode *insert(BTreeNode *subTree, BTreeNode *newNode);  // helper to insert items into the tree
+    double entry(BTreeNode* subTree, const double val) const;   // helper to return an entry
 };
 #endif // B_S_TREE_H
