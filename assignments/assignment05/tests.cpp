@@ -17,7 +17,7 @@ int main()
     assert(bst.leafCounter() == 0 && "FAILED: New tree should have no leaves\n");
     cout << "A new tree should have no leaves: PASSED\n";
 
-    double entry = 1.37;
+    double entry = 137;
     assert(bst.insert(entry) && "FAILED: Should be able to add an entry\n");
     cout << "Should be able to add a new entry to the empty tree: PASSED\n";
 
