@@ -47,6 +47,7 @@ private:
     static int height(BTreeNode* tree);                     // calculate the height of the tree
 
     BTreeNode *insert(BTreeNode *subTree, BTreeNode *newNode);  // helper to insert items into the tree
+    bool find(BTreeNode* subTree, double val) const;            // helper to find an item in the tree
     double entry(BTreeNode* subTree, const double val) const;   // helper to return an entry
 };
 #endif // B_S_TREE_H
