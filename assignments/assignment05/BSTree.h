@@ -49,5 +49,7 @@ private:
     BTreeNode *insert(BTreeNode *subTree, BTreeNode *newNode);  // helper to insert items into the tree
     bool find(BTreeNode* subTree, double val) const;            // helper to find an item in the tree
     double entry(BTreeNode* subTree, const double val) const;   // helper to return an entry
+    BTreeNode* remove(BTreeNode* subTree, const double val);    // helper to remove an item from the tree
+    BTreeNode* getmax(BTreeNode* subTree);                      // helper to find the node with the max value in a subtree
 };
 #endif // B_S_TREE_H

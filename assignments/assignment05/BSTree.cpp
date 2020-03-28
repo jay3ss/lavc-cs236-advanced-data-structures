@@ -91,7 +91,59 @@ bool BST::isEmpty() const
 
 bool BST::remove(const double val)
 {
-    return false;
+    bool isInTree = find(root, val);
+
+    if (isInTree)
+    {
+        root = remove(root, val);
+    }
+
+    return isInTree;
+}
+
+BTreeNode* BST::remove(BTreeNode* subTree, double val)
+{
+    if (subTree == nullptr)
+    {
+        return nullptr;
+    }
+
+    // 1. find the value, then remove it
+    // 2. check the child nodes
+    //    a. 0 children: set node to null
+    //    b. 1 child: set node to child of node
+    //    c. 2 children: set node to logical predecessor
+    if (subTree->value < val)
+    {
+        subTree->left = remove(subTree->left, val);
+    }
+    else if (subTree->value > val)
+    {
+        subTree->right = remove(subTree->right, val);
+    }
+    else
+    {
+        if (subTree->isLeaf())
+        {
+            delete subTree;
+            subTree = nullptr;
+        }
+        else if (subTree->left != nullptr)
+        {
+
+        }
+        else if (subTree->right != nullptr)
+        {
+            BTreeNode* rightChild = subTree->right;
+
+        }
+        else
+        {
+
+        }
+    }
+
+    return subTree;
 }
 
 bool BST::contains(const double val) const
@@ -159,4 +211,12 @@ bool BST::find(BTreeNode* subTree, double val) const
     {
         return true;
     }
+}
+
+BTreeNode* BST::getmax(BTreeNode* subTree)
+{
+    // find the node with the maximum value in a subtree
+    // keep going down the right of the subtree until the
+    // right child is null
+    return (subTree->right == nullptr) ? subTree : getmax(subTree->right);
 }
