@@ -36,6 +36,6 @@ int main()
     assert(bst.remove(entry) && "FAILED: Should be able to remove an entry\n");
     cout << "Should be able to remove an entry: PASSED\n";
 
-    assert(bst.contains(entry) && "FAILED: Should be able see if the tree doesn't contain a removed item\n");
+    assert(!bst.contains(entry) && "FAILED: Should be able see if the tree doesn't contain a removed item\n");
     cout << "Should be able to see if the tree contains an item: PASSED\n";
 }
