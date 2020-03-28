@@ -96,7 +96,7 @@ bool BST::remove(const double val)
 
 bool BST::contains(const double val) const
 {
-    return false;
+    return find(root, val);
 }
 
 void BST::clear()
@@ -134,4 +134,29 @@ double BST::entry(BTreeNode* subTree, const double val) const
         return subTree->value;
     }
 
+}
+
+bool BST::find(BTreeNode* subTree, double val) const
+{
+    // We know that the entry isn't in the tree when subTree is null
+    // Using the convention that new values
+    // - less than to the current node's value -> left
+    // - greater than the current node's value -> right
+    // - otherwise, we've reached the entry
+    if (subTree == nullptr)
+    {
+        return false;
+    }
+    else if (subTree->value < val)
+    {
+        return find(subTree->left, val);
+    }
+    else if (subTree->value > val)
+    {
+        return find(subTree->right, val);
+    }
+    else
+    {
+        return true;
+    }
 }
