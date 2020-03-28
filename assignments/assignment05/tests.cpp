@@ -24,9 +24,18 @@ int main()
     assert(bst.entry(entry) == entry && "FAILED: Should be able to get the item\n");
     cout << "Should be able to get an item from the tree: PASSED\n";
 
+    assert(bst.contains(entry) && "FAILED: Should be able see if the tree contains an added item\n");
+    cout << "Should be able to see if the tree contains an added item: PASSED\n";
+
     assert(bst.height() == 1 && "FAILED: The height of a tree with one entry should be 1\n");
     cout << "The height of a tree with one entry should be one: PASSED\n";
 
     assert(bst.leafCounter() == 1 && "FAILED: A tree with one entry should have one leaf\n");
     cout << "A tree with one entry should have one leaf: PASSED\n";
+
+    assert(bst.remove(entry) && "FAILED: Should be able to remove an entry\n");
+    cout << " Should be able to remove an entry: PASSED\n";
+
+    assert(bst.contains(entry) && "FAILED: Should be able see if the tree doesn't contain a removed item\n");
+    cout << "Should be able to see if the tree contains an item: PASSED\n";
 }
