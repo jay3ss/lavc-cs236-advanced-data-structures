@@ -69,6 +69,22 @@ vector<double> randomVector(const int size, const int start, const int stop);
     }
     cout << "Should be able to find several entries: PASSED\n";
 
+    for (auto& entry : entries)
+    {
+        assert(bst.remove(entry) && "FAILED: Should be able to remove entry\n");
+        assert(!bst.contains(entry) && "FAILED: Entry should not be in tree\n");
+    }
+    cout << "Should be able to remove several entries: PASSED\n";
+    cout << "Removed entries should not be in tree: PASSED\n";
+
+    assert(bst.isEmpty() && "FAILED: An empty tree should be empty\n");
+    cout << "An empty tree should be empty: PASSED\n";
+
+    assert(bst.height() == 0 && "FAILED: An empty tree should have a height of 0\n");
+    cout << " An empty tree should have a height of 0: PASSED\n";
+
+    assert(bst.leafCounter() == 0 && "FAILED: An empty tree should have no leaves\n");
+    cout << "An empty tree should have no leaves: PASSED\n";
 }
 
 void initRng()
