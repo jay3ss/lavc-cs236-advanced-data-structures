@@ -49,12 +49,14 @@ BTreeNode* BST::insert(BTreeNode* subTree, BTreeNode* newNode)
     }
     else if (newNode->value <= subTree->value)
     {
-        return insert(subTree->left, newNode);
+        subTree->left = insert(subTree->left, newNode);
     }
     else
     {
-        return insert(subTree->right, newNode);
+        subTree->right = insert(subTree->right, newNode);
     }
+
+    return subTree;
 }
 
 void BST::inorder(vector<double>& vect)
@@ -201,11 +203,11 @@ bool BST::find(BTreeNode* subTree, double val) const
     }
     else if (subTree->value < val)
     {
-        return find(subTree->left, val);
+        return find(subTree->right, val);
     }
     else if (subTree->value > val)
     {
-        return find(subTree->right, val);
+        return find(subTree->left, val);
     }
     else
     {
