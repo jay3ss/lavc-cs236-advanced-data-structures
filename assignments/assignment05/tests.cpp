@@ -1,10 +1,20 @@
+#include <algorithm>
 #include <cassert>
+#include <ctime>
 #include <iostream>
+#include <random>
+#include <vector>
 #include "BSTree.h"
 
 using namespace std;
 
-int main()
+uint32_t SEED = time(0);
+mt19937 RNG;
+
+void initRng();
+vector<double> randomVector(const int size, const int start, const int stop);
+
+    int main()
 {
     BST bst;
 
@@ -38,4 +48,43 @@ int main()
 
     assert(!bst.contains(entry) && "FAILED: Should be able see if the tree doesn't contain a removed item\n");
     cout << "Should be able to see if the tree contains an item: PASSED\n";
+
+    // Add many numbers to the tree randomly
+    initRng();
+    const int NUM_ENTRIES = 100;
+    const int START = 0;
+    // create a vector of random numbers of length NUM_ENTRIES, between START and NUM_ENTRIES
+    // and then add the entries into the tree (also, assert that the insertion works)
+    vector<double> entries = randomVector(NUM_ENTRIES, START, NUM_ENTRIES);
+
+    for (auto& entry : entries)
+    {
+        assert(bst.insert(entry) && "FAILED: Should be able to insert entry\n");
+    }
+    cout << "Insert many entries into the tree: PASSED\n";
+
+    for (auto& entry : entries)
+    {
+        assert(bst.contains(static_cast<double>(entry)) && "FAILED: Should have found entry\n");
+    }
+    cout << "Should be able to find several entries: PASSED\n";
+
+}
+
+void initRng()
+{
+    RNG.seed(SEED);
+}
+
+vector<double> randomVector(const int size, const int start, const int stop)
+{
+    uniform_int_distribution<int> dist(start, stop);
+    vector<double> entries = {};
+
+    for (int i = 0; i < 100; i++)
+    {
+        entries.push_back(dist(RNG));
+    }
+
+    return entries;
 }
