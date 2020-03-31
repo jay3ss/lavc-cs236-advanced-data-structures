@@ -4,6 +4,7 @@
 namespace recursive
 {
 int factorial(const int number);
+int combinations(const int group, const int members);
 };
 
 
