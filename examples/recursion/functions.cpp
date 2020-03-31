@@ -20,6 +20,29 @@ int factorial(const int number)
         return number * factorial(number - 1);
     }
 }
+
+int combinations(const int group, const int members)
+{
+    if (group <= 0 || members <= 0)
+    {
+        throw InvalidInput();
+    }
+
+    if (members == 1)
+    {
+        return group;
+    }
+    else if (members == group)
+    {
+        return 1;
+    }
+    else
+    {
+        return combinations(group - 1, members -1) +
+               combinations(group - 1, members);
+    }
+
+}
 };
 
 namespace iterative
