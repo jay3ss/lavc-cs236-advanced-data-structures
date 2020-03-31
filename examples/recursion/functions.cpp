@@ -43,6 +43,35 @@ int combinations(const int group, const int members)
     }
 
 }
+
+template <class T>
+int binarySearch(const T array[], const T value, const int start, const int end)
+{
+    // We've gone out of bounds and couldn't find the value in the array
+    if (start > end)
+    {
+        return -1;
+    }
+
+    int middle = start + (end - start) / 2;
+
+    if (array[middle] == value)
+    {
+        return middle;
+    }
+    else if (array[middle] < value)
+    {
+        return binarySearch(array, value, middle + 1, end);
+    }
+    else if (array[middle] > value)
+    {
+        return binarySearch(array, value, start, middle - 1);
+    }
+    else
+    {
+        return -1;
+    }
+}
 };
 
 namespace iterative
