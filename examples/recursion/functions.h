@@ -3,15 +3,13 @@
 
 namespace recursive
 {
-template <class T>
-T factorial(const T& number);
+int factorial(const int number);
 };
 
 
 namespace iterative
 {
-template <class T>
-T factorial(const T& number);
+int factorial(const int number);
 };
 
 // Exception for invalid input
