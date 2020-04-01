@@ -72,6 +72,41 @@ int binarySearch(const T array[], const T value, const int start, const int end)
         return -1;
     }
 }
+
+template <class T>
+void quickSort(T array[], const int first, const int last)
+{
+    if (first < last)
+    {
+        int splitPoint = split(array, first, last);
+        quickSort(array, first, splitPoint - 1);
+        quickSort(array, splitPoint + 1, last);
+    }
+}
+
+template <class T>
+int split(T array[], const int first, const int last)
+{
+    int middle = first + (last - first) / 2;
+
+    helper::swap(array[first], array[middle]);
+
+    int splitPoint = first;
+    T splitValue = array[splitPoint];
+
+    for (int scan = first + 1; scan <= last; scan++)
+    {
+        if (array[scan] < splitValue)
+        {
+            splitPoint++;
+            helper::swap(array[splitPoint], array[scan]);
+        }
+    }
+
+    helper::swap(array[first], array[splitPoint]);
+
+    return splitPoint;
+}
 };
 
 namespace iterative
@@ -93,3 +128,26 @@ int factorial(const int number)
     return fact;
 }
 };
+
+namespace helper
+{
+template <class T>
+void swap(T& a, T& b)
+{
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+template <class T>
+void printArray(const T array[], const int length)
+{
+    std::cout << "{ ";
+
+    for (int i = 0; i < length - 1; i++)
+    {
+        std::cout << array[i] << ", ";
+    }
+    std::cout << array[length - 1] << " }";
+}
+}
