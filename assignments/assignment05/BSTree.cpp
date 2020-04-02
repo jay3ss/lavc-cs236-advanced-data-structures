@@ -28,7 +28,7 @@ void BST::inorder(vector<double>& vect)
 
 int BST::leafCounter() const
 {
-    return -1;
+    return leafCounter(root);
 }
 
 bool BST::isEmpty() const
@@ -64,7 +64,10 @@ void BST::inorder(vector<double>& tlist, BTreeNode*& tree)
 
 int BST::leafCounter(const BTreeNode* tree) const
 {
-    return -1;
+    if (tree == nullptr)
+    {
+        return 0;
+    }
 }
 
 int BST::height(BTreeNode* tree)
