@@ -70,6 +70,12 @@ int BST::leafCounter(const BTreeNode* tree) const
     {
         return 0;
     }
+
+    if (tree->isLeaf())
+    {
+        return 1;
+    }
+
 }
 
 int BST::height(BTreeNode* tree)
