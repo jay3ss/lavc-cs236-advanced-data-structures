@@ -13,7 +13,7 @@ BST::~BST()
 // Public methods
 int BST::height() const
 {
-    return -1;
+    return height(root);
 }
 
 bool BST::insert(const double val)
@@ -69,6 +69,10 @@ int BST::leafCounter(const BTreeNode* tree) const
 
 int BST::height(BTreeNode* tree)
 {
+    if (tree == nullptr)
+    {
+        return 0;
+    }
     return -1;
 }
 
