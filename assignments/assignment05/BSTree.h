@@ -42,14 +42,15 @@ public:
 private:
     BTreeNode *root;
 
-    void inorder(vector<double>& tlist, BTreeNode* tree);   // storing nodes in subtree
-    int leafCounter(BTreeNode* tree) const;                 // count the number of leaves
+    void inorder(vector<double>& tlist, BTreeNode*& tree);   // storing nodes in subtree
+    int leafCounter(const BTreeNode* tree) const;                 // count the number of leaves
     static int height(BTreeNode* tree);                     // calculate the height of the tree
 
-    BTreeNode *insert(BTreeNode *subTree, BTreeNode *newNode);  // helper to insert items into the tree
-    bool find(BTreeNode* subTree, double val) const;            // helper to find an item in the tree
-    double entry(BTreeNode* subTree, const double val) const;   // helper to return an entry
-    BTreeNode* remove(BTreeNode* subTree, const double val);    // helper to remove an item from the tree
-    BTreeNode* getmax(BTreeNode* subTree);                      // helper to find the node with the max value in a subtree
+    BTreeNode* insert(BTreeNode*& tree, BTreeNode*& newNode);  // helper to insert items into the tree
+    BTreeNode* find(BTreeNode* tree, double val) const;            // helper to find an item in the tree
+    double entry(BTreeNode* tree, const double val) const;   // helper to return an entry
+    BTreeNode* remove(BTreeNode*& tree, const double val, bool& flag);    // helper to remove an item from the tree
+    BTreeNode* getmax(BTreeNode*& tree);                      // helper to find the node with the max value in a subtree
+    BTreeNode* deletemax(BTreeNode*& tree);                 // helper to remove ...
 };
 #endif // B_S_TREE_H
