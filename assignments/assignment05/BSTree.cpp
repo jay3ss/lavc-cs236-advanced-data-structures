@@ -45,7 +45,7 @@ bool BST::remove(const double val)
 
 bool BST::contains(const double val) const
 {
-    return false;
+    return nullptr != find(root, val);
 }
 
 void BST::clear()
@@ -92,7 +92,12 @@ BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
 
 BTreeNode* BST::find(BTreeNode* tree, double val) const
 {
-    return nullptr;
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+
+    return tree;
 }
 
 double BST::entry(BTreeNode* tree, const double val) const
