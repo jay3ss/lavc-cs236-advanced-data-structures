@@ -78,7 +78,12 @@ int BST::height(BTreeNode* tree)
     {
         return 0;
     }
-    return -1;
+
+    int leftHeight = height(tree->left);
+    int rightHeight = height(tree->right);
+
+    //return 1 + the greater of the two heights (left vs right subtrees)
+    return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
 BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
