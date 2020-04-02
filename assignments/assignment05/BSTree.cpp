@@ -7,7 +7,7 @@ BST::BST()
 
 BST::~BST()
 {
-
+    clear();
 }
 
 int BST::height() const
@@ -21,42 +21,40 @@ int BST::height(BTreeNode* tree)
     {
         return 0;
     }
-    else
-    {
-        // Traverse both subtrees and then find the greater of the two
-        int leftHeight = height(tree->left);
-        int rightHeight = height(tree->right);
-        return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
-    }
+
+    // Traverse both subtrees and then find the greater of the two
+    int leftHeight = height(tree->left);
+    int rightHeight = height(tree->right);
+    return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
-bool BST::insert(double x)
+bool BST::insert(const double x)
 {
     BTreeNode* newNode = new BTreeNode(x);
     root = insert(root, newNode);
     return true;
 }
 
-BTreeNode* BST::insert(BTreeNode* subTree, BTreeNode* newNode)
+BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
 {
     // Using the convention that new values
     // - less than or equal to the current node's value -> left
     // - greater than the current node's value -> right
-    // We know that we've hit the insertion point when subTree is null
-    if (subTree == nullptr)
+    // We know that we've hit the insertion point when tree is null
+    if (tree == nullptr)
     {
         return newNode;
     }
-    else if (newNode->value <= subTree->value)
+    else if (newNode->value <= tree->value)
     {
-        subTree->left = insert(subTree->left, newNode);
+        tree->left = insert(tree->left, newNode);
     }
     else
     {
-        subTree->right = insert(subTree->right, newNode);
+        tree->right = insert(tree->right, newNode);
     }
 
-    return subTree;
+    return tree;
 }
 
 void BST::inorder(vector<double>& vect)
@@ -64,7 +62,7 @@ void BST::inorder(vector<double>& vect)
 
 }
 
-void BST::inorder(vector<double>& tlist, BTreeNode* tree)
+void BST::inorder(vector<double>& tlist, BTreeNode*& tree)
 {
 
 }
@@ -74,7 +72,7 @@ int BST::leafCounter() const
     return leafCounter(root);
 }
 
-int BST::leafCounter(BTreeNode* tree) const
+int BST::leafCounter(const BTreeNode* tree) const
 {
     if (tree == nullptr)
     {
@@ -93,64 +91,76 @@ bool BST::isEmpty() const
 
 bool BST::remove(const double val)
 {
-    bool isInTree = find(root, val);
+    bool isRemoved = false;
 
-    if (isInTree)
-    {
-        root = remove(root, val);
-    }
+    root = remove(root, val, isRemoved);
 
-    return isInTree;
+    return isRemoved;
 }
 
-BTreeNode* BST::remove(BTreeNode* subTree, double val)
+BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
 {
-    if (subTree == nullptr)
+    if (tree == nullptr)
     {
+        flag = false;
         return nullptr;
     }
-
-    // 1. find the value, then remove it
-    // 2. check the child nodes
-    //    a. 0 children: set node to null
-    //    b. 1 child: set node to child of node
-    //    c. 2 children: set node to logical predecessor
-    if (subTree->value < val)
+    else if (tree->value < val)
     {
-        subTree->left = remove(subTree->left, val);
+        tree->right = remove(tree->right, val, flag);
     }
-    else if (subTree->value > val)
+    else if (tree->value > val)
     {
-        subTree->right = remove(subTree->right, val);
+        tree->left = remove(tree->left, val, flag);
     }
     else
     {
-        if (subTree->isLeaf())
+        // 1. find the value, then remove it
+        // 2. check the child nodes
+        //    a. 0 children: set node to null
+        //    b. 1 child: set node to child of node
+        //    c. 2 children: set node to logical predecessor
+        flag = true;
+        BTreeNode *toDelete = tree;
+        if (tree->left == nullptr)
         {
-            delete subTree;
-            subTree = nullptr;
+            // toDelete = tree;
+            tree = tree->right;
         }
-        else if (subTree->left != nullptr)
+        else if (tree->right == nullptr)
         {
-
-        }
-        else if (subTree->right != nullptr)
-        {
-            BTreeNode* rightChild = subTree->right;
-
+            // toDelete = tree;
+            tree = tree->left;
         }
         else
         {
-
+            toDelete = getmax(tree->left);
+            toDelete->left = tree->left;
+            tree->value = toDelete->value;
+            tree->left = deletemax(tree->left);
         }
+        delete toDelete;
+        toDelete = nullptr;
     }
 
-    return subTree;
+    return tree;
+}
+
+BTreeNode* BST::deletemax(BTreeNode*& tree)
+{
+    if (tree->right == nullptr)
+    {
+        return tree->left;
+    }
+
+    // traverse the tree until we find the maximum node
+    tree->right = deletemax(tree->right);
+    return tree;
 }
 
 bool BST::contains(const double val) const
 {
-    return find(root, val);
+    return find(root, val) != nullptr;
 }
 
 void BST::clear()
@@ -163,62 +173,68 @@ double BST::entry(const double val) const
     return entry(root, val);
 }
 
-double BST::entry(BTreeNode* subTree, const double val) const
+double BST::entry(BTreeNode* tree, const double val) const
 {
-    // We know that the entry isn't in the tree when subTree is null
+    // We know that the entry isn't in the tree when tree is null
     // Using the convention that new values
     // - less than to the current node's value -> left
     // - greater than the current node's value -> right
     // - otherwise, we've reached the entry
-    if (subTree == nullptr)
+    if (tree == nullptr)
     {
         // TODO: throw an exception here
         return -3.14159;
     }
-    else if (subTree->value < val)
+    else if (tree->value < val)
     {
-        return entry(subTree->left, val);
+        return entry(tree->left, val);
     }
-    else if (subTree->value > val)
+    else if (tree->value > val)
     {
-        return entry(subTree->right, val);
+        return entry(tree->right, val);
     }
     else
     {
-        return subTree->value;
+        return tree->value;
     }
 
 }
 
-bool BST::find(BTreeNode* subTree, double val) const
+BTreeNode* BST::find(BTreeNode* tree, double val) const
 {
-    // We know that the entry isn't in the tree when subTree is null
+    // We know that the entry isn't in the tree when tree is null
     // Using the convention that new values
     // - less than to the current node's value -> left
     // - greater than the current node's value -> right
     // - otherwise, we've reached the entry
-    if (subTree == nullptr)
+    if (tree == nullptr)
     {
-        return false;
+        return nullptr;
     }
-    else if (subTree->value < val)
+    else if (tree->value < val)
     {
-        return find(subTree->right, val);
+        return find(tree->right, val);
     }
-    else if (subTree->value > val)
+    else if (tree->value > val)
     {
-        return find(subTree->left, val);
+        return find(tree->left, val);
     }
     else
     {
-        return true;
+        return tree;
     }
 }
 
-BTreeNode* BST::getmax(BTreeNode* subTree)
+BTreeNode* BST::getmax(BTreeNode*& tree)
 {
     // find the node with the maximum value in a subtree
     // keep going down the right of the subtree until the
     // right child is null
-    return (subTree->right == nullptr) ? subTree : getmax(subTree->right);
+    // return (tree->right == nullptr) ? tree : getmax(tree->right);
+    if (tree->right == nullptr)
+    {
+        return tree;
+    }
+
+    return getmax(tree->right);
 }
