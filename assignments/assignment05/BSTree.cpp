@@ -18,7 +18,9 @@ int BST::height() const
 
 bool BST::insert(const double val)
 {
-    return false;
+    BTreeNode *newNode = new BTreeNode(val);
+    root = insert(root, newNode);
+    return true;
 }
 
 void BST::inorder(vector<double>& vect)
@@ -81,6 +83,10 @@ int BST::height(BTreeNode* tree)
 
 BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
 {
+    if (tree == nullptr)
+    {
+        return newNode;
+    }
     return nullptr;
 }
 
