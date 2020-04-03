@@ -9,12 +9,13 @@
 using namespace std;
 
 uint32_t SEED = time(0);
+// uint32_t SEED = NULL;
 mt19937 RNG;
 
 void initRng();
 vector<double> randomVector(const int size, const int start, const int stop);
 
-    int main()
+int main()
 {
     BST bst;
 
@@ -31,8 +32,8 @@ vector<double> randomVector(const int size, const int start, const int stop);
     assert(bst.insert(entry) && "FAILED: Should be able to add an entry\n");
     cout << "Should be able to add a new entry to the empty tree: PASSED\n";
 
-    assert(bst.entry(entry) == entry && "FAILED: Should be able to get the item\n");
-    cout << "Should be able to get an item from the tree: PASSED\n";
+    // assert(bst.entry(entry) == entry && "FAILED: Should be able to get the item\n");
+    // cout << "Should be able to get an item from the tree: PASSED\n";
 
     assert(bst.contains(entry) && "FAILED: Should be able see if the tree contains an added item\n");
     cout << "Should be able to see if the tree contains an added item: PASSED\n";
@@ -69,19 +70,24 @@ vector<double> randomVector(const int size, const int start, const int stop);
     }
     cout << "Should be able to find several entries: PASSED\n";
 
+    shuffle(entries.begin(), entries.end(), RNG);
+
     for (auto& entry : entries)
     {
+        cout << entry << ", ";
         assert(bst.remove(entry) && "FAILED: Should be able to remove entry\n");
-        assert(!bst.contains(entry) && "FAILED: Entry should not be in tree\n");
     }
+    cout << endl;
     cout << "Should be able to remove several entries: PASSED\n";
+
+    assert(!bst.contains(entry) && "FAILED: Entry should not be in tree\n");
     cout << "Removed entries should not be in tree: PASSED\n";
 
     assert(bst.isEmpty() && "FAILED: An empty tree should be empty\n");
     cout << "An empty tree should be empty: PASSED\n";
 
     assert(bst.height() == 0 && "FAILED: An empty tree should have a height of 0\n");
-    cout << " An empty tree should have a height of 0: PASSED\n";
+    cout << "An empty tree should have a height of 0: PASSED\n";
 
     assert(bst.leafCounter() == 0 && "FAILED: An empty tree should have no leaves\n");
     cout << "An empty tree should have no leaves: PASSED\n";
@@ -97,7 +103,7 @@ vector<double> randomVector(const int size, const int start, const int stop)
     uniform_int_distribution<int> dist(start, stop);
     vector<double> entries = {};
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < size; i++)
     {
         entries.push_back(dist(RNG));
     }
