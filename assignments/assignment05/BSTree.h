@@ -52,5 +52,6 @@ private:
     BTreeNode* remove(BTreeNode*& tree, const double val, bool& flag);    // helper to remove an item from the tree
     BTreeNode* getmax(BTreeNode*& tree);                      // helper to find the node with the max value in a subtree
     BTreeNode* deletemax(BTreeNode*& tree);                 // helper to remove ...
+    BTreeNode* removeNode(BTreeNode*& tree);                // helper to remove a node
 };
 #endif // B_S_TREE_H
