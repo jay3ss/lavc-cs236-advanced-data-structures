@@ -96,10 +96,10 @@ int main()
     cout << "Enter the string str1: ";
     getline(cin, str1);
 
-    cout << "\nEnter the string str2: ";
+    cout << "Enter the string str2: ";
     getline(cin, str2);
 
-    cout << "\n\nThe interleavings are:\n\n";
+    cout << "\nThe interleavings are:\n\n";
     interleavings(str1, str2, "");
 }
 
