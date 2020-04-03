@@ -86,7 +86,7 @@ a12bc
 
 using namespace std;
 
-// Function prototypes
+// Function prototype
 void interleavings(string, string, string);
 
 int main()
@@ -103,8 +103,40 @@ int main()
     interleavings(str1, str2, "");
 }
 
-// Function definitions
+// Function definition
+
+/** Displays all interleavings of two strings
+@post: the terminal will have the interleavings of the two strings printed
+to it
+@param: str1 a string
+@param: str2 a string
+@param: interleave a string */
 void interleavings(string str1, string str2, string interleave)
 {
+    // if both strings are empty, then the interleave string is
+    // "full" so print it to the terminal
+    if (str1.empty() && str2.empty())
+    {
+        cout << interleave << endl;
+    }
 
+    // keep going until str1 has fully moved to the interleave string
+    if (!str1.empty())
+    {
+        interleavings(
+            str1.substr(1),         // str1 without the first character
+            str2,
+            interleave + str1[0]    // add str2's first char to the end
+        );
+    }
+
+    // keep going until str2 has fully moved to the interleave string
+    if (!str2.empty())
+    {
+        interleavings(
+            str1,
+            str2.substr(1),         // str2 without the first character
+            interleave + str2[0]    // add str2's first char to the end
+        );
+    }
 }
