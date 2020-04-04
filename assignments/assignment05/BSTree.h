@@ -34,29 +34,27 @@ public:
     ~BST();
     int height() const;                                     // return the tree height
     bool insert(const double x);                            // insert numbers into the binary tree
-    void inorder(vector<double>& vect);                     // appends all nodes in subtree
+    void inorder(vector<double>& vect);               // appends all nodes in subtree
     int leafCounter() const;                                // count the number of leaves
     bool isEmpty() const;                                   // tests if the tree is empty
     bool remove(const double val);                          // removes data from the tree
     bool contains(const double val) const;                  // determines if an item is in the tree
     void clear();                                           // clears the tree of items
-    double entry(const double val) const;                   // finds and returns the given entry
     void print() const;                                     // prints items to the terminal in order
 private:
     BTreeNode *root;
 
-    void inorder(vector<double>& tlist, BTreeNode*& tree);   // storing nodes in subtree
+    void inorder(vector<double>& tlist, BTreeNode*& tree) const;   // storing nodes in subtree
     int leafCounter(const BTreeNode* tree) const;                 // count the number of leaves
     static int height(BTreeNode* tree);                     // calculate the height of the tree
 
-    BTreeNode* insert(BTreeNode*& tree, BTreeNode*& newNode);  // helper to insert items into the tree
-    BTreeNode* find(BTreeNode* tree, double val) const;            // helper to find an item in the tree
-    double entry(BTreeNode* tree, const double val) const;   // helper to return an entry
-    BTreeNode* remove(BTreeNode*& tree, const double val, bool& flag);    // helper to remove an item from the tree
-    BTreeNode* getmax(BTreeNode*& tree);                      // helper to find the node with the max value in a subtree
-    BTreeNode* deletemax(BTreeNode*& tree);                 // helper to remove ...
-    BTreeNode* removeNode(BTreeNode*& tree);                // helper to remove a node
-    void print(const BTreeNode* tree) const;                // helper to print tree in inorder
-    void clear(BTreeNode* tree);                            // helper to clear tree
+    BTreeNode* insert(BTreeNode*& tree, BTreeNode*& newNode);  // helper method to insert items into the tree
+    BTreeNode* find(BTreeNode* tree, double val) const;            // helper method to find an item in the tree
+    BTreeNode* remove(BTreeNode*& tree, const double val, bool& flag);    // helper method to remove an item from the tree
+    BTreeNode* getmax(BTreeNode*& tree);                      // helper method to find the node with the max value in a subtree
+    BTreeNode* deletemax(BTreeNode*& tree);                 // helper method to remove the node with the maximum value in a subtree
+    BTreeNode* removeNode(BTreeNode*& tree);                // helper method to remove a node
+    void print(const BTreeNode* tree) const;                // helper method to print a subtree in inorder
+    void clear(BTreeNode* tree);                            // helper method to clear subtree
 };
 #endif // B_S_TREE_H

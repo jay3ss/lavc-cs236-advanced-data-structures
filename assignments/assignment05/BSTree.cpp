@@ -1,21 +1,25 @@
 #include "BSTree.h"
 
+// Constructor
 BST::BST()
 {
     root = nullptr;
 }
 
+// Destructor
 BST::~BST()
 {
     clear();
 }
 
 // Public methods
+// return the tree height
 int BST::height() const
 {
     return height(root);
 }
 
+// insert numbers into the binary tree
 bool BST::insert(const double val)
 {
     BTreeNode *newNode = new BTreeNode(val);
@@ -23,21 +27,25 @@ bool BST::insert(const double val)
     return true;
 }
 
+// appends all nodes in subtree inorder
 void BST::inorder(vector<double>& vect)
 {
     inorder(vect, root);
 }
 
+// count the number of leaves
 int BST::leafCounter() const
 {
     return leafCounter(root);
 }
 
+// tests if the tree is empty
 bool BST::isEmpty() const
 {
     return root == nullptr;
 }
 
+// removes data from the tree
 bool BST::remove(const double val)
 {
     bool isRemoved = false;
@@ -45,23 +53,27 @@ bool BST::remove(const double val)
     return isRemoved;
 }
 
+// determines if an item is in the tree
 bool BST::contains(const double val) const
 {
     return nullptr != find(root, val);
 }
 
+// clears the tree of items
 void BST::clear()
 {
     clear(root);
 }
 
-double BST::entry(const double val) const
+// prints items to the terminal in order
+void BST::print() const
 {
-    return -10000000;
+    print(root);
 }
 
 // Private methods
-void BST::inorder(vector<double>& tlist, BTreeNode*& tree)
+// helper method to store nodes in subtree
+void BST::inorder(vector<double>& tlist, BTreeNode*& tree) const
 {
     if (tree != nullptr)
     {
@@ -71,6 +83,7 @@ void BST::inorder(vector<double>& tlist, BTreeNode*& tree)
     }
 }
 
+// helper method to count the number of leaves
 int BST::leafCounter(const BTreeNode* tree) const
 {
     if (tree == nullptr)
@@ -83,6 +96,7 @@ int BST::leafCounter(const BTreeNode* tree) const
         leafCounter(tree->left) + leafCounter(tree->right));
 }
 
+// helper method to calculate the height of the tree
 int BST::height(BTreeNode* tree)
 {
     if (tree == nullptr)
@@ -97,6 +111,7 @@ int BST::height(BTreeNode* tree)
     return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
+// helper method to insert items into the tree
 BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
 {
     if (tree == nullptr)
@@ -126,6 +141,7 @@ BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
     return tree;
 }
 
+// helper method to find an item in the tree
 BTreeNode* BST::find(BTreeNode* tree, double val) const
 {
     // didn't find the value
@@ -152,11 +168,7 @@ BTreeNode* BST::find(BTreeNode* tree, double val) const
     }
 }
 
-double BST::entry(BTreeNode* tree, const double val) const
-{
-    return -1000000000;
-}
-
+// helper method to remove an item from the tree
 BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
 {
     if (tree == nullptr)
@@ -186,6 +198,7 @@ BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
     return tree;
 }
 
+// helper method to remove a node
 BTreeNode* BST::removeNode(BTreeNode*& tree)
 {
     // 3 cases for removing the value from the node
@@ -218,6 +231,7 @@ BTreeNode* BST::removeNode(BTreeNode*& tree)
     return tree;
 }
 
+// helper method to find the node with the max value in a subtree
 BTreeNode* BST::getmax(BTreeNode*& tree)
 {
     // continue traversing the right subtree until the
@@ -232,6 +246,7 @@ BTreeNode* BST::getmax(BTreeNode*& tree)
     }
 }
 
+// helper method to remove the node with the maximum value in a subtree
 BTreeNode* BST::deletemax(BTreeNode*& tree)
 {
     // 2 cases
@@ -248,11 +263,7 @@ BTreeNode* BST::deletemax(BTreeNode*& tree)
     }
 }
 
-void BST::print() const
-{
-    print(root);
-}
-
+// helper method to print a subtree in inorder
 void BST::print(const BTreeNode* tree) const
 {
     if (tree != nullptr)
@@ -263,6 +274,7 @@ void BST::print(const BTreeNode* tree) const
     }
 }
 
+// helper method to clear subtree
 void BST::clear(BTreeNode* tree)
 {
     if (tree != nullptr)
