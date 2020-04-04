@@ -7,7 +7,7 @@ BST::BST()
 
 BST::~BST()
 {
-
+    clear();
 }
 
 // Public methods
@@ -25,7 +25,7 @@ bool BST::insert(const double val)
 
 void BST::inorder(vector<double>& vect)
 {
-
+    inorder(vect, root);
 }
 
 int BST::leafCounter() const
@@ -52,7 +52,7 @@ bool BST::contains(const double val) const
 
 void BST::clear()
 {
-
+    clear(root);
 }
 
 double BST::entry(const double val) const
@@ -63,7 +63,12 @@ double BST::entry(const double val) const
 // Private methods
 void BST::inorder(vector<double>& tlist, BTreeNode*& tree)
 {
-
+    if (tree != nullptr)
+    {
+        inorder(tlist, tree->left);
+        tlist.push_back(tree->value);
+        inorder(tlist, tree->right);
+    }
 }
 
 int BST::leafCounter(const BTreeNode* tree) const
@@ -73,10 +78,9 @@ int BST::leafCounter(const BTreeNode* tree) const
         return 0;
     }
 
-    if (tree->isLeaf())
-    {
-        return 1;
-    }
+    return (tree->isLeaf() ?
+        1 :
+        leafCounter(tree->left) + leafCounter(tree->right));
 }
 
 int BST::height(BTreeNode* tree)
@@ -241,5 +245,38 @@ BTreeNode* BST::deletemax(BTreeNode*& tree)
     {
         tree->right = deletemax(tree->right);
         return tree;
+    }
+}
+
+void BST::print() const
+{
+    print(root);
+}
+
+void BST::print(const BTreeNode* tree) const
+{
+    if (tree != nullptr)
+    {
+        print(tree->left);
+        cout << tree->value << " ";
+        print(tree->right);
+    }
+}
+
+void BST::clear(BTreeNode* tree)
+{
+    if (tree != nullptr)
+    {
+        if (tree->left)
+        {
+            clear(tree->left);
+        }
+        if (tree->right)
+        {
+            clear(tree->right);
+        }
+
+        delete tree;
+        tree = nullptr;
     }
 }

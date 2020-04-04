@@ -7,7 +7,9 @@
 #ifndef B_S_TREE_H
 #define B_S_TREE_H
 
+#include <iostream>
 #include <vector>
+
 using namespace std;
 
 // Node for the binary tree items
@@ -39,6 +41,7 @@ public:
     bool contains(const double val) const;                  // determines if an item is in the tree
     void clear();                                           // clears the tree of items
     double entry(const double val) const;                   // finds and returns the given entry
+    void print() const;                                     // prints items to the terminal in order
 private:
     BTreeNode *root;
 
@@ -53,5 +56,7 @@ private:
     BTreeNode* getmax(BTreeNode*& tree);                      // helper to find the node with the max value in a subtree
     BTreeNode* deletemax(BTreeNode*& tree);                 // helper to remove ...
     BTreeNode* removeNode(BTreeNode*& tree);                // helper to remove a node
+    void print(const BTreeNode* tree) const;                // helper to print tree in inorder
+    void clear(BTreeNode* tree);                            // helper to clear tree
 };
 #endif // B_S_TREE_H
