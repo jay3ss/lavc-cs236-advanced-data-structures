@@ -113,6 +113,7 @@ to it
 @param: interleave a string */
 void interleavings(string str1, string str2, string interleave)
 {
+    // base case: both strings are empty
     // if both strings are empty, then the interleave string is
     // "full" so print it to the terminal
     if (str1.empty() && str2.empty())
@@ -120,6 +121,7 @@ void interleavings(string str1, string str2, string interleave)
         cout << interleave << endl;
     }
 
+    // general case: str1 is not empty
     // keep going until str1 has fully moved to the interleave string
     if (!str1.empty())
     {
@@ -130,6 +132,7 @@ void interleavings(string str1, string str2, string interleave)
         );
     }
 
+    // general case: str2 is not empty
     // keep going until str2 has fully moved to the interleave string
     if (!str2.empty())
     {
