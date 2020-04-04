@@ -1,3 +1,10 @@
+/** file: main.cpp
+You are given two classes for implementing a simple binary tree of capable of
+storing number, count the number of leaves and computes the height of a
+binary tree.
+
+You can add on additional parameters or functions as you wish, but the
+program must apply the chapter objectives. */
 #include <iostream>
 #include "BSTree.h"
 
