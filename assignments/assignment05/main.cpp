@@ -19,9 +19,9 @@ int main()
     cin >> nums[0] >> nums[1] >> nums[2] >> nums[3] >> nums[4]
         >> nums[5] >> nums[6] >> nums[7] >> nums[8] >> nums[9];
 
-    for (int i = 0; i < 10; i++)
+    for (auto num : nums)
     {
-        bst.insert(nums[i]);
+        bst.insert(num);
     }
 
     cout << "The items in the tree inorder are:\n";
