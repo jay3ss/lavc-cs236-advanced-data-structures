@@ -1,3 +1,10 @@
+/** file: BSTree.cpp
+You are given two classes for implementing a simple binary tree of capable of
+storing number, count the number of leaves and computes the height of a
+binary tree.
+
+You can add on additional parameters or functions as you wish, but the
+program must apply the chapter objectives. */
 #include "BSTree.h"
 
 // Constructor
@@ -97,7 +104,7 @@ int BST::leafCounter(const BTreeNode* tree) const
 }
 
 // helper method to calculate the height of the tree
-int BST::height(BTreeNode* tree)
+int BST::height(const BTreeNode* tree)
 {
     if (tree == nullptr)
     {
@@ -107,7 +114,7 @@ int BST::height(BTreeNode* tree)
     int leftHeight = height(tree->left);
     int rightHeight = height(tree->right);
 
-    //return 1 + the greater of the two heights (left vs right subtrees)
+    // return 1 + the greater of the two heights (left vs right subtrees)
     return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
@@ -192,27 +199,27 @@ BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
     else // 3. found it
     {
         flag = true;
-        tree = removeNode(tree);
+        tree = deleteNode(tree);
     }
 
     return tree;
 }
 
 // helper method to remove a node
-BTreeNode* BST::removeNode(BTreeNode*& tree)
+BTreeNode* BST::deleteNode(BTreeNode*& node)
 {
     // 3 cases for removing the value from the node
     // 1. node is a leaf
     // 2. node has one child
     // 3. node has two children
-    BTreeNode *toDelete = tree;
-    if (tree->left == nullptr) // 1. node is a leaf or 2. has a right child
+    BTreeNode *toDelete = node;
+    if (node->left == nullptr) // 1. node is a leaf or 2. has a right child
     {
-        tree = tree->right; // move the right subtree "up" one position
+        node = node->right; // move the right subtree "up" one position
     }
-    else if (tree->right == nullptr) // 2. has a left child
+    else if (node->right == nullptr) // 2. has a left child
     {
-        tree = tree->left; // move the left subtree "up" one position
+        node = node->left; // move the left subtree "up" one position
     }
     else // 3. node has two children
     {
@@ -221,21 +228,21 @@ BTreeNode* BST::removeNode(BTreeNode*& tree)
         // 2. replace the current node's value with the logical
         //    predecessor's
         // 3. delete the logical predecessor
-        toDelete = getmax(tree->left); // logical predecessor
-        tree->value = toDelete->value;
-        tree->left = deletemax(tree->left);
+        toDelete = getmax(node->left); // logical predecessor
+        node->value = toDelete->value;
+        node->left = removemax(node->left);
     }
     delete toDelete;
     toDelete = nullptr;
 
-    return tree;
+    return node;
 }
 
 // helper method to find the node with the max value in a subtree
 BTreeNode* BST::getmax(BTreeNode*& tree)
 {
     // continue traversing the right subtree until the
-    // maxium value is found (can't continue)
+    // maximum value is found (can't continue)
     if (tree->right == nullptr)
     {
         return tree;
@@ -247,7 +254,7 @@ BTreeNode* BST::getmax(BTreeNode*& tree)
 }
 
 // helper method to remove the node with the maximum value in a subtree
-BTreeNode* BST::deletemax(BTreeNode*& tree)
+BTreeNode* BST::removemax(BTreeNode*& tree)
 {
     // 2 cases
     // 1. found the max
@@ -258,7 +265,7 @@ BTreeNode* BST::deletemax(BTreeNode*& tree)
     }
     else
     {
-        tree->right = deletemax(tree->right);
+        tree->right = removemax(tree->right);
         return tree;
     }
 }
