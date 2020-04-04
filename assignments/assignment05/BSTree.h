@@ -47,7 +47,7 @@ public:
     @return: true if insertion was successful */
     bool insert(const double x);
 
-    /** appends all nodes in a subtree to a vector inorder
+    /** appends all nodes in a the tree to a vector inorder
     @param: vect a vector to store the values of the nodes in the tree
     @post: vect will have the values of the tree stored in it inorder */
     void inorder(vector<double>& vect);
@@ -75,14 +75,14 @@ public:
     @post: the tree will be completely empty */
     void clear();
 
-    /** prints the values in the tree inorder to the terminal
+    /** prints the values in the tree to the terminal inorder
     @post: the terminal will have the values in the tree printed to it
         inorder */
     void print() const;
 private:
     BTreeNode *root;    // pointer to the root node of the tree
 
-    /** helper method to append all nodes in a subtree to a vector inorder
+    /** appends all nodes in a subtree to a vector inorder
     @param: tlist the vector to append the values of the nodes to
     @param: tree reference to the pointer of the subtree
     @post: tlist will have the values of the subtree appended to it inorder */
@@ -122,12 +122,12 @@ private:
            otherwise*/
     BTreeNode* remove(BTreeNode*& tree, const double val, bool& flag);
 
-    /** finds the maximum value in a subtree and returns a pointer to it
+    /** finds the node with the maximum value in a subtree
     @param: tree a reference to a pointer to the subtree to search
     @return: pointer to the node with the maximum value in a subtree */
     BTreeNode* getmax(BTreeNode*& tree);
 
-    /** removes (not delete!) the maximum value from a subtree and returns a
+    /** removes (not delete!) the node with the maximum value in a subtree
         pointer to it
     @param: tree a reference to a pointer to the subtree to search
     @return: a pointer to the node with the maximum value in the subtree
@@ -149,7 +149,7 @@ private:
 
     void print(const BTreeNode* tree) const;
 
-    /** clears a subtree of all of its contents
+    /** clears a subtree of all its contents
     @param: tree a pointer to the subtree to clear
     @post: the subtree content's will be removed */
     void clear(BTreeNode* tree);

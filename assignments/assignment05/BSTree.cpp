@@ -20,13 +20,13 @@ BST::~BST()
 }
 
 // Public methods
-// return the tree height
+// returns the height of the tree
 int BST::height() const
 {
     return height(root);
 }
 
-// insert numbers into the binary tree
+// inserts a number into the binary tree
 bool BST::insert(const double val)
 {
     BTreeNode *newNode = new BTreeNode(val);
@@ -34,13 +34,13 @@ bool BST::insert(const double val)
     return true;
 }
 
-// appends all nodes in subtree inorder
+// appends all nodes in the tree to a vector inorder
 void BST::inorder(vector<double>& vect)
 {
     inorder(vect, root);
 }
 
-// count the number of leaves
+// counts the number of leaves in the tree
 int BST::leafCounter() const
 {
     return leafCounter(root);
@@ -52,7 +52,7 @@ bool BST::isEmpty() const
     return root == nullptr;
 }
 
-// removes data from the tree
+// removes a value from the tree
 bool BST::remove(const double val)
 {
     bool isRemoved = false;
@@ -60,26 +60,26 @@ bool BST::remove(const double val)
     return isRemoved;
 }
 
-// determines if an item is in the tree
+// determines if a value is in the tree
 bool BST::contains(const double val) const
 {
     return nullptr != find(root, val);
 }
 
-// clears the tree of items
+// clears the tree of all items
 void BST::clear()
 {
     clear(root);
 }
 
-// prints items to the terminal in order
+// prints the values in the tree to the terminal in order
 void BST::print() const
 {
     print(root);
 }
 
 // Private methods
-// helper method to store nodes in subtree
+// appends all nodes in a subtree to a vector inorder
 void BST::inorder(vector<double>& tlist, BTreeNode*& tree) const
 {
     if (tree != nullptr)
@@ -90,7 +90,7 @@ void BST::inorder(vector<double>& tlist, BTreeNode*& tree) const
     }
 }
 
-// helper method to count the number of leaves
+// counts the number of leaves in a subtree
 int BST::leafCounter(const BTreeNode* tree) const
 {
     if (tree == nullptr)
@@ -103,7 +103,7 @@ int BST::leafCounter(const BTreeNode* tree) const
         leafCounter(tree->left) + leafCounter(tree->right));
 }
 
-// helper method to calculate the height of the tree
+// calculates the height of a subtree
 int BST::height(const BTreeNode* tree)
 {
     if (tree == nullptr)
@@ -118,7 +118,7 @@ int BST::height(const BTreeNode* tree)
     return 1 + ((leftHeight > rightHeight) ? leftHeight : rightHeight);
 }
 
-// helper method to insert items into the tree
+// inserts a new node into a subtree
 BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
 {
     if (tree == nullptr)
@@ -148,7 +148,7 @@ BTreeNode* BST::insert(BTreeNode*& tree, BTreeNode*& newNode)
     return tree;
 }
 
-// helper method to find an item in the tree
+// finds an value in a subtree
 BTreeNode* BST::find(BTreeNode* tree, double val) const
 {
     // didn't find the value
@@ -175,7 +175,7 @@ BTreeNode* BST::find(BTreeNode* tree, double val) const
     }
 }
 
-// helper method to remove an item from the tree
+// removes a value from a subtree
 BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
 {
     if (tree == nullptr)
@@ -205,7 +205,7 @@ BTreeNode* BST::remove(BTreeNode*& tree, const double val, bool& flag)
     return tree;
 }
 
-// helper method to remove a node
+// deletes a node from a subtree
 BTreeNode* BST::deleteNode(BTreeNode*& node)
 {
     // 3 cases for removing the value from the node
@@ -238,7 +238,7 @@ BTreeNode* BST::deleteNode(BTreeNode*& node)
     return node;
 }
 
-// helper method to find the node with the max value in a subtree
+// finds the node with the maximum value in a subtree
 BTreeNode* BST::getmax(BTreeNode*& tree)
 {
     // continue traversing the right subtree until the
@@ -253,7 +253,7 @@ BTreeNode* BST::getmax(BTreeNode*& tree)
     }
 }
 
-// helper method to remove the node with the maximum value in a subtree
+// removes (not delete!) the node with the maximum value in a subtree
 BTreeNode* BST::removemax(BTreeNode*& tree)
 {
     // 2 cases
@@ -270,7 +270,7 @@ BTreeNode* BST::removemax(BTreeNode*& tree)
     }
 }
 
-// helper method to print a subtree in inorder
+// prints the contents of a subtree in inorder
 void BST::print(const BTreeNode* tree) const
 {
     if (tree != nullptr)
@@ -281,7 +281,7 @@ void BST::print(const BTreeNode* tree) const
     }
 }
 
-// helper method to clear subtree
+// clears a subtree of all its contentes
 void BST::clear(BTreeNode* tree)
 {
     if (tree != nullptr)
