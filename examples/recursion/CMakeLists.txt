@@ -11,3 +11,5 @@ set_target_properties(
 
 add_executable(main main.cpp)
 target_link_libraries(main functions)
+
+add_executable(towers towersOfHanoi.cpp)
