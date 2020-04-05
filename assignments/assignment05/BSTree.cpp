@@ -78,6 +78,14 @@ void BST::print() const
     print(root);
 }
 
+// retrieves a value from the tree
+double BST::retrieve(double val)
+{
+    bool isFound = false;
+    retrieve(root, val, isFound);
+    return val;
+}
+
 // Private methods
 // appends all nodes in a subtree to a vector inorder
 void BST::inorder(vector<double>& tlist, BTreeNode*& tree) const
@@ -297,5 +305,29 @@ void BST::clear(BTreeNode* tree)
 
         delete tree;
         tree = nullptr;
+    }
+}
+
+// retrieves an item from a subtree
+void BST::retrieve(const BTreeNode *tree, double val, bool &flag)
+{
+    // didn't find the value
+    if (tree == nullptr)
+    {
+        flag = false;
+    }
+
+    if (tree->value > val) // in the left subtree
+    {
+        retrieve(tree->left, val, flag);
+    }
+    else if (tree->value < val) // in the right subtree
+    {
+        retrieve(tree->right, val, flag);
+    }
+    else // found it
+    {
+        flag = true;
+        val = tree->value;
     }
 }

@@ -79,6 +79,11 @@ public:
     @post: the terminal will have the values in the tree printed to it
         inorder */
     void print() const;
+
+    /** retrieves a value from the tree
+    @param: val the value to search for
+    @return: returns the value from the tree if it is found, NULL otherwise */
+    double retrieve(double val);
 private:
     BTreeNode *root;    // pointer to the root node of the tree
 
@@ -146,12 +151,20 @@ private:
     @param: tree pointer to the subtree to print
     @post: the terminal will have the subtree's contents printed to it
         inorder */
-
     void print(const BTreeNode* tree) const;
 
     /** clears a subtree of all its contents
     @param: tree a pointer to the subtree to clear
     @post: the subtree content's will be removed */
     void clear(BTreeNode* tree);
+
+    /** retrieves an item from a subtree
+    @param: tree the subtree to search
+    @param: val the value to search for
+    @param: flag flag a flag to signal whether or not the value was found and
+        removed or not
+    @post: flag will be true if the value is found, false otherwise
+           val will hold the value if found, NULL otherwise */
+    void retrieve(const BTreeNode* tree, double val, bool& flag);
 };
 #endif // B_S_TREE_H
