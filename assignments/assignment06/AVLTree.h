@@ -2,9 +2,27 @@
 #define AVL_TREE_H
 
 template <class T>
+class AVLNode
+{
+public:
+    AVLNode(leftPtr = nullptr, rightPtr = nullptr)
+        : left(leftPtr), right(rightPtr) {}
+private:
+    T info;
+    int bfactor;
+    AVLNode* left;
+    AVLNode* right;
+    friend class AVLTreetype;
+};
+
+template <class T>
 class AVLTreeType
 {
-
+public:
+    void inorderTraversal() const;
+    void preorderTraversal() const;
+private:
+    AVLNode<T>* root;
 };
 
 #include "AVLTree.cpp"
