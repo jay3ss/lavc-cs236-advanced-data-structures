@@ -4,7 +4,10 @@ void towersOfHanoi(int num, char, char, char);
 
 int main()
 {
-    towersOfHanoi(3, 'A', 'B', 'C');
+    std::cout << "Enter the number of disks: ";
+    int num = 0;
+    std::cin >> num;
+    towersOfHanoi(num, 'A', 'B', 'C');
 }
 
 void towersOfHanoi(int num, char fromTower, char toTower, char auxTower)
