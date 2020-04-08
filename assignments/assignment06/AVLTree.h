@@ -5,7 +5,7 @@ template <class T>
 class AVLNode
 {
 public:
-    AVLNode(AVLNode* leftPtr = nullptr,AVLNode*  rightPtr = nullptr)
+    AVLNode(AVLNode* leftPtr = nullptr, AVLNode*  rightPtr = nullptr)
         : left(leftPtr), right(rightPtr) {}
 private:
     T info;
