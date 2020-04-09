@@ -14,6 +14,7 @@ mt19937 RNG;
 
 void initRng();
 vector<int> randomVector(const int size, const int start, const int stop);
+void testRetrieveEntry(const int entry,AVLTreeType<int>& tree);
 
 int main()
 {
@@ -32,6 +33,8 @@ int main()
     cout << "A new tree should have no nodes: PASSED\n";
 
     int entry = 137;
+    testRetrieveEntry(entry, avlt);
+
     assert(avlt.insert(entry) && "FAILED: Should be able to add an entry\n");
     cout << "Should be able to add a new entry to the empty tree: PASSED\n";
 
@@ -112,4 +115,17 @@ vector<int> randomVector(const int size, const int start, const int stop)
     }
 
     return entries;
+}
+
+void testRetrieveEntry(const int entry, AVLTreeType<int>& tree)
+{
+    int retrieved;
+    try
+    {
+        tree.retrieve(entry);
+    }
+    catch (AVLTreeType<int>::NoSuchValue)
+    {
+        cerr << "ERROR: Value " << entry << " isn't in the tree\n";
+    }
 }
