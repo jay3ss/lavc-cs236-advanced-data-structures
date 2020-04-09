@@ -39,6 +39,10 @@ public:
     @return: true if the the value is found, false otherwise */
     bool contains(const T& value) const;
 
+    /** Returns the height of the tree
+    @return: the height of the tree */
+    int height() const;
+
     /** Traverses the AVL tree and prints the items in inorder
     @post: the value of the items in the AVL tree will printed to the terminal
         in preorder */
