@@ -28,6 +28,9 @@ int main()
     assert(avlt.leaves() == 0 && "FAILED: New tree should have no leaves\n");
     cout << "A new tree should have no leaves: PASSED\n";
 
+    assert(avlt.length() == 0 && "FAILED: New tree should have no nodes\n");
+    cout << "A new tree should have no nodes: PASSED\n";
+
     int entry = 137;
     assert(avlt.insert(entry) && "FAILED: Should be able to add an entry\n");
     cout << "Should be able to add a new entry to the empty tree: PASSED\n";
