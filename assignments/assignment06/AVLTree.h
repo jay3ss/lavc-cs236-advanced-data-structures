@@ -168,6 +168,11 @@ private:
                               AVLNode<T>*& newNode,
                               bool& isTaller);
 
+    /** Counts the number of leaves in a subtree
+    @param: tree pointer to the subtree
+    @return: the number of leaves in the subtree */
+    int leaves(const AVLNode<T>* tree) const;
+
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed */
