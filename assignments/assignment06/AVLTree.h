@@ -50,6 +50,10 @@ public:
     @post: the item will be inserted into the AVL tree */
     bool insert(const T& newItem);
 
+    /** Returns the length (number of nodes) in the AVL tree
+    @return the length (number of nodes) in the AVL tree */
+    int length() const;
+
     /** Traverses the AVL tree and prints the items in preorder
     @post: the value of the items in the AVL tree will printed to the terminal
         in inorder */
@@ -67,6 +71,7 @@ public:
     T retrieve(const T& value);
 private:
     AVLNode<T>* root;
+    int numNodes;
 
     /** Balances the AVL tree, if necessary. If a node's balance factor is
         greater than 1, it is unbalanced and will balanced. Otherwise, nothing
