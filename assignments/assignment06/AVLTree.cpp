@@ -28,6 +28,13 @@ bool AVLTreeType<T>::contains(const T& value) const
     return false;
 }
 
+// Returns the height of the tree
+template <class T>
+int AVLTreeType<T>::height() const
+{
+    return -1;
+}
+
 // Traverses the AVL tree and prints the items in it in inorder
 template <class T>
 void AVLTreeType<T>::inorderTraversal() const
