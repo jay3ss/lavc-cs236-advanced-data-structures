@@ -151,13 +151,13 @@ private:
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed */
-    void preorder(AVLNode<T> *tree);
+    void preorder(AVLNode<T>* tree);
 
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed
     @param: callback the function used to process the value in the node */
-    void preorder(AVLNode<T> *tree,
+    void preorder(AVLNode<T>* tree,
                   const std::function<void(const T &value)>& callback);
 
     /** Prints the value to the terminal
