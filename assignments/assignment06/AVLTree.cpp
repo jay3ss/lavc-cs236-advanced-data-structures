@@ -93,7 +93,9 @@ void AVLTreeType<T>::preorderTraversal() const
 template <class T>
 bool AVLTreeType<T>::remove(const T& value)
 {
-    return false;
+    bool isRemoved = false;
+    root =  remove(root, value, isRemoved);
+    return isRemoved;
 }
 
 // Retrieves a value from the tree
@@ -146,7 +148,34 @@ void AVLTreeType<T>::clear(AVLNode<T>*& tree)
 template <class T>
 AVLNode<T>* AVLTreeType<T>::deleteNode(AVLNode<T>*& node)
 {
-    return nullptr;
+    // three cases
+    // 1. no children
+    // 2. one child (left or right)
+    // 3. two children
+    AVLNode<T>* toDelete = node;
+    if (node->left == nullptr)
+    {
+        node = node->right;
+    }
+    else if (node->right == nullptr)
+    {
+        node = node->left;
+    }
+    else
+    {
+        // to delete a node with two children
+        // 1. find the logical predecessor (largest node of left subtree)
+        // 2. replace node that we're deleting with logical predecessor
+        // 3. delete the node
+        toDelete = getmax(node->left);
+        node->info = toDelete->info;
+        node->left = removemax(node->left);
+    }
+
+    delete toDelete;
+    toDelete = nullptr;
+
+    return node;
 }
 
 // Calculates the difference between the heights of the left and right subtrees
@@ -265,7 +294,29 @@ void AVLTreeType<T>::print(const T& value)
 template <class T>
 AVLNode<T>* AVLTreeType<T>::remove(AVLNode<T>*& tree, const T& value, bool& flag)
 {
-    return nullptr;
+    // didn't find the value
+    if (tree == nullptr)
+    {
+        flag = false;
+        return nullptr;
+    }
+
+    if (tree->info < value) // go to the right subtree
+    {
+        tree = remove(tree->right, value, flag);
+    }
+    else if (tree->info > value) // go to the left subtree
+    {
+        tree = remove(tree->left, value, flag);
+    }
+    else // found the value, delete it
+    {
+        flag = true;
+        numNodes--;
+        tree = deleteNode(tree);
+    }
+
+    return tree;
 }
 
 // Removes (not delete!) the node with the maximum value in a subtree pointer
