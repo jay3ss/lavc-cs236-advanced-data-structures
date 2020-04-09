@@ -42,6 +42,13 @@ bool AVLTreeType<T>::insert(const T& value)
     return false;
 }
 
+// Returns the number of leaves in the AVL tree
+template <class T>
+int AVLTreeType<T>::leaves() const
+{
+    return -1;
+}
+
 // Returns the length (number of nodes) in the AVL tree
 template <class T>
 int AVLTreeType<T>::length() const
