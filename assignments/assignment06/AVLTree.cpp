@@ -5,6 +5,7 @@ template <class T>
 AVLTreeType<T>::AVLTreeType()
 {
     root = nullptr;
+    numNodes = 0;
 }
 
 // Destructor
@@ -78,7 +79,7 @@ int AVLTreeType<T>::leaves() const
 template <class T>
 int AVLTreeType<T>::length() const
 {
-    return -1;
+    return numNodes;
 }
 
 // Traverses the AVL tree and prints the items in preorder
