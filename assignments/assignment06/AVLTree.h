@@ -39,7 +39,7 @@ public:
     @return: true if the the value is found, false otherwise */
     bool contains(const T& value) const;
 
-    /** Traverses the AVL tree and prints the items in it in preorder
+    /** Traverses the AVL tree and prints the items in preorder
     @post: the value of the items in the AVL tree will printed to the terminal
         in preorder */
     void inorderTraversal() const;
@@ -50,7 +50,7 @@ public:
     @post: the item will be inserted into the AVL tree */
     bool insert(const T& newItem);
 
-    /** Traverses the AVL tree and prints the items in it in inorder
+    /** Traverses the AVL tree and prints the items in inorder
     @post: the value of the items in the AVL tree will printed to the terminal
         in inorder */
     void preorderTraversal() const;
