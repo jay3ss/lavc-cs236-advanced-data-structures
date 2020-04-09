@@ -42,6 +42,13 @@ bool AVLTreeType<T>::insert(const T& value)
     return false;
 }
 
+// Returns the length (number of nodes) in the AVL tree
+template <class T>
+int AVLTreeType<T>::length() const
+{
+    return -1;
+}
+
 // Traverses the AVL tree and prints the items in preorder
 template <class T>
 void AVLTreeType<T>::preorderTraversal() const
