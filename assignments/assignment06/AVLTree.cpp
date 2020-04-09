@@ -32,7 +32,7 @@ bool AVLTreeType<T>::contains(const T& value) const
 template <class T>
 int AVLTreeType<T>::height() const
 {
-    return -1;
+    return height(root);
 }
 
 // Traverses the AVL tree and prints the items in it in inorder
@@ -155,7 +155,20 @@ AVLNode<T>* AVLTreeType<T>::getmax(AVLNode<T>*& tree)
 template <class T>
 int AVLTreeType<T>::height(const AVLNode<T>* tree) const
 {
-    return -1;
+    if (tree == nullptr)
+    {
+        return 0;
+    }
+
+    if (tree->isLeaf())
+    {
+        return 1;
+    }
+    else
+    {
+        return height(tree->left) + height(tree->right);
+    }
+
 }
 
 // Traverses a subtree in inorder
