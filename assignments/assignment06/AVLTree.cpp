@@ -24,9 +24,9 @@ void AVLTreeType<T>::clear()
 
 // Determines if a value is in the AVL tree
 template <class T>
-bool AVLTreeType<T>::contains(const T& value) const
+bool AVLTreeType<T>::contains(const T& value)
 {
-    return false;
+    return nullptr != retrieve(root, value);
 }
 
 // Returns the height of the tree
