@@ -50,6 +50,10 @@ public:
     @post: the item will be inserted into the AVL tree */
     bool insert(const T& newItem);
 
+    /** Tests if the tree is empty
+    @return: true if the tree is empty, false otherwise */
+    bool isEmpty() const;
+
     /** Returns the number of leaves in the AVL tree
     @return: the number of leaves in the AVL tree */
     int leaves() const;
