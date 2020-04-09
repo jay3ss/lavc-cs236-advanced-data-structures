@@ -50,6 +50,10 @@ public:
     @post: the item will be inserted into the AVL tree */
     bool insert(const T& newItem);
 
+    /** Returns the number of leaves in the AVL tree
+    @return: the number of leaves in the AVL tree */
+    int leaves() const;
+
     /** Returns the length (number of nodes) in the AVL tree
     @return the length (number of nodes) in the AVL tree */
     int length() const;
