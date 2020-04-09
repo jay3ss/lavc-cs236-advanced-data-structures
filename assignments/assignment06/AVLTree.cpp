@@ -100,8 +100,16 @@ bool AVLTreeType<T>::remove(const T& value)
 template <class T>
 T AVLTreeType<T>::retrieve(const T& value)
 {
-    T item;
-    return item;
+    // Attempt to find the value. If it can't be found (node is nullptr)
+    // then throw an error. Otherwise, return the value
+    AVLNode<T> *node = retrieve(root, value);
+    if (node == nullptr)
+    {
+        // Enforce the precondition that the value should be in the tree
+        throw NoSuchValue();
+    }
+
+    return node->info;
 }
 
 // Private methods
@@ -151,7 +159,7 @@ int AVLTreeType<T>::difference(const AVLNode<T>* tree) const
 
 // Finds a value in a subtree
 template <class T>
-AVLNode<T>* AVLTreeType<T>::find(const AVLNode<T>* tree, const T& value) const
+AVLNode<T>* AVLTreeType<T>::find(AVLNode<T>* tree, const T& value) const
 {
     return nullptr;
 }
@@ -270,9 +278,30 @@ AVLNode<T>* AVLTreeType<T>::removemax(AVLNode<T>*& tree)
 
 // Retrieves an item from a subtree
 template <class T>
-AVLNode<T>* AVLTreeType<T>::retrieve(const AVLNode<T>* tree, const T& value)
+AVLNode<T>* AVLTreeType<T>::retrieve(AVLNode<T>* tree, const T& value)
 {
-    return nullptr;
+    // The value is not in the tree
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+
+    // three cases
+    // 1. go right
+    // 2. go left
+    // 3. found
+    if (tree->info < value)
+    {
+        return retrieve(tree->right, value);
+    }
+    else if (tree->info > value)
+    {
+        return retrieve(tree->left, value);
+    }
+    else
+    {
+        return tree;
+    }
 }
 
 // Performs a left rotation on a subtree
