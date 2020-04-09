@@ -186,12 +186,8 @@ private:
 
     /** Retrieves an item from a subtree
     @param: tree the subtree to search
-    @param: value reference to the value to search for
-    @param: flag flag a flag to signal whether or not the value was found and
-        removed or not
-    @post: flag will be true if the value is found, false otherwise
-           value will hold the value if found, NULL otherwise */
-    void retrieve(const AVLNode<T>* tree, const T& value, bool& flag);
+    @param: value reference to the value to search for */
+    AVLNode<T>* retrieve(const AVLNode<T>* tree, const T& value);
 
     /** Performs a left rotation on a subtree
     @pre: the subtree should not be empty
