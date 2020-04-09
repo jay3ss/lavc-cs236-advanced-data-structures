@@ -42,20 +42,6 @@ bool AVLTreeType<T>::insert(const T& value)
     return false;
 }
 
-// Traverses the AVL tree and prints the items in in inorder
-template <class T>
-void AVLTreeType<T>::inorderTraversal() const
-{
-
-}
-
-// Inserts an item into the ALV tree
-template <class T>
-bool AVLTreeType<T>::insert(const T& value)
-{
-    return false;
-}
-
 // Traverses the AVL tree and prints the items in preorder
 template <class T>
 void AVLTreeType<T>::preorderTraversal() const
