@@ -81,9 +81,15 @@ public:
     bool remove(const T& removeItem);
 
     /** Retrieves a value from the tree
+    @pre: the value must be in the tree, otherwise a NoSuchValue exception will
+        be thrown
     @param: value the value to search for
-    @return: returns the value from the tree if it is found, NULL otherwise */
+    @return: returns the value from the tree if it is found, otherwise a
+        NoSuchValue exception will be thrown */
     T retrieve(const T& value);
+
+    /** Exception class for when a value is not in the AVL tree */
+    class NoSuchValue {};
 private:
     AVLNode<T>* root;
     int numNodes;
@@ -135,7 +141,7 @@ private:
     @param: value the value to find in the subtree
     @return: pointer to the location of the node in the subtree that holds
         value */
-    AVLNode<T>* find(const AVLNode<T>* tree, const T& value) const;
+    AVLNode<T>* find(AVLNode<T>* tree, const T& value) const;
 
     /** Finds the node with the maximum value in a subtree
     @param: tree a reference to a pointer to the subtree to search
@@ -212,7 +218,7 @@ private:
     /** Retrieves an item from a subtree
     @param: tree the subtree to search
     @param: value reference to the value to search for */
-    AVLNode<T>* retrieve(const AVLNode<T>* tree, const T& value);
+    AVLNode<T>* retrieve(AVLNode<T>* tree, const T& value);
 
     /** Performs a left rotation on a subtree
     @pre: the subtree should not be empty
