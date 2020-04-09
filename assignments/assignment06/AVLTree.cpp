@@ -46,7 +46,18 @@ void AVLTreeType<T>::inorderTraversal() const
 template <class T>
 bool AVLTreeType<T>::insert(const T& value)
 {
-    return false;
+    bool isTaller = false;
+    AVLNode<T>* newNode = new AVLNode<T>(value);
+
+    // insert the new node and then determine if the tree is still balanced.
+    // if it isn't balanced, then balance it
+    root = insertIntoAVL(root, newNode, isTaller);
+    if (isTaller)
+    {
+        balance(root);
+    }
+
+    return true;
 }
 
 // Tests if the tree is empty
@@ -190,7 +201,13 @@ AVLNode<T>* AVLTreeType<T>::insertIntoAVL(AVLNode<T>*& tree,
                                          AVLNode<T>*& newNode,
                                          bool& isTaller)
 {
-    return nullptr;
+    if (tree == nullptr)
+    {
+        tree = newNode;
+        numNodes++;
+    }
+
+    return tree;
 }
 
 // Counts the number of leaves in a subtree
