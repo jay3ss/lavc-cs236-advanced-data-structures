@@ -115,7 +115,7 @@ private:
     @param: value the value to find in the subtree
     @return: pointer to the location of the node in the subtree that holds
         value */
-    AVLNode<T>* find(AVLNode<T>* tree, const T& value) const;
+    AVLNode<T>* find(const AVLNode<T>* tree, const T& value) const;
 
     /** Finds the node with the maximum value in a subtree
     @param: tree a reference to a pointer to the subtree to search
