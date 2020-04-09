@@ -239,10 +239,20 @@ AVLNode<T>* AVLTreeType<T>::insertIntoAVL(AVLNode<T>*& tree,
                                          AVLNode<T>*& newNode,
                                          bool& isTaller)
 {
+    // use convention that values less than or equal to the value
+    // in a node belong in the left subtree
     if (tree == nullptr)
     {
         tree = newNode;
         numNodes++;
+    }
+    else if (tree->info >= newNode->info)
+    {
+        tree->left = insertIntoAVL(tree->left, newNode, isTaller);
+    }
+    else
+    {
+        tree->right = insertIntoAVL(tree->right, newNode, isTaller);
     }
 
     return tree;
