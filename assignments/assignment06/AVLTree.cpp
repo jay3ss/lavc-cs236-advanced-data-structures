@@ -155,20 +155,17 @@ AVLNode<T>* AVLTreeType<T>::getmax(AVLNode<T>*& tree)
 template <class T>
 int AVLTreeType<T>::height(const AVLNode<T>* tree) const
 {
+    // Don't count null nodes
     if (tree == nullptr)
     {
         return 0;
     }
 
-    if (tree->isLeaf())
-    {
-        return 1;
-    }
-    else
-    {
-        return height(tree->left) + height(tree->right);
-    }
-
+    // Recursively determine the height only using the larger
+    // of the two subtrees (left vs right)
+    int leftHeight = height(tree->left);
+    int rightHeight = height(tree->right);
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
 }
 
 // Traverses a subtree in inorder
