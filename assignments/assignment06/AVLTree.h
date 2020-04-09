@@ -40,7 +40,7 @@ public:
     /** Determines if a value is in the AVL tree
     @param: value a reference to the value to search for
     @return: true if the the value is found, false otherwise */
-    bool contains(const T& value) const;
+    bool contains(const T& value);
 
     /** Returns the height of the tree
     @return: the height of the tree */
