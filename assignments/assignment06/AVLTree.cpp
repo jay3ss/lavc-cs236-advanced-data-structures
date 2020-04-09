@@ -60,7 +60,7 @@ bool AVLTreeType<T>::isEmpty() const
 template <class T>
 int AVLTreeType<T>::leaves() const
 {
-    return -1;
+    return leaves(root);
 }
 
 // Returns the length (number of nodes) in the AVL tree
@@ -202,7 +202,7 @@ int AVLTreeType<T>::leaves(const AVLNode<T>* tree) const
         return 0;
     }
 
-    if (tree->isLea())
+    if (tree->isLeaf())
     {
         return 1;
     }
