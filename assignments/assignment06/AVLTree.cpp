@@ -53,7 +53,7 @@ bool AVLTreeType<T>::insert(const T& value)
 template <class T>
 bool AVLTreeType<T>::isEmpty() const
 {
-    return false;
+    return root == nullptr;
 }
 
 // Returns the number of leaves in the AVL tree
