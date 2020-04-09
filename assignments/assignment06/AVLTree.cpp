@@ -196,6 +196,25 @@ AVLNode<T>* AVLTreeType<T>::insertIntoAVL(AVLNode<T>*& tree,
     return nullptr;
 }
 
+// Counts the number of leaves in a subtree
+template <class T>
+int AVLTreeType<T>::leaves(const AVLNode<T>* tree) const
+{
+    if (tree == nullptr)
+    {
+        return 0;
+    }
+
+    if (tree->isLea())
+    {
+        return 1;
+    }
+    else
+    {
+        return leaves(tree->left) + leaves(tree->right);
+    }
+}
+
 // Traverses a subtree in preorder
 template <class T>
 void AVLTreeType<T>::preorder(AVLNode<T>* tree) const
