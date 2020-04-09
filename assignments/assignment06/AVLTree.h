@@ -151,7 +151,7 @@ private:
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed */
-    void preorder(AVLNode<T>* tree);
+    void preorder(AVLNode<T>* tree) const;
 
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
