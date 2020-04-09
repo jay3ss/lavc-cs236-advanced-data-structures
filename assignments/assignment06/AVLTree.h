@@ -8,16 +8,19 @@ template <class T>
 class AVLNode
 {
 public:
-    AVLNode(AVLNode* leftPtr = nullptr, AVLNode* rightPtr = nullptr)
+    AVLNode(AVLNode<T>* leftPtr = nullptr, AVLNode<T>* rightPtr = nullptr)
         : left(leftPtr), right(rightPtr) {}
-    AVLNode(T value, AVLNode* leftPtr = nullptr, AVLNode* rightPtr = nullptr)
+    AVLNode(T value, AVLNode<T>* leftPtr = nullptr, AVLNode<T>* rightPtr = nullptr)
         : left(leftPtr), right(rightPtr), info(value) {}
-private:
+
     T info;
     int bfactor;
-    AVLNode* left;
-    AVLNode* right;
-    friend class AVLTreetype;
+    AVLNode<T>* left;
+    AVLNode<T>* right;
+
+    /** Determines if a node is a leaf (children are nullptr) or not
+    @return: true if the node is a leaf, false otherwise */
+    bool isLeaf() const { return (left == nullptr && right == nullptr); }
 };
 
 template <class T>
