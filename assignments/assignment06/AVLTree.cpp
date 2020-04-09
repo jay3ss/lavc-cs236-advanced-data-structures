@@ -197,7 +197,16 @@ AVLNode<T>* AVLTreeType<T>::find(AVLNode<T>* tree, const T& value) const
 template <class T>
 AVLNode<T>* AVLTreeType<T>::getmax(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // traverse down the right subtree until the right child
+    // is null, then we've arrived at the max node
+    if (tree->right == nullptr)
+    {
+        return tree;
+    }
+    else
+    {
+        return getmax(tree->right);
+    }
 }
 
 // Calculates the height of the subtree rooted at the given node
@@ -334,7 +343,16 @@ AVLNode<T>* AVLTreeType<T>::remove(AVLNode<T>*& tree, const T& value, bool& flag
 template <class T>
 AVLNode<T>* AVLTreeType<T>::removemax(AVLNode<T>*& tree)
 {
-    return nullptr;
+    if (tree->right == nullptr)
+    {
+        return tree->left;
+    }
+    else
+    {
+        tree->right = removemax(tree->right);
+        return tree;
+    }
+
 }
 
 // Retrieves an item from a subtree
