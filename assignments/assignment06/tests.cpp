@@ -77,6 +77,7 @@ int main()
     }
     cout << "The contents of the AVL tree are:\n";
     avlt.preorderTraversal();
+    cout << endl;
 
     cout << "Should be able to find several entries: PASSED\n";
 
