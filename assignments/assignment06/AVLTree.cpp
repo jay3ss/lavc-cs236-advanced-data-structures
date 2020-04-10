@@ -19,7 +19,8 @@ AVLTreeType<T>::~AVLTreeType()
 template <class T>
 void AVLTreeType<T>::clear()
 {
-
+    clear(root);
+    numNodes = 0;
 }
 
 // Determines if a value is in the AVL tree
@@ -141,7 +142,20 @@ AVLNode<T>* AVLTreeType<T>::balanceFromRight(AVLNode<T>*& tree)
 template <class T>
 void AVLTreeType<T>::clear(AVLNode<T>*& tree)
 {
+    if (tree != nullptr)
+    {
+        if (tree->left)
+        {
+            clear(tree->left);
+        }
+        if (tree->right)
+        {
+            clear(tree->right);
+        }
 
+        delete tree;
+        tree = nullptr;
+    }
 }
 
 // Deletes a node from a subtree
