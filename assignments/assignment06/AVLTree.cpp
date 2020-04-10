@@ -306,7 +306,7 @@ void AVLTreeType<T>::preorder(AVLNode<T>* tree,
 template <class T>
 void AVLTreeType<T>::print(const T& value)
 {
-
+    std::cout << value;
 }
 
 // Removes a value from a subtree
