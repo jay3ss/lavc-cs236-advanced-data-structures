@@ -86,7 +86,7 @@ int AVLTreeType<T>::length() const
 template <class T>
 void AVLTreeType<T>::preorderTraversal() const
 {
-
+    preorder(root, print);
 }
 
 // Removes an item from the AVL tree
@@ -237,7 +237,7 @@ void AVLTreeType<T>::inorder(AVLNode<T>* tree) const
 // callback function
 template <class T>
 void AVLTreeType<T>::inorder(AVLNode<T> *tree,
-                             const std::function<void(const T &value)> &callback)
+                             void callback(const T &value))
 {
 
 }
@@ -296,17 +296,22 @@ void AVLTreeType<T>::preorder(AVLNode<T>* tree) const
 // Traverses a subtree in preorder and processes the value using the given
 // callback function
 template <class T>
-void AVLTreeType<T>::preorder(AVLNode<T>* tree,
-                             const std::function<void(const T& value)>& callback)
+void AVLTreeType<T>::preorder(AVLNode<T> *tree,
+                              void callback(const T& value)) const
 {
-
+    if (tree != nullptr)
+    {
+        (*callback)(tree->info);
+        preorder(tree->left, callback);
+        preorder(tree->right, callback);
+    }
 }
 
 // Prints the value to the terminal
 template <class T>
 void AVLTreeType<T>::print(const T& value)
 {
-    std::cout << value;
+    std::cout << value << "\n";
 }
 
 // Removes a value from a subtree

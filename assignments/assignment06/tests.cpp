@@ -58,7 +58,7 @@ int main()
 
     // Add many numbers to the tree randomly
     initRng();
-    const int NUM_ENTRIES = 100;
+    const int NUM_ENTRIES = 10;
     const int START = 0;
     const int END = 100;
     // create a vector of random numbers of length NUM_ENTRIES, between START and NUM_ENTRIES
@@ -75,6 +75,9 @@ int main()
     {
         assert(avlt.contains(static_cast<int>(entry)) && "FAILED: Should have found entry\n");
     }
+    cout << "The contents of the AVL tree are:\n";
+    avlt.preorderTraversal();
+
     cout << "Should be able to find several entries: PASSED\n";
 
     shuffle(entries.begin(), entries.end(), RNG);

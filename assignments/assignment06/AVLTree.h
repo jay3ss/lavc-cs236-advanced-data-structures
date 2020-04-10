@@ -1,7 +1,6 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 
-#include <functional>
 #include <iostream>
 
 template <class T>
@@ -48,7 +47,7 @@ public:
 
     /** Traverses the AVL tree and prints the items in inorder
     @post: the value of the items in the AVL tree will printed to the terminal
-        in preorder */
+        in inorder */
     void inorderTraversal() const;
 
     /** Inserts an item into the ALV tree
@@ -163,8 +162,7 @@ private:
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed
     @param: callback the function used to process the value in the node */
-    void inorder(AVLNode<T> *tree,
-                const std::function<void(const T& value)>& callback);
+    void inorder(AVLNode<T> *tree, void callback(const T &value));
 
     /** Inserts a new node into a subtree
     @param: tree the subtree that the new node will be inserted into
@@ -188,8 +186,7 @@ private:
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed
     @param: callback the function used to process the value in the node */
-    void preorder(AVLNode<T>* tree,
-                  const std::function<void(const T &value)>& callback);
+    void preorder(AVLNode<T> *tree, void callback(const T &value)) const;
 
     /** Prints the value to the terminal
     @param: value reference to the value to be printed
