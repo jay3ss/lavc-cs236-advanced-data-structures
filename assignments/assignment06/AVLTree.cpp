@@ -119,7 +119,7 @@ T AVLTreeType<T>::retrieve(const T& value)
 // Balances the AVL tree, if necessary. If a node's balance factor is greater
 // than 1, it is unbalanced and will balanced. Otherwise, nothing will change
 template <class T>
-AVLNode<T> *AVLTreeType<T>::balance(AVLNode<T> *&tree)
+AVLNode<T> *AVLTreeType<T>::balance(AVLNode<T>*& tree)
 {
     return nullptr;
 }
@@ -416,21 +416,21 @@ AVLNode<T>* AVLTreeType<T>::rotateLeft(AVLNode<T>*& tree)
 
 // Performs a right rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateRight(AVLNode<T> *&tree)
+AVLNode<T> *AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
 {
-    return nullptr;
+    AVLNode<T>
 }
 
 // Performs a left-right rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateLeftRight(AVLNode<T> *&tree)
+AVLNode<T> *AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
 {
     return nullptr;
 }
 
 // Performs a right-left rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateRightLeft(AVLNode<T> *&tree)
+AVLNode<T> *AVLTreeType<T>::rotateRightLeft(AVLNode<T>*& tree)
 {
     return nullptr;
 }
