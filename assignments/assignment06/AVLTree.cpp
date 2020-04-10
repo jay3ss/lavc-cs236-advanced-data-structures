@@ -40,7 +40,7 @@ int AVLTreeType<T>::height() const
 template <class T>
 void AVLTreeType<T>::inorderTraversal() const
 {
-
+    inorder(root, print);
 }
 
 // Inserts an item into the ALV tree
@@ -237,9 +237,14 @@ void AVLTreeType<T>::inorder(AVLNode<T>* tree) const
 // callback function
 template <class T>
 void AVLTreeType<T>::inorder(AVLNode<T> *tree,
-                             void callback(const T &value))
+                             void callback(const T &value)) const
 {
-
+    if (tree != nullptr)
+    {
+        inorder(tree->left, callback);
+        (*callback)(tree->info);
+        inorder(tree->right, callback);
+    }
 }
 
 // Inserts a new node into a subtree
