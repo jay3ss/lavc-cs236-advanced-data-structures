@@ -414,16 +414,16 @@ AVLNode<T>* AVLTreeType<T>::rotateLeft(AVLNode<T>*& tree)
     return nullptr;
 }
 
-// Performs a right rotation on a subtree
-template <class T>
-AVLNode<T>* AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
-{
-    AVLNode<T>
-}
-
 // Performs a left-right rotation on a subtree
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
+{
+    return nullptr;
+}
+
+// Performs a right rotation on a subtree
+template <class T>
+AVLNode<T>* AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
 {
     return nullptr;
 }

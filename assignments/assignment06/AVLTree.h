@@ -224,19 +224,19 @@ private:
     @post: the subtree will be left rotated */
     AVLNode<T>* rotateLeft(AVLNode<T>*& tree);
 
-    /** Performs a right rotation on a subtree
-    @pre: the subtree should not be empty
-    @param: tree the subtree to be right rotated
-    @return: pointer to the right rotated subtree
-    @post: the subtree will be right rotated */
-    AVLNode<T>* rotateRight(AVLNode<T>*& tree);
-
     /** Performs a left-right rotation on a subtree
     @pre: the subtree should not be empty
     @param: tree the subtree to be left-right rotated
     @return: pointer to the left-right rotated subtree
     @post: the subtree will be left-right rotated */
     AVLNode<T>* rotateLeftRight(AVLNode<T>*& tree);
+
+    /** Performs a right rotation on a subtree
+    @pre: the subtree should not be empty
+    @param: tree the subtree to be right rotated
+    @return: pointer to the right rotated subtree
+    @post: the subtree will be right rotated */
+    AVLNode<T>* rotateRight(AVLNode<T>*& tree);
 
     /** Performs a right-left rotation on a subtree
     @pre: the subtree should not be empty
