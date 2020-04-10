@@ -79,6 +79,10 @@ int main()
     avlt.preorderTraversal();
     cout << endl;
 
+    cout << "The contents of the AVL tree are (in inorder):\n";
+    avlt.inorderTraversal();
+    cout << endl;
+
     cout << "Should be able to find several entries: PASSED\n";
 
     shuffle(entries.begin(), entries.end(), RNG);
