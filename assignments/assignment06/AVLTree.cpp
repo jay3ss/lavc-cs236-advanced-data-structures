@@ -352,7 +352,6 @@ AVLNode<T>* AVLTreeType<T>::removemax(AVLNode<T>*& tree)
         tree->right = removemax(tree->right);
         return tree;
     }
-
 }
 
 // Retrieves an item from a subtree
