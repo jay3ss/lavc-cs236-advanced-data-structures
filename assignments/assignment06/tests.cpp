@@ -75,7 +75,7 @@ int main()
     {
         assert(avlt.contains(static_cast<int>(entry)) && "FAILED: Should have found entry\n");
     }
-    cout << "The contents of the AVL tree are:\n";
+    cout << "The contents of the AVL tree are (in preorder):\n";
     avlt.preorderTraversal();
     cout << endl;
 
