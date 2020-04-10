@@ -60,9 +60,10 @@ int main()
     initRng();
     const int NUM_ENTRIES = 100;
     const int START = 0;
+    const int END = 100;
     // create a vector of random numbers of length NUM_ENTRIES, between START and NUM_ENTRIES
     // and then add the entries into the tree (also, assert that the insertion works)
-    vector<int> entries = randomVector(NUM_ENTRIES, START, NUM_ENTRIES);
+    vector<int> entries = randomVector(NUM_ENTRIES, START, END);
 
     for (auto &entry : entries)
     {
