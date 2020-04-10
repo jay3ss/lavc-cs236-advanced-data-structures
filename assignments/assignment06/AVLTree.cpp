@@ -411,26 +411,48 @@ AVLNode<T>* AVLTreeType<T>::retrieve(AVLNode<T>* tree, const T& value)
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateLeft(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // From the diagram in the lecture notes, slide 25
+    AVLNode<T>* s = tree->right;
+    AVLNode<T>* b = s->left;
+
+    s->left = tree;
+    tree->right = b;
+
+    return s;
 }
 
 // Performs a left-right rotation on a subtree
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // From the diagram in the lecture notes, slide 29
+    AVLNode<T>* s = tree->left;
+    tree->left = rotateLeft(s);
+
+    return rotateRight(tree);
 }
 
 // Performs a right rotation on a subtree
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // From the diagram in the lecture notes, slide 22
+    AVLNode<T>* s = tree->left;
+    AVLNode<T>* b = s->right;
+
+    s->right = tree;
+    tree->left = s->right;
+
+    return s;
 }
 
 // Performs a right-left rotation on a subtree
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateRightLeft(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // From the diagram in the lecture notes, slide 27
+    AVLNode<T>* s = tree->right;
+    tree->right = rotateRight(s);
+
+    return rotateLeft(tree);
 }
