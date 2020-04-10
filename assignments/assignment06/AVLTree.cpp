@@ -317,16 +317,17 @@ AVLNode<T>* AVLTreeType<T>::remove(AVLNode<T>*& tree, const T& value, bool& flag
     if (tree == nullptr)
     {
         flag = false;
-        return nullptr;
+        return tree;
     }
 
+    // keep traversing the subtree until we find the correct node
     if (tree->info < value) // go to the right subtree
     {
-        tree = remove(tree->right, value, flag);
+        tree->right = remove(tree->right, value, flag);
     }
     else if (tree->info > value) // go to the left subtree
     {
-        tree = remove(tree->left, value, flag);
+        tree->left = remove(tree->left, value, flag);
     }
     else // found the value, delete it
     {
