@@ -105,7 +105,7 @@ T AVLTreeType<T>::retrieve(const T& value)
 {
     // Attempt to find the value. If it can't be found (node is nullptr)
     // then throw an error. Otherwise, return the value
-    AVLNode<T> *node = retrieve(root, value);
+    AVLNode<T>* node = retrieve(root, value);
     if (node == nullptr)
     {
         // Enforce the precondition that the value should be in the tree
@@ -119,7 +119,7 @@ T AVLTreeType<T>::retrieve(const T& value)
 // Balances the AVL tree, if necessary. If a node's balance factor is greater
 // than 1, it is unbalanced and will balanced. Otherwise, nothing will change
 template <class T>
-AVLNode<T> *AVLTreeType<T>::balance(AVLNode<T>*& tree)
+AVLNode<T>* AVLTreeType<T>::balance(AVLNode<T>*& tree)
 {
     return nullptr;
 }
@@ -250,7 +250,7 @@ void AVLTreeType<T>::inorder(AVLNode<T>* tree) const
 // Traverses a subtree in inorder and processes the value using the given
 // callback function
 template <class T>
-void AVLTreeType<T>::inorder(AVLNode<T> *tree,
+void AVLTreeType<T>::inorder(AVLNode<T>* tree,
                              void callback(const T &value)) const
 {
     if (tree != nullptr)
@@ -315,7 +315,7 @@ void AVLTreeType<T>::preorder(AVLNode<T>* tree) const
 // Traverses a subtree in preorder and processes the value using the given
 // callback function
 template <class T>
-void AVLTreeType<T>::preorder(AVLNode<T> *tree,
+void AVLTreeType<T>::preorder(AVLNode<T>* tree,
                               void callback(const T& value)) const
 {
     if (tree != nullptr)
@@ -416,21 +416,21 @@ AVLNode<T>* AVLTreeType<T>::rotateLeft(AVLNode<T>*& tree)
 
 // Performs a right rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
+AVLNode<T>* AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
 {
     AVLNode<T>
 }
 
 // Performs a left-right rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
+AVLNode<T>* AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
 {
     return nullptr;
 }
 
 // Performs a right-left rotation on a subtree
 template <class T>
-AVLNode<T> *AVLTreeType<T>::rotateRightLeft(AVLNode<T>*& tree)
+AVLNode<T>* AVLTreeType<T>::rotateRightLeft(AVLNode<T>*& tree)
 {
     return nullptr;
 }

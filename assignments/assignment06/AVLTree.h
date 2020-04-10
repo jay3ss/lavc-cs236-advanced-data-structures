@@ -162,7 +162,7 @@ private:
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed
     @param: callback the function used to process the value in the node */
-    void inorder(AVLNode<T> *tree, void callback(const T &value)) const;
+    void inorder(AVLNode<T>* tree, void callback(const T &value)) const;
 
     /** Inserts a new node into a subtree
     @param: tree the subtree that the new node will be inserted into
@@ -186,7 +186,7 @@ private:
     @pre: the subtree should not be empty
     @param: tree the subtree to be traversed
     @param: callback the function used to process the value in the node */
-    void preorder(AVLNode<T> *tree, void callback(const T &value)) const;
+    void preorder(AVLNode<T>* tree, void callback(const T &value)) const;
 
     /** Prints the value to the terminal
     @param: value reference to the value to be printed
