@@ -54,10 +54,7 @@ bool AVLTreeType<T>::insert(const T& value)
     // insert the new node and then determine if the tree is still balanced.
     // if it isn't balanced, then balance it
     root = insertIntoAVL(root, newNode, isTaller);
-    if (isTaller)
-    {
-        balance(root);
-    }
+    root = balance(root);
 
     return true;
 }
@@ -121,21 +118,58 @@ T AVLTreeType<T>::retrieve(const T& value)
 template <class T>
 AVLNode<T>* AVLTreeType<T>::balance(AVLNode<T>*& tree)
 {
-    return nullptr;
+    int balanceFactor = difference(tree);
+
+    // three cases:
+    // 1. left subtree needs balancing (balance factor > 1)
+    // 2. right subtree needs balancing (balance factor < -1)
+    // 3. subtrees are balanced (-1 <= balance factor <= 1)
+    if (balanceFactor > 1) // left subtree needs balancing
+    {
+        return balanceFromLeft(tree);
+    }
+    else if (balanceFactor < -1) // right subtree needs balancing
+    {
+        return balanceFromRight(tree);
+    }
+    else // subtrees are balanced
+    {
+        return tree;
+    }
 }
 
-// Balances a subtree from the left, if necessary
+// Balances a subtree from the left
 template <class T>
 AVLNode<T>* AVLTreeType<T>::balanceFromLeft(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // two cases:
+    // 1. one rotation is needed
+    // 2. two rotations are needed
+    if (difference(tree->right) < 0)
+    {
+        return rotateLeft(tree);
+    }
+    else
+    {
+        return rotateRightLeft(tree);
+    }
 }
 
-// Balances a subtree from the right, if necessary
+// Balances a subtree from the right
 template <class T>
 AVLNode<T>* AVLTreeType<T>::balanceFromRight(AVLNode<T>*& tree)
 {
-    return nullptr;
+    // two cases:
+    // 1. one rotation is needed
+    // 2. two rotations are needed
+    if (difference(tree->right) < 0)
+    {
+        return rotateRight(tree);
+    }
+    else
+    {
+        return rotateLeftRight(tree);
+    }
 }
 
 // Clears a subtree of all its contents

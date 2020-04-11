@@ -102,14 +102,14 @@ private:
     @post: the subtree will be balanced */
     AVLNode<T>* balance(AVLNode<T>*& tree);
 
-    /** Balances a subtree from the left, if necessary
+    /** Balances a subtree from the left
     @pre: the subtree is not empty
     @param: tree the subtree to balance
     @return: pointer to the balanced tree
     @post: the subtree will be balanced */
     AVLNode<T>* balanceFromLeft(AVLNode<T>*& tree);
 
-    /** Balances a subtree from the right, if necessary
+    /** Balances a subtree from the right
     @pre: the subtree is not empty
     @param: tree the subtree to balance
     @return: pointer to the balanced tree
