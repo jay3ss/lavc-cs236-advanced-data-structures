@@ -54,11 +54,11 @@ int main()
     cout << "Should be able to remove an entry: PASSED\n";
 
     assert(!avlt.contains(entry) && "FAILED: Should be able see if the tree doesn't contain a removed item\n");
-    cout << "Should be able to see if the tree contains an item: PASSED\n";
+    cout << "Should be able to see if the tree doesn't contain a removed item: PASSED\n";
 
     // Add many numbers to the tree randomly
     initRng();
-    const int NUM_ENTRIES = 10;
+    const int NUM_ENTRIES = 30;
     const int START = 0;
     const int END = 100;
     // create a vector of random numbers of length NUM_ENTRIES, between START and NUM_ENTRIES
@@ -89,8 +89,11 @@ int main()
 
     for (auto &entry : entries)
     {
-        cout << entry << ", ";
-        assert(avlt.remove(entry) && "FAILED: Should be able to remove entry\n");
+        // cout << entry << ", " << endl;
+        cout << "Removing " << entry << ":\t";
+        avlt.inorderTraversal();
+        cout << endl;
+        assert(avlt.remove(entry) && "FAILED: Should be able to remove entry " && entry && "\n");
     }
     cout << endl;
     cout << "Should be able to remove several entries: PASSED\n";
