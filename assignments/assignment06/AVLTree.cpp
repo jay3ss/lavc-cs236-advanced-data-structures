@@ -51,10 +51,7 @@ bool AVLTreeType<T>::insert(const T& value)
     bool isTaller = false;
     AVLNode<T>* newNode = new AVLNode<T>(value);
 
-    // insert the new node and then determine if the tree is still balanced.
-    // if it isn't balanced, then balance it
     root = insertIntoAVL(root, newNode, isTaller);
-    root = balance(root);
 
     return true;
 }
@@ -126,11 +123,29 @@ AVLNode<T>* AVLTreeType<T>::balance(AVLNode<T>*& tree)
     // 3. subtrees are balanced (-1 <= balance factor <= 1)
     if (balanceFactor > 1) // left subtree needs balancing
     {
-        return balanceFromLeft(tree);
+        if (difference(tree->left) > 1)
+        {
+            tree = rotateRight(tree);
+            return tree;
+        }
+        else
+        {
+            tree = rotateLeftRight(tree);
+            return tree;
+        }
     }
     else if (balanceFactor < -1) // right subtree needs balancing
     {
-        return balanceFromRight(tree);
+        if (difference(tree->right) < 0)
+        {
+            tree = rotateLeft(tree);
+            return tree;
+        }
+        else
+        {
+            tree = rotateRightLeft(tree);
+            return tree;
+        }
     }
     else // subtrees are balanced
     {
@@ -145,13 +160,15 @@ AVLNode<T>* AVLTreeType<T>::balanceFromLeft(AVLNode<T>*& tree)
     // two cases:
     // 1. one rotation is needed
     // 2. two rotations are needed
-    if (difference(tree->right) < 0)
+    if (difference(tree->left) > 1)
     {
-        return rotateLeft(tree);
+        tree = rotateRight(tree);
+        return tree;
     }
     else
     {
-        return rotateRightLeft(tree);
+        tree = rotateLeftRight(tree);
+        return tree;
     }
 }
 
@@ -164,11 +181,13 @@ AVLNode<T>* AVLTreeType<T>::balanceFromRight(AVLNode<T>*& tree)
     // 2. two rotations are needed
     if (difference(tree->right) < 0)
     {
-        return rotateRight(tree);
+        tree = rotateLeft(tree);
+        return tree;
     }
     else
     {
-        return rotateLeftRight(tree);
+        tree = rotateRightLeft(tree);
+        return tree;
     }
 }
 
@@ -231,7 +250,7 @@ AVLNode<T>* AVLTreeType<T>::deleteNode(AVLNode<T>*& node)
 template <class T>
 int AVLTreeType<T>::difference(const AVLNode<T>* tree) const
 {
-    return -1;
+    return height(tree->left) - height(tree->right);
 }
 
 // Finds a value in a subtree
@@ -311,10 +330,12 @@ AVLNode<T>* AVLTreeType<T>::insertIntoAVL(AVLNode<T>*& tree,
     else if (tree->info >= newNode->info)
     {
         tree->left = insertIntoAVL(tree->left, newNode, isTaller);
+        tree = balance(tree);
     }
     else
     {
         tree->right = insertIntoAVL(tree->right, newNode, isTaller);
+        tree = balance(tree);
     }
 
     return tree;
@@ -382,10 +403,12 @@ AVLNode<T>* AVLTreeType<T>::remove(AVLNode<T>*& tree, const T& value, bool& flag
     if (tree->info < value) // go to the right subtree
     {
         tree->right = remove(tree->right, value, flag);
+        tree = balance(tree);
     }
     else if (tree->info > value) // go to the left subtree
     {
         tree->left = remove(tree->left, value, flag);
+        tree = balance(tree);
     }
     else // found the value, delete it
     {
@@ -445,14 +468,19 @@ AVLNode<T>* AVLTreeType<T>::retrieve(AVLNode<T>* tree, const T& value)
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateLeft(AVLNode<T>*& tree)
 {
-    // From the diagram in the lecture notes, slide 25
-    AVLNode<T>* s = tree->right;
-    AVLNode<T>* b = s->left;
+    if (tree->right != nullptr)
+    {
+        // From the diagram in the lecture notes, slide 25
+        AVLNode<T>* s = tree->right;
+        AVLNode<T>* b = s->left;
 
-    s->left = tree;
-    tree->right = b;
+        s->left = tree;
+        tree->right = b;
 
-    return s;
+        return s;
+    }
+
+    return tree;
 }
 
 // Performs a left-right rotation on a subtree
@@ -462,22 +490,27 @@ AVLNode<T>* AVLTreeType<T>::rotateLeftRight(AVLNode<T>*& tree)
     // From the diagram in the lecture notes, slide 29
     AVLNode<T>* s = tree->left;
     tree->left = rotateLeft(s);
+    tree = rotateRight(tree);
 
-    return rotateRight(tree);
+    return tree;
 }
 
 // Performs a right rotation on a subtree
 template <class T>
 AVLNode<T>* AVLTreeType<T>::rotateRight(AVLNode<T>*& tree)
 {
-    // From the diagram in the lecture notes, slide 22
-    AVLNode<T>* s = tree->left;
-    AVLNode<T>* b = s->right;
+    if (tree->left != nullptr)
+    {
+        // From the diagram in the lecture notes, slide 22
+        AVLNode<T>* s = tree->left;
+        AVLNode<T>* b = s->right;
 
-    s->right = tree;
-    tree->left = s->right;
+        s->right = tree;
+        tree->left = b;
+        return s;
+    }
 
-    return s;
+    return tree;
 }
 
 // Performs a right-left rotation on a subtree
@@ -487,6 +520,6 @@ AVLNode<T>* AVLTreeType<T>::rotateRightLeft(AVLNode<T>*& tree)
     // From the diagram in the lecture notes, slide 27
     AVLNode<T>* s = tree->right;
     tree->right = rotateRight(s);
-
-    return rotateLeft(tree);
+    tree = rotateLeft(tree);
+    return tree;
 }
