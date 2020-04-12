@@ -37,6 +37,14 @@ int AVLTreeType<T>::height() const
     return height(root);
 }
 
+// Traverses a subtree in inorder and processes the nodes using the given
+// callback
+template <class T>
+void AVLTreeType<T>::inorder(void callback(const T& value)) const
+{
+    inorder(root, callback);
+}
+
 // Traverses the AVL tree and prints the items in it in inorder
 template <class T>
 void AVLTreeType<T>::inorderTraversal() const
@@ -75,6 +83,14 @@ template <class T>
 int AVLTreeType<T>::length() const
 {
     return numNodes;
+}
+
+// Traverses a subtree in preorder and processes the nodes using the given
+// callback
+template <class T>
+void AVLTreeType<T>::preorder(void callback(const T& value)) const
+{
+    preorder(root, callback);
 }
 
 // Traverses the AVL tree and prints the items in preorder
@@ -293,13 +309,6 @@ int AVLTreeType<T>::height(const AVLNode<T>* tree) const
     return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
 }
 
-// Traverses a subtree in inorder
-template <class T>
-void AVLTreeType<T>::inorder(AVLNode<T>* tree) const
-{
-
-}
-
 // Traverses a subtree in inorder and processes the value using the given
 // callback function
 template <class T>
@@ -358,13 +367,6 @@ int AVLTreeType<T>::leaves(const AVLNode<T>* tree) const
     {
         return leaves(tree->left) + leaves(tree->right);
     }
-}
-
-// Traverses a subtree in preorder
-template <class T>
-void AVLTreeType<T>::preorder(AVLNode<T>* tree) const
-{
-
 }
 
 // Traverses a subtree in preorder and processes the value using the given

@@ -45,6 +45,12 @@ public:
     @return: the height of the tree */
     int height() const;
 
+    /** Traverses a subtree in inorder and processes the nodes using the given
+        callback
+    @pre: the subtree should not be empty
+    @param: callback the callback that processes the node */
+    void inorder(void callback(const T& value)) const;
+
     /** Traverses the AVL tree and prints the items in inorder
     @post: the value of the items in the AVL tree will printed to the terminal
         in inorder */
@@ -67,6 +73,12 @@ public:
     /** Returns the length (number of nodes) in the AVL tree
     @return the length (number of nodes) in the AVL tree */
     int length() const;
+
+    /** Traverses a subtree in preorder and processes the nodes using the given
+        callback
+    @pre: the subtree should not be empty
+    @param: callback the callback that processes the node */
+    void preorder(void callback(const T& value)) const;
 
     /** Traverses the AVL tree and prints the items in preorder
     @post: the value of the items in the AVL tree will printed to the terminal
@@ -152,11 +164,6 @@ private:
     @return: the height of the subtree */
     int height(const AVLNode<T>* tree) const;
 
-    /** Traverses a subtree in inorder
-    @pre: the subtree should not be empty
-    @param: tree the subtree to be traversed */
-    void inorder(AVLNode<T>* tree) const;
-
     /** Traverses a subtree in inorder and processes the value using the given
         callback function
     @pre: the subtree should not be empty
@@ -176,11 +183,6 @@ private:
     @param: tree pointer to the subtree
     @return: the number of leaves in the subtree */
     int leaves(const AVLNode<T>* tree) const;
-
-    /** Traverses a subtree in preorder
-    @pre: the subtree should not be empty
-    @param: tree the subtree to be traversed */
-    void preorder(AVLNode<T>* tree) const;
 
     /** Traverses a subtree in preorder
     @pre: the subtree should not be empty
