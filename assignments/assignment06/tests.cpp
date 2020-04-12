@@ -16,6 +16,9 @@ void initRng();
 vector<int> randomVector(const int size, const int start, const int stop);
 void testRetrieveEntry(const int entry,AVLTreeType<int>& tree);
 
+template <class T>
+void print(const T& value);
+
 int main()
 {
     AVLTreeType<int> avlt;
@@ -87,6 +90,14 @@ int main()
 
     shuffle(entries.begin(), entries.end(), RNG);
 
+    cout << "Print in preorder order: ";
+    avlt.preorder(print);
+    cout << endl;
+
+    cout << "Print in inorder order: ";
+    avlt.inorder(print);
+    cout << endl;
+
     for (auto &entry : entries)
     {
         // cout << entry << ", " << endl;
@@ -140,4 +151,10 @@ void testRetrieveEntry(const int entry, AVLTreeType<int>& tree)
     {
         cerr << "ERROR: Value " << entry << " isn't in the tree\n";
     }
+}
+
+template <class T>
+void print(const T& value)
+{
+    cout << value << " ";
 }
