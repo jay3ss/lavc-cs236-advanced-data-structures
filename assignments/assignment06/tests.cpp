@@ -16,8 +16,8 @@ void initRng();
 vector<int> randomVector(const int size, const int start, const int stop);
 void testRetrieveEntry(const int entry,AVLTreeType<int>& tree);
 
-template <class T>
-void print(const T& value);
+// template <class T>
+void print(const int& value);
 
 int main()
 {
@@ -153,8 +153,8 @@ void testRetrieveEntry(const int entry, AVLTreeType<int>& tree)
     }
 }
 
-template <class T>
-void print(const T& value)
+// template <class T>
+void print(const int& value)
 {
     cout << value << " ";
 }

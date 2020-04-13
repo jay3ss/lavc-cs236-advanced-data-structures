@@ -139,29 +139,13 @@ AVLNode<T>* AVLTreeType<T>::balance(AVLNode<T>*& tree)
     // 3. subtrees are balanced (-1 <= balance factor <= 1)
     if (balanceFactor > 1) // left subtree needs balancing
     {
-        if (difference(tree->left) > 1)
-        {
-            tree = rotateRight(tree);
-            return tree;
-        }
-        else
-        {
-            tree = rotateLeftRight(tree);
-            return tree;
-        }
+        tree = balanceFromLeft(tree);
+        return tree;
     }
     else if (balanceFactor < -1) // right subtree needs balancing
     {
-        if (difference(tree->right) < 0)
-        {
-            tree = rotateLeft(tree);
-            return tree;
-        }
-        else
-        {
-            tree = rotateRightLeft(tree);
-            return tree;
-        }
+        tree = balanceFromRight(tree);
+        return tree;
     }
     else // subtrees are balanced
     {
