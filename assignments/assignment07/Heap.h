@@ -86,4 +86,46 @@ T Heap<T>::max() const
     return tree[0];
 }
 
+// produces a max-heap from an unordered array
+template <class T>
+void Heap<T>::buildHeap(const T elements[], const int arraySize)
+{
+
+}
+
+// corrects a single violation of the max-heap property in subtree at its root
+template <class T>
+void Heap<T>::heapify(std::vector<T> &subtree, const int index)
+{
+
+}
+
+// returns true if the node is a leaf, false if not
+template <class T>
+bool Heap<T>::isLeaf(const int index) const
+{
+
+}
+
+// returns the index of the left child of the node at the given index
+template <class T>
+int Heap<T>::left(const int index)
+{
+    return 2 * index;
+}
+
+// returns the index of the parent of the node at the given index
+template <class T>
+int Heap<T>::parent(const int index)
+{
+    return index / 2;
+}
+
+// returns the index of the right child of the node at the given index
+template <class T>
+int Heap<T>::right(const int index)
+{
+    return (2 * index) + 1;
+}
+
 #endif // HEAP_H
