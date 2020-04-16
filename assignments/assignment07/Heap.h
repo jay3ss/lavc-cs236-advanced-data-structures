@@ -41,8 +41,8 @@ private:
     // returns the index of the parent of the node at the given index
     static int parent(const int index);
 
-    // returns the index of the child node with the smallest value
-    static int smallestChild(const int index);
+    // returns the index of the child node with the largest value
+    static int largestChild(const int index);
 
     // returns the index of the right child of the node at the given index
     static int rightChild(const int index);
