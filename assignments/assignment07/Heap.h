@@ -3,6 +3,9 @@
 
 #include <vector>
 
+// Exception class to indicate an empty heap
+class EmptyHeap {};
+
 template <class T>
 class Heap
 {
@@ -73,6 +76,10 @@ void Heap<T>::add(const T& element)
 template <class T>
 T Heap<T>::remove()
 {
+    if (size() == 0)
+    {
+        throw EmptyHeap();
+    }
     // swap the first and last elements
     T first = tree[0];
     T last = tree.back();
@@ -187,8 +194,5 @@ void Heap<T>::swap(T& item1, T& item2)
     item1 = item2;
     item2 = temporary;
 }
-
-// Exception class to indicate an empty heap
-class EmptyHeap {};
 
 #endif // HEAP_H
