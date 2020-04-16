@@ -3,8 +3,6 @@
 
 #include <vector>
 
-enum class Heapify { MAX, MIN };
-
 template <class T>
 class Heap
 {
