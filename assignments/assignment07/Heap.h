@@ -42,7 +42,7 @@ private:
     static int parent(const int index);
 
     // returns the index of the child node with the smallest value
-    int smallestChild(const int index);
+    static int smallestChild(const int index);
 
     // returns the index of the right child of the node at the given index
     static int rightChild(const int index);
