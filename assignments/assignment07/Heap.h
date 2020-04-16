@@ -103,6 +103,10 @@ int Heap<T>::size() const
 template <class T>
 T Heap<T>::max() const
 {
+    if (size() == 0)
+    {
+        throw EmptyHeap();
+    }
     return tree[0];
 }
 
