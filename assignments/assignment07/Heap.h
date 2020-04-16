@@ -147,4 +147,7 @@ void Heap<T>::swap(T& item1, T& item2)
     item2 = temporary;
 }
 
+// Exception class to indicate an empty heap
+class EmptyHeap {};
+
 #endif // HEAP_H
