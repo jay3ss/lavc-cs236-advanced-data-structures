@@ -28,12 +28,6 @@ public:
 private:
     std::vector<T> tree;    // to hold the heap items
 
-    // produces a max-heap from an unordered array
-    void buildHeap(const T elements[], const int arraySize);
-
-    // corrects a single violation of the max-heap property in subtree at its root
-    void heapify(const int index);
-
     // corrects a violation of the max-heap property caused by removing the root
     void heapifyDown(int index);
 
@@ -49,9 +43,13 @@ private:
     // returns the index of the parent of the node at the given index
     static int parent(const int index);
 
+    // returns the index of the child node with the smallest value
+    int smallestChild(const int index);
+
     // returns the index of the right child of the node at the given index
     static int rightChild(const int index);
 
+    // swaps the contents of two items
     void swap(T& item1, T& item2);
 };
 
@@ -89,20 +87,6 @@ template <class T>
 T Heap<T>::max() const
 {
     return tree[0];
-}
-
-// produces a max-heap from an unordered array
-template <class T>
-void Heap<T>::buildHeap(const T elements[], const int arraySize)
-{
-
-}
-
-// produces a max-heap from an unordered vector
-template <class T>
-void Heap<T>::buildHeap(const T elements[], const int arraySize)
-{
-
 }
 
 // corrects a single violation of the max-heap property in subtree at its root
