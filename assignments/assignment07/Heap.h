@@ -59,7 +59,8 @@ Heap<T>::Heap() {}
 template <class T>
 Heap<T>::Heap(const T elements[], const int arraySize)
 {
-
+    for (int i = 0; i < arraySize; i++)
+        add(elements[i]);
 }
 
 template <class T>
