@@ -14,6 +14,9 @@ public:
     // inserts element into the heap and maintain the max-heap property
     void add(const T& element);
 
+    // corrects a violation of the max-heap property caused by removing the root
+    void heapifyDown(std::vector<T> subHeap, const int index);
+
     // returns the maximum value in the heap
     T max() const;
 
@@ -27,9 +30,6 @@ public:
     class EmptyHeap {};
 private:
     std::vector<T> heap;    // to hold the heap items
-
-    // corrects a violation of the max-heap property caused by removing the root
-    void heapifyDown(int index);
 
     // corrects a violation of the max-heap property caused by adding an element
     void heapifyUp(int index);
@@ -74,6 +74,24 @@ void Heap<T>::add(const T& element)
 }
 
 template <class T>
+void Heap<T>::heapifyDown(std::vector<T> subHeap, const int index)
+{
+    int largest = largestChild(index);
+
+    if (subHeap[index] < subHeap[largest])
+    {
+        swap(subHeap[index], subHeap[largest]);
+    }
+
+    // don't need to heapify if we've reached a leaf or neither child
+    // is larger than the current node
+    if (!isLeaf(largest) && largest != index)
+    {
+        heapifyDown(subHeap, largest);
+    }
+}
+
+template <class T>
 T Heap<T>::remove()
 {
     if (size() == 0)
@@ -89,7 +107,7 @@ T Heap<T>::remove()
     heap.pop_back();
 
     // heapify down the heap
-    heapifyDown(0);
+    heapifyDown(heap, 0);
 
     return first;
 }
@@ -108,24 +126,6 @@ T Heap<T>::max() const
         throw EmptyHeap();
     }
     return heap[0];
-}
-
-template <class T>
-void Heap<T>::heapifyDown(const int index)
-{
-    int largest = largestChild(index);
-
-    if (heap[index] < heap[largest])
-    {
-        swap(heap[index], heap[largest]);
-    }
-
-    // don't need to heapify if we've reached a leaf or neither child
-    // is larger than the current node
-    if (!isLeaf(largest) && largest != index)
-    {
-        heapifyDown(largest);
-    }
 }
 
 // corrects a single violation of the max-heap property in subtree at its root
