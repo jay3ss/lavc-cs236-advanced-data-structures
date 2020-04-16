@@ -3,9 +3,6 @@
 
 #include <vector>
 
-// Exception class to indicate an empty heap
-class EmptyHeap {};
-
 template <class T>
 class Heap
 {
@@ -26,6 +23,8 @@ public:
     // returns the number of elements in the heap
     int size() const;
 
+    // Exception class to indicate an empty heap
+    class EmptyHeap {};
 private:
     std::vector<T> tree;    // to hold the heap items
 
