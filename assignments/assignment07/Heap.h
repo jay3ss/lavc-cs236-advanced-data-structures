@@ -121,8 +121,8 @@ bool Heap<T>::isLeaf(const int index) const
 template <class T>
 int Heap<T>::largestChild(const int index)
 {
-    // determine if the node's children are larger
-    // if the calculated children indices are within the tree's bounds and
+    // determine which the node's children are larger. if neither is larger than
+    // the current index, then the current index is returned
     int largest = ((l < size() && tree[l] > tree[index]) ? l : index);
     largest = ((r < size() && tree[r] > tree[largest]) ? largest = r : largest);
     return largest;
