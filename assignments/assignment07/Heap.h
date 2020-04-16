@@ -117,6 +117,17 @@ bool Heap<T>::isLeaf(const int index) const
     return (leftChild(index) > size());
 }
 
+// returns the index of the child node with the largest value
+template <class T>
+int Heap<T>::largestChild(const int index)
+{
+    // determine if the node's children are larger
+    // if the calculated children indices are within the tree's bounds and
+    int largest = ((l < size() && tree[l] > tree[index]) ? l : index);
+    largest = ((r < size() && tree[r] > tree[largest]) ? largest = r : largest);
+    return largest;
+}
+
 // returns the index of the left child of the node at the given index
 template <class T>
 int Heap<T>::leftChild(const int index)
