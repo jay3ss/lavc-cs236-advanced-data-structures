@@ -73,7 +73,18 @@ void Heap<T>::add(const T& element)
 template <class T>
 T Heap<T>::remove()
 {
+    // swap the first and last elements
+    T first = tree[0];
+    T last = tree.back();
+    tree[0] = last;
 
+    // remove the last element
+    tree.pop_back();
+
+    // heapify down the heap
+    heapifyDown(0);
+
+    return first;
 }
 
 template <class T>
@@ -86,6 +97,24 @@ template <class T>
 T Heap<T>::max() const
 {
     return tree[0];
+}
+
+template <class T>
+void Heap<T>::heapifyDown(const int index)
+{
+    int largest = largestChild(index);
+
+    if (tree[index] < tree[largest])
+    {
+        swap(tree[index], tree[largest]);
+    }
+
+    // don't need to heapify if we've reached a leaf or neither child
+    // is larger than the current node
+    if (!isLeaf(largest) && largest != index)
+    {
+        heapifyDown(largest);
+    }
 }
 
 // corrects a single violation of the max-heap property in subtree at its root
