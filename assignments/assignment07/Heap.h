@@ -42,7 +42,7 @@ private:
     static int parent(const int index);
 
     // returns the index of the child node with the largest value
-    static int largestChild(const int index);
+    int largestChild(const int index);
 
     // returns the index of the right child of the node at the given index
     static int rightChild(const int index);
@@ -66,7 +66,8 @@ Heap<T>::~Heap() {}
 template <class T>
 void Heap<T>::add(const T& element)
 {
-
+    tree.push_back(element);
+    heapifyUp(size() - 1);
 }
 
 template <class T>
@@ -91,20 +92,18 @@ T Heap<T>::max() const
 template <class T>
 void Heap<T>::heapifyUp(const int index)
 {
-    int l = leftChild(index);
-    int r = rightChild(index);
-
-    // determine if the node's children are larger
-    // if the calculated children indices are within the tree's bounds and
-    int largest = ((l < size() && tree[l] > tree[index]) ? l : index);
-    largest = ((r < size() && tree[r] > tree[largest]) ? largest = r : largest);
+    int parentIndex = parent(index);
 
     // if the index of the largest isn't the current index, swap the values at
     // keep on the two indices and keep on heapifying
-    if (largest != index)
+    if (tree[parentIndex] < tree[index])
     {
-        swap(tree[index], tree[largest]);
-        heapify(largest);
+        swap(tree[index], tree[parentIndex]);
+    }
+
+    if (parentIndex != 0)
+    {
+        heapifyUp(parentIndex);
     }
 }
 
@@ -121,10 +120,12 @@ bool Heap<T>::isLeaf(const int index) const
 template <class T>
 int Heap<T>::largestChild(const int index)
 {
+    int left = leftChild(index);
+    int right = rightChild(index);
     // determine which the node's children are larger. if neither is larger than
     // the current index, then the current index is returned
-    int largest = ((l < size() && tree[l] > tree[index]) ? l : index);
-    largest = ((r < size() && tree[r] > tree[largest]) ? largest = r : largest);
+    int largest = ((left < size() && tree[left] > tree[index]) ? left : index);
+    largest = ((right < size() && tree[right] > tree[largest]) ? largest = right : largest);
     return largest;
 }
 
