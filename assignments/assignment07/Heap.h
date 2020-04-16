@@ -26,7 +26,7 @@ public:
     // Exception class to indicate an empty heap
     class EmptyHeap {};
 private:
-    std::vector<T> tree;    // to hold the heap items
+    std::vector<T> heap;    // to hold the heap items
 
     // corrects a violation of the max-heap property caused by removing the root
     void heapifyDown(int index);
@@ -68,7 +68,7 @@ Heap<T>::~Heap() {}
 template <class T>
 void Heap<T>::add(const T& element)
 {
-    tree.push_back(element);
+    heap.push_back(element);
     heapifyUp(size() - 1);
 }
 
@@ -80,12 +80,12 @@ T Heap<T>::remove()
         throw EmptyHeap();
     }
     // swap the first and last elements
-    T first = tree[0];
-    T last = tree.back();
-    tree[0] = last;
+    T first = heap[0];
+    T last = heap.back();
+    heap[0] = last;
 
     // remove the last element
-    tree.pop_back();
+    heap.pop_back();
 
     // heapify down the heap
     heapifyDown(0);
@@ -96,7 +96,7 @@ T Heap<T>::remove()
 template <class T>
 int Heap<T>::size() const
 {
-    return tree.size();
+    return heap.size();
 }
 
 template <class T>
@@ -106,7 +106,7 @@ T Heap<T>::max() const
     {
         throw EmptyHeap();
     }
-    return tree[0];
+    return heap[0];
 }
 
 template <class T>
@@ -114,9 +114,9 @@ void Heap<T>::heapifyDown(const int index)
 {
     int largest = largestChild(index);
 
-    if (tree[index] < tree[largest])
+    if (heap[index] < heap[largest])
     {
-        swap(tree[index], tree[largest]);
+        swap(heap[index], heap[largest]);
     }
 
     // don't need to heapify if we've reached a leaf or neither child
@@ -135,9 +135,9 @@ void Heap<T>::heapifyUp(const int index)
 
     // if the index of the largest isn't the current index, swap the values at
     // keep on the two indices and keep on heapifying
-    if (tree[parentIndex] < tree[index])
+    if (heap[parentIndex] < heap[index])
     {
-        swap(tree[index], tree[parentIndex]);
+        swap(heap[index], heap[parentIndex]);
     }
 
     if (parentIndex != 0)
@@ -163,8 +163,8 @@ int Heap<T>::largestChild(const int index)
     int right = rightChild(index);
     // determine which the node's children are larger. if neither is larger than
     // the current index, then the current index is returned
-    int largest = ((left < size() && tree[left] > tree[index]) ? left : index);
-    largest = ((right < size() && tree[right] > tree[largest]) ? largest = right : largest);
+    int largest = ((left < size() && heap[left] > heap[index]) ? left : index);
+    largest = ((right < size() && heap[right] > heap[largest]) ? largest = right : largest);
     return largest;
 }
 
