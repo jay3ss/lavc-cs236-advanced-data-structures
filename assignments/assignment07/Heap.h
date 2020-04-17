@@ -15,7 +15,9 @@ public:
     void add(const T& element);
 
     // corrects a violation of the max-heap property caused by removing the root
-    void heapifyDown(std::vector<T> subHeap, const int index);
+    void heapifyDown(std::vector<T>& subHeap, const int index);
+
+    static void heapifyDown(T subHeap[], const int index, const int heapSize);
 
     // returns the maximum value in the heap
     T max() const;
@@ -37,6 +39,8 @@ private:
     // returns true if the node is a leaf, false if not
     bool isLeaf(const int index) const;
 
+    static bool isLeaf(const int index, const int heapSize);
+
     // returns the index of the left child of the node at the given index
     static int leftChild(const int index);
 
@@ -46,11 +50,13 @@ private:
     // returns the index of the child node with the largest value
     int largestChild(const int index);
 
+    static int largestChild(T subHeap[], const int index, const int arraySize);
+
     // returns the index of the right child of the node at the given index
     static int rightChild(const int index);
 
     // swaps the contents of two items
-    void swap(T& item1, T& item2);
+    static void swap(T& item1, T& item2);
 };
 
 template <class T>
@@ -74,7 +80,7 @@ void Heap<T>::add(const T& element)
 }
 
 template <class T>
-void Heap<T>::heapifyDown(std::vector<T> subHeap, const int index)
+void Heap<T>::heapifyDown(std::vector<T>& subHeap, const int index)
 {
     int largest = largestChild(index);
 
@@ -88,6 +94,25 @@ void Heap<T>::heapifyDown(std::vector<T> subHeap, const int index)
     if (!isLeaf(largest) && largest != index)
     {
         heapifyDown(subHeap, largest);
+    }
+}
+
+// static version
+template <class T>
+void Heap<T>::heapifyDown(T subHeap[], const int index, const int heapSize)
+{
+    int largest = largestChild(subHeap, index, heapSize);
+
+    if (subHeap[index] < subHeap[largest])
+    {
+        swap(subHeap[index], subHeap[largest]);
+    }
+
+    // don't need to heapify if we've reached a leaf or neither child
+    // is larger than the current node
+    if (!isLeaf(largest, heapSize) && largest != index)
+    {
+        heapifyDown(subHeap, largest, heapSize);
     }
 }
 
@@ -156,6 +181,14 @@ bool Heap<T>::isLeaf(const int index) const
     return (leftChild(index) > size());
 }
 
+template <class T>
+bool Heap<T>::isLeaf(const int index, const int heapSize)
+{
+    // A node is a leaf if the calculated index of its left child is greater
+    // than the size of the heap
+    return (leftChild(index) > heapSize);
+}
+
 // returns the index of the child node with the largest value
 template <class T>
 int Heap<T>::largestChild(const int index)
@@ -166,6 +199,18 @@ int Heap<T>::largestChild(const int index)
     // the current index, then the current index is returned
     int largest = ((left < size() && heap[left] > heap[index]) ? left : index);
     largest = ((right < size() && heap[right] > heap[largest]) ? largest = right : largest);
+    return largest;
+}
+
+template <class T>
+int Heap<T>::largestChild(T subHeap[], const int index, const int heapSize)
+{
+    int left = leftChild(index);
+    int right = rightChild(index);
+    // determine which the node's children are larger. if neither is larger than
+    // the current index, then the current index is returned
+    int largest = ((left < heapSize && subHeap[left] > subHeap[index]) ? left : index);
+    largest = ((right < heapSize && subHeap[right] > subHeap[largest]) ? largest = right : largest);
     return largest;
 }
 
