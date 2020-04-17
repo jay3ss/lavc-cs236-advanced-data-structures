@@ -4,10 +4,7 @@
 using namespace std;
 
 template <class T>
-void heapSort(T list[], int arraySize)
-{
-
-}
+void heapSort(T list[], int arraySize);
 
 int main()
 {
@@ -21,4 +18,20 @@ int main()
     cout << endl;
 
     return 0;
+}
+
+template <class T>
+void heapSort(T list[], const int arraySize)
+{
+    const int middleIndex = arraySize / 2 - 1;
+    int index = 0;
+
+    for (index = middleIndex; index >= 0; index--)
+        Heap<T>::heapifyDown(list, index, arraySize);
+
+    for (index = arraySize - 1; index > 0; index--)
+    {
+        swap(list[0], list[index]);
+        Heap<T>::heapifyDown(list, 0, index);
+    }
 }
