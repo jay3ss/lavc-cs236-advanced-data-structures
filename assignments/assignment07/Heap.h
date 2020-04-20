@@ -150,6 +150,7 @@ void Heap<T>::add(const T& element)
 template <class T>
 void Heap<T>::heapifyDown(std::vector<T>& subHeap, const int index)
 {
+    // find the largest child and swap if necessary
     int largest = largestChild(index);
 
     if (subHeap[index] < subHeap[largest])
@@ -169,6 +170,7 @@ void Heap<T>::heapifyDown(std::vector<T>& subHeap, const int index)
 template <class T>
 void Heap<T>::heapifyDown(T subHeap[], const int index, const int heapSize)
 {
+    // find the largest child and swap if necessary
     int largest = largestChild(subHeap, index, heapSize);
 
     if (subHeap[index] < subHeap[largest])
