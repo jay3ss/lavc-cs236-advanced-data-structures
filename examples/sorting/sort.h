@@ -4,10 +4,10 @@
 namespace sort
 {
 template <class T>
-void selection();
+void selection(T array[], const int length);
 
 template <class T>
-void bubble();
+void bubble(T array[], const int length);
 
 template <class T>
 void insertion();
@@ -23,6 +23,15 @@ void radix();
 
 template <class T>
 void parallelMerge();
+
+template <class T>
+int pivot(T array[], int left, int right);
+
+template <class T>
+void swap(T &item1, T &item2);
+
+template <class T>
+int min(T array[], const int start, const int end);
 } // namespace sort
 
 
