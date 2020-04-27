@@ -1,3 +1,15 @@
+/** @file main.cpp
+CS 236
+Joshua Saunders
+Assignment 7 - Heap sort
+Removing the root in a heap – after the root is removed, the tree must be
+rebuilt to maintain the heap property.
+
+Adding a new node – to add a new node to the heap, first add it to the end of
+the heap and then rebuild the tree.
+
+To test the header file, write the heapSort function and use the given main
+program */
 #include <iostream>
 #include "Heap.h"
 
