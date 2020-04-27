@@ -1,6 +1,30 @@
 #ifndef SORT_H
 #define SORT_H
 
+namespace sort
+{
+template <class T>
+void selection();
+
+template <class T>
+void bubble();
+
+template <class T>
+void insertion();
+
+template <class T>
+void merge();
+
+template <class T>
+void quick();
+
+template <class T>
+void radix();
+
+template <class T>
+void parallelMerge();
+} // namespace sort
+
 
 #include "sort.cpp"
 #endif // SORT_H
