@@ -38,9 +38,20 @@ void bubble(T array[], const int length)
 }
 
 template <class T>
-void insertion()
+void insertion(T array[], const int length)
 {
+    for (int i = 1; i < length; i++)
+    {
+        int location = i;
+        T item = array[location];
 
+        while ((location > 0) && (array[location - 1] > item))
+        {
+            swap(array[location - 1], array[location]);
+            location--;
+        }
+        array[location] = item;
+    }
 }
 
 template <class T>

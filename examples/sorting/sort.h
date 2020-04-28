@@ -10,7 +10,7 @@ template <class T>
 void bubble(T array[], const int length);
 
 template <class T>
-void insertion();
+void insertion(T array[], const int length);
 
 template <class T>
 void merge();

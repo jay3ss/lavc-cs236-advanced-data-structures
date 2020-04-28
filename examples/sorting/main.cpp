@@ -25,6 +25,11 @@ int main()
     sort::bubble(list2, listLength);
     std::cout << "The array sorted using bubble sort is:\n";
     printArray(list2, listLength);
+
+    copyArray(list, list2, listLength);
+    sort::insertion(list2, listLength);
+    std::cout << "The array sorted using insertion sort is:\n";
+    printArray(list2, listLength);
 }
 
 template <class T>
