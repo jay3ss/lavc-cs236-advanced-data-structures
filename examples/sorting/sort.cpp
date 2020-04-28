@@ -20,7 +20,21 @@ void selection(T array[], const int length)
 template <class T>
 void bubble(T array[], const int length)
 {
-
+    // 1. Set "current" to the first index of the array
+    // 2. For every index from the start of the list to then end minus 1, swap
+    //    adjacent pairs of elements that are out of order
+    // 3. Increment current and repeat steps 2 and 3
+    // 4. Stop when current is at the end of the array
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < length - 1; j++)
+        {
+            if (array[j] > array[j+1])
+            {
+                swap(array[j], array[j+1]);
+            }
+        }
+    }
 }
 
 template <class T>

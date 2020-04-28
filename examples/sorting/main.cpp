@@ -14,8 +14,16 @@ int main()
     int list2[listLength];
     copyArray(list, list2, listLength);
 
+    std::cout << "The original array is:\n";
     printArray(list2, listLength);
+
     sort::selection(list2, listLength);
+    std::cout << "The array sorted using selection sort is:\n";
+    printArray(list2, listLength);
+
+    copyArray(list, list2, listLength);
+    sort::bubble(list2, listLength);
+    std::cout << "The array sorted using bubble sort is:\n";
     printArray(list2, listLength);
 }
 
