@@ -13,7 +13,10 @@ template <class T>
 void insertion(T array[], const int length);
 
 template <class T>
-void merge();
+void merge(T array[], const int start, const int end);
+
+template <class T>
+void mergeArrays(T array[], const int start, const int middle, const int end);
 
 template <class T>
 void quick();

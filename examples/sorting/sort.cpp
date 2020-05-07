@@ -2,6 +2,8 @@
 
 namespace sort
 {
+const int MAX_ARRAY_SIZE = 100000;
+
 template <class T>
 void selection(T array[], const int length)
 {
@@ -55,9 +57,69 @@ void insertion(T array[], const int length)
 }
 
 template <class T>
-void merge()
+void merge(T array[], const int start, const int end)
 {
+    if (start < end)
+    {
+        // Use this formula to account for any overflow
+        const int middle = start + (end - start) / 2;
 
+        // 1. Sort the left half of the array
+        // 2. Sort the right half of the array
+        // 3. Merge the two sorted halves
+        merge(array, start, middle);
+        merge(array, middle + 1, end);
+        mergeArrays(array, start, middle, end);
+    }
+}
+
+template <class T>
+void mergeArrays(T array[], const int start, const int middle , const int end)
+{
+    T tempArray[MAX_ARRAY_SIZE];
+    // T tempArray[end * 2];
+    int firstLeft = start;
+    int lastLeft = middle;
+
+    int firstRight = middle + 1;
+    int lastRight = end;
+
+    // while both subarrays are not empty, copy the smaller item into the
+    // temporary array
+    int index = firstLeft;
+    while ((firstLeft <= lastLeft) && (firstRight <= lastRight))
+    {
+        if (array[firstLeft] <= array[firstRight])
+        {
+            tempArray[index] = array[firstLeft];
+            firstLeft++;
+        }
+        else
+        {
+            tempArray[index] = array[firstRight];
+            firstRight++;
+        }
+        index++;
+    }
+
+    // copy the remaining elements into the temp array
+    while (firstLeft <= lastLeft)
+    {
+        tempArray[index] = array[firstLeft];
+        firstLeft++;
+        index++;
+    }
+
+    while (firstRight <= lastRight)
+    {
+        tempArray[index] = array[firstRight];
+        firstRight++;
+        index++;
+    }
+
+    // copy the merged temp array back into the array
+    for (int i = start; i <= end; i++)
+        array[i] = tempArray[i];
 }
 
 template <class T>
