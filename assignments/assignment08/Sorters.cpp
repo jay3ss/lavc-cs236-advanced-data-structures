@@ -18,31 +18,82 @@ void insertion(T array[], const int length)
 }
 
 template <class T>
-T pivotMedian(const T array[], const int first, const int last)
+void quickSort(T array[], const int first, const int last, const Pivot pivot)
+{
+    int pivotPoint;
+
+    if (first < last)
+    {
+        switch (pivot)
+        {
+        case Pivot::MEDIAN:
+            pivotPoint = partitionMedian(array, first, last);
+            break;
+        // Pivot::MIDDLE
+        default:
+            pivotPoint = partitionMiddle(array, first, last);
+            break;
+        }
+        quickSort(array, first, pivotPoint, pivot);
+        quickSort(array, pivotPoint + 1, last, pivot);
+    }
+}
+
+template <class T>
+T partitionMedian(T array[], const int first, const int last)
 {
     // To guard against overflow
-    const int middle = first + (last - first) / 2;
-    T values = {array[first], array[middle], array[last]};
+    const int pivotIndex = first + (last - first) / 2;
+    // T values = {array[first], array[middle], array[last]};
 
     // Sort the array and then the middle value in the sorted
     // array is the median
-    insertion(values, 0, 2);
+    // insertion(values, 0, 2);
+    // T median = array[pivotIndex];
 
-    return values[1];
+    // for (int i = first + 1; i <= last; i++)
+    // {
+    //     if (array[i] < median)
+    //     {
+    //         swap(array[i], )
+    //     }
+    // }
+
+    return pivotIndex;
 }
 
 template <class T>
-T pivotMiddle(const T array[], const int first, const int last)
+T partitionMiddle(T array[], const int first, const int last)
 {
-    // To guard against overflow
+    // to guard against overflow don't add two potentially very large numbers
     const int middle = first + (last - first) / 2;
 
-    // return the middle element of the array
-    return array[middle];
+    // use the value at the middle of the array as the pivot
+    const T pivotValue = array[middle];
+
+    // 1. swap the first element of the array with the pivot (middle) value
+    // 2. then move it back while putting smaller values ahead of it
+    swap(array[first], array[middle]);
+    int pivotIndex = first;
+
+    // we're not trying to sort the array, just move values less than the pivot
+    // value to the left and values greater than the pivot value to the right
+    for (int i = first + 1; i <= last; i++)
+    {
+        if (array[i] < pivotValue)
+        {
+            pivotIndex++;
+            swap(array[i], array[pivotIndex]);
+        }
+    }
+    swap(array[first], array[pivotIndex]);
+
+    // return the index of the pivot
+    return pivotIndex;
 }
 
 template <class T>
-void swap(T &item1, T &item2)
+void swap(T& item1, T& item2)
 {
     T temp = item1;
     item1 = item2;
