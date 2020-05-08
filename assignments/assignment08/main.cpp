@@ -38,19 +38,40 @@ Quick sort time, with pivot median element: 115
 Quick sort and insertion time, with pivot middle element: 110
 Quick sort and insertion time, with pivot middle median: 110
 */
+#include <algorithm>
 #include <ctime>
 #include <iostream>
+#include <random>
 #include "Sorters.h"
 
 using namespace std;
 
+void randomArray(int array[], const int size, const int start, const int stop);
 
+uint32_t SEED = time(0);
+// uint32_t SEED = NULL;
+mt19937 RNG;
 
 int main()
 {
-    const int ARRAY_SIZE = 100000;
+    // const int ARRAY_SIZE = 100000;
+    const int ARRAY_SIZE = 10;
+
+    const int START = -10000;
+    const int END = 10000;
+
     clock_t startTime;
     clock_t endTime;
+
+    RNG.seed(SEED);
+
+    int array1[ARRAY_SIZE];
+    int array2[3 * ARRAY_SIZE];
+
+    randomArray(array1, ARRAY_SIZE, START, END);
+    randomArray(array2, 3 * ARRAY_SIZE, START, END);
+
+    quickSort(array1, 0, ARRAY_SIZE, Pivot::MIDDLE);
 
     cout << "Array size: " << ARRAY_SIZE << endl;
     cout << "Quick sort time, with pivot middle element: ";
@@ -73,4 +94,14 @@ int main()
     cout << endl;
 
     return 0;
+}
+
+void randomArray(int array[], const int size, const int start, const int stop)
+{
+    uniform_int_distribution<int> dist(start, stop);
+
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = dist(RNG);
+    }
 }
