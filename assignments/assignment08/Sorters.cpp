@@ -20,13 +20,25 @@ void insertion(T array[], const int length)
 template <class T>
 T pivotMedian(const T array[], const int first, const int last)
 {
+    // To guard against overflow
+    const int middle = first + (last - first) / 2;
+    T values = {array[first], array[middle], array[last]};
 
+    // Sort the array and then the middle value in the sorted
+    // array is the median
+    insertion(values, 0, 2);
+
+    return values[1];
 }
 
 template <class T>
 T pivotMiddle(const T array[], const int first, const int last)
 {
+    // To guard against overflow
+    const int middle = first + (last - first) / 2;
 
+    // return the middle element of the array
+    return array[middle];
 }
 
 template <class T>
