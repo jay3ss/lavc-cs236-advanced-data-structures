@@ -43,22 +43,55 @@ template <class T>
 T partitionMedian(T array[], const int first, const int last)
 {
     // To guard against overflow
-    const int pivotIndex = first + (last - first) / 2;
-    // T values = {array[first], array[middle], array[last]};
+    const int middle = first + (last - first) / 2;
 
-    // Sort the array and then the middle value in the sorted
-    // array is the median
-    // insertion(values, 0, 2);
-    // T median = array[pivotIndex];
+    T firstValue = array[first];
+    T middleValue = array[middle];
+    T lastValue = array[last-1];
 
-    // for (int i = first + 1; i <= last; i++)
-    // {
-    //     if (array[i] < median)
-    //     {
-    //         swap(array[i], )
-    //     }
-    // }
+    // criteria for choosing a median value
+    // first:   middle < first < last OR last < first < middle
+    // middle:  first < middle < last OR last < middle < first
+    // last:    first < last < middle OR middle < last < first
 
+    int pivotIndex = first;
+    int swapIndex;
+    T pivotValue;
+    if ((middleValue < firstValue && firstValue < lastValue) || // first is median
+        (lastValue < firstValue && firstValue < middleValue))
+    {
+        pivotValue = firstValue;
+        swapIndex = first;
+    }
+    else if ((firstValue < middleValue && middleValue < lastValue) || // middle is median
+             (lastValue < middleValue && middleValue < firstValue))
+    {
+        pivotValue = middleValue;
+        swapIndex = middle;
+    }
+    else // last is median
+    {
+        pivotValue = lastValue;
+        swapIndex = last - 1;
+    }
+
+    // 1. swap the first element of the array with the pivot value
+    // 2. then move it back while putting smaller values ahead of it
+    swap(array[first], array[swapIndex]);
+
+    // we're not trying to sort the array, just move values less than the pivot
+    // value to the left and values greater than the pivot value to the right
+    for (int i = first + 1; i <= last; i++)
+    {
+        if (array[i] < pivotValue)
+        {
+            pivotIndex++;
+            swap(array[i], array[pivotIndex]);
+        }
+    }
+    swap(array[first], array[pivotIndex]);
+
+    // return the index of the pivot
     return pivotIndex;
 }
 
