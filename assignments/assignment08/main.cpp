@@ -53,7 +53,9 @@ typedef void (*Callback)(int array[], const int first, const int last, Pivot piv
 
 void randomArray(int array[], const int size, const int start, const int stop);
 void copyArray(const int orig[], int copy[], const int length);
-int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback callback);
+int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback cb);
+void timeAllQuickSorts(int array[], const int size);
+double clocksToMilli(const int clocks);
 
 uint32_t SEED = time(0);
 // uint32_t SEED = NULL;
@@ -67,56 +69,19 @@ int main()
     const int START = -10000;
     const int END = 10000;
 
-    RNG.seed(SEED);
 
     int array1[ARRAY_SIZE];
-    int array1copy[ARRAY_SIZE];
     int array2[LARGE_ARRAY_SIZE];
-    int array2copy[LARGE_ARRAY_SIZE];
 
-    int runTime = 0;
+    int numClocks = 0;
 
+    RNG.seed(SEED);
     randomArray(array1, ARRAY_SIZE, START, END);
-    copyArray(array1, array1copy, ARRAY_SIZE);
-
     randomArray(array2, LARGE_ARRAY_SIZE, START, END);
-    copyArray(array2, array2copy, LARGE_ARRAY_SIZE);
 
-    cout << "Array size: " << ARRAY_SIZE << endl;
-
-
-    cout << "Quick sort time, with pivot middle element: ";
-    runTime = timeQuickSort(array1, ARRAY_SIZE, Pivot::MIDDLE, quickSort);
-    cout << static_cast<double>(1000.0 * runTime / CLOCKS_PER_SEC) << "ms";
+    timeAllQuickSorts(array1, ARRAY_SIZE);
     cout << endl;
-
-    copyArray(array1copy, array1, ARRAY_SIZE);
-    runTime = timeQuickSort(array1, ARRAY_SIZE, Pivot::MEDIAN, quickSort);
-
-    cout << "Quick sort time, with pivot median element: ";
-    cout << static_cast<double>(1000.0 * runTime / CLOCKS_PER_SEC) << "ms";
-    cout << endl;
-    cout << "Quick sort and insertion time, with pivot middle element: ";
-    cout << endl;
-    cout <<"Quick sort and insertion time, with pivot middle median: ";
-    cout << endl << endl;
-
-    cout << "Array size: " << LARGE_ARRAY_SIZE << endl;
-    runTime = timeQuickSort(array2, LARGE_ARRAY_SIZE, Pivot::MIDDLE, quickSort);
-
-    cout << "Quick sort time, with pivot middle element: ";
-    cout << static_cast<double>(1000.0 * runTime / CLOCKS_PER_SEC) << "ms";
-    cout << endl;
-    cout << "Quick sort time, with pivot median element: ";
-    copyArray(array2copy, array2, LARGE_ARRAY_SIZE);
-
-    runTime = timeQuickSort(array2, LARGE_ARRAY_SIZE, Pivot::MEDIAN, quickSort);
-    cout << static_cast<double>(1000.0 * runTime / CLOCKS_PER_SEC) << "ms";
-    cout << endl;
-    cout << "Quick sort and insertion time, with pivot middle element: ";
-    cout << endl;
-    cout << "Quick sort and insertion time, with pivot middle median: ";
-    cout << endl;
+    timeAllQuickSorts(array2, LARGE_ARRAY_SIZE);
 
     return 0;
 }
@@ -137,11 +102,52 @@ void copyArray(const int orig[], int copy[], const int length)
         copy[i] = orig[i];
 }
 
-int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback callback)
+int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback cb)
 {
     clock_t startTime = clock();
-    callback(array, 0, size, pivot);
+    cb(array, 0, size, pivot);
     clock_t endTime = clock();
 
     return endTime - startTime;
+}
+
+void timeAllQuickSorts(int array[], const int size)
+{
+    int arraycopy[size];
+
+    // Copy the array so that we can keep running the different sorting
+    // implementations
+    copyArray(array, arraycopy, size);
+
+    cout << "Array size: " << size << endl;
+
+    // Time the quick sort using the middle element as the pivot point
+    cout << "Quick sort time, with pivot middle element: ";
+    int numClocks = timeQuickSort(array, size, Pivot::MIDDLE, quickSort);
+    cout << clocksToMilli(numClocks) << " ms\n";
+
+    // Time the quick sort using the median element as the pivot point
+    copyArray(arraycopy, array, size);
+    numClocks = timeQuickSort(array, size, Pivot::MEDIAN, quickSort);
+    cout << "Quick sort time, with pivot median element: ";
+    cout << clocksToMilli(numClocks) << " ms\n";
+
+    // Time the combination quick and insertion sort using the middle element
+    // as the pivot point
+    cout << "Quick sort and insertion time, with pivot middle element: ";
+    copyArray(arraycopy, array, size);
+    numClocks = timeQuickSort(array, size, Pivot::MIDDLE, quickInsertionSort);
+    cout << clocksToMilli(numClocks) << " ms\n";
+
+    // Time the combination quick and insertion sort using the median element
+    // as the pivot point
+    cout << "Quick sort and insertion time, with pivot middle median: ";
+    copyArray(arraycopy, array, size);
+    numClocks = timeQuickSort(array, size, Pivot::MEDIAN, quickInsertionSort);
+    cout << clocksToMilli(numClocks) << " ms\n";
+}
+
+double clocksToMilli(const int clocks)
+{
+    return static_cast<double>(1000.0 * clocks / CLOCKS_PER_SEC);
 }
