@@ -40,6 +40,7 @@ Quick sort and insertion time, with pivot middle median: 110
 */
 #include <algorithm>
 #include <ctime>
+#include <chrono>
 #include <iostream>
 #include <random>
 #include "Sorters.h"
@@ -47,6 +48,8 @@ Quick sort and insertion time, with pivot middle median: 110
 using namespace std;
 
 void randomArray(int array[], const int size, const int start, const int stop);
+template <class T>
+void copyArray(const T orig[], T copy[], const int length);
 
 uint32_t SEED = time(0);
 // uint32_t SEED = NULL;
@@ -54,8 +57,8 @@ mt19937 RNG;
 
 int main()
 {
-    // const int ARRAY_SIZE = 100000;
-    const int ARRAY_SIZE = 10;
+    const int ARRAY_SIZE = 100000;
+    const int LARGE_ARRAY_SIZE = ARRAY_SIZE * 3;
 
     const int START = -10000;
     const int END = 10000;
@@ -66,27 +69,51 @@ int main()
     RNG.seed(SEED);
 
     int array1[ARRAY_SIZE];
-    int array2[3 * ARRAY_SIZE];
+    int array1copy[ARRAY_SIZE];
+    int array2[LARGE_ARRAY_SIZE];
+    int array2copy[LARGE_ARRAY_SIZE];
 
     randomArray(array1, ARRAY_SIZE, START, END);
-    randomArray(array2, 3 * ARRAY_SIZE, START, END);
+    copyArray(array1, array1copy, ARRAY_SIZE);
 
-    quickSort(array1, 0, ARRAY_SIZE, Pivot::MIDDLE);
+    randomArray(array2, LARGE_ARRAY_SIZE, START, END);
+    copyArray(array2, array2copy, LARGE_ARRAY_SIZE);
 
     cout << "Array size: " << ARRAY_SIZE << endl;
+
+    startTime = clock();
+    quickSort(array1, 0, ARRAY_SIZE, Pivot::MIDDLE);
+    endTime = clock();
     cout << "Quick sort time, with pivot middle element: ";
+    cout << static_cast<double>(1000.0 * (endTime - startTime) / CLOCKS_PER_SEC) << "ms";
     cout << endl;
-    cout <<"Quick sort time, with pivot median element: ";
+
+    copyArray(array1copy, array1, ARRAY_SIZE);
+    startTime = clock();
+    quickSort(array1, 0, ARRAY_SIZE); // Use the median value as pivot
+    endTime = clock();
+
+    cout << "Quick sort time, with pivot median element: ";
+    cout << static_cast<double>(1000.0 * (endTime - startTime) / CLOCKS_PER_SEC) << "ms";
     cout << endl;
     cout << "Quick sort and insertion time, with pivot middle element: ";
     cout << endl;
     cout <<"Quick sort and insertion time, with pivot middle median: ";
     cout << endl << endl;
 
-    cout << "Array size: " << 3 * ARRAY_SIZE << endl;
+    cout << "Array size: " << LARGE_ARRAY_SIZE << endl;
+    startTime = clock();
+    quickSort(array2, 0, LARGE_ARRAY_SIZE); // Use the median value as pivot
+    endTime = clock();
     cout << "Quick sort time, with pivot middle element: ";
+    cout << static_cast<double>(1000.0 * (endTime - startTime) / CLOCKS_PER_SEC) << "ms";
     cout << endl;
     cout << "Quick sort time, with pivot median element: ";
+    copyArray(array2copy, array2, LARGE_ARRAY_SIZE);
+    startTime = clock();
+    quickSort(array2, 0, LARGE_ARRAY_SIZE, Pivot::MEDIAN); // Use the median value as pivot
+    endTime = clock();
+    cout << static_cast<double>(1000.0 * (endTime - startTime) / CLOCKS_PER_SEC) << "ms";
     cout << endl;
     cout << "Quick sort and insertion time, with pivot middle element: ";
     cout << endl;
@@ -104,4 +131,11 @@ void randomArray(int array[], const int size, const int start, const int stop)
     {
         array[i] = dist(RNG);
     }
+}
+
+template <class T>
+void copyArray(const T orig[], T copy[], const int length)
+{
+    for (int i = 0; i < length; i++)
+        copy[i] = orig[i];
 }
