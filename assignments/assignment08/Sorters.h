@@ -19,6 +19,9 @@ template <class T>
 T partitionMiddle(T array[], const int first, const int last);
 
 template <class T>
+int partition(T array[], const int first, const int last, const int pivotIndex);
+
+template <class T>
 void swap(T &item1, T &item2);
 
 #include "Sorters.cpp"

@@ -45,54 +45,34 @@ T partitionMedian(T array[], const int first, const int last)
     // To guard against overflow
     const int middle = first + (last - first) / 2;
 
-    T firstValue = array[first];
-    T middleValue = array[middle];
-    T lastValue = array[last-1];
+    const T firstValue = array[first];
+    const T middleValue = array[middle];
+    const T lastValue = array[last-1];
 
     // criteria for choosing a median value
     // first:   middle < first < last OR last < first < middle
     // middle:  first < middle < last OR last < middle < first
     // last:    first < last < middle OR middle < last < first
 
-    int pivotIndex = first;
-    int swapIndex;
+    int pivotIndex;
     T pivotValue;
     if ((middleValue < firstValue && firstValue < lastValue) || // first is median
         (lastValue < firstValue && firstValue < middleValue))
     {
-        pivotValue = firstValue;
-        swapIndex = first;
+        pivotIndex = first;
     }
     else if ((firstValue < middleValue && middleValue < lastValue) || // middle is median
              (lastValue < middleValue && middleValue < firstValue))
     {
-        pivotValue = middleValue;
-        swapIndex = middle;
+        pivotIndex = middle;
     }
     else // last is median
     {
-        pivotValue = lastValue;
-        swapIndex = last - 1;
+        pivotIndex = last - 1;
     }
-
-    // 1. swap the first element of the array with the pivot value
-    // 2. then move it back while putting smaller values ahead of it
-    swap(array[first], array[swapIndex]);
-
-    // we're not trying to sort the array, just move values less than the pivot
-    // value to the left and values greater than the pivot value to the right
-    for (int i = first + 1; i <= last; i++)
-    {
-        if (array[i] < pivotValue)
-        {
-            pivotIndex++;
-            swap(array[i], array[pivotIndex]);
-        }
-    }
-    swap(array[first], array[pivotIndex]);
 
     // return the index of the pivot
-    return pivotIndex;
+    return partition(array, first, last, pivotIndex);
 }
 
 template <class T>
@@ -101,13 +81,20 @@ T partitionMiddle(T array[], const int first, const int last)
     // to guard against overflow don't add two potentially very large numbers
     const int middle = first + (last - first) / 2;
 
+    // return the index of the pivot
+    return partition(array, first, last, middle);
+}
+
+template <class T>
+int partition(T array[], const int first, const int last, const int pivotIndex)
+{
     // use the value at the middle of the array as the pivot
-    const T pivotValue = array[middle];
+    const T pivotValue = array[pivotIndex];
 
     // 1. swap the first element of the array with the pivot (middle) value
     // 2. then move it back while putting smaller values ahead of it
-    swap(array[first], array[middle]);
-    int pivotIndex = first;
+    swap(array[first], array[pivotIndex]);
+    int index = first;
 
     // we're not trying to sort the array, just move values less than the pivot
     // value to the left and values greater than the pivot value to the right
@@ -115,14 +102,13 @@ T partitionMiddle(T array[], const int first, const int last)
     {
         if (array[i] < pivotValue)
         {
-            pivotIndex++;
-            swap(array[i], array[pivotIndex]);
+            index++;
+            swap(array[i], array[index]);
         }
     }
-    swap(array[first], array[pivotIndex]);
+    swap(array[first], array[index]);
 
-    // return the index of the pivot
-    return pivotIndex;
+    return index;
 }
 
 template <class T>
