@@ -1,9 +1,9 @@
 #include "Sorters.h"
 
 template <class T>
-void insertion(T array[], const int length)
+void insertion(T array[], const int first, const int last)
 {
-    for (int i = 1; i < length; i++)
+    for (int i = first; i <= last; i++)
     {
         int location = i;
         T item = array[location];
@@ -36,6 +36,38 @@ void quickSort(T array[], const int first, const int last, const Pivot pivot)
         }
         quickSort(array, first, pivotPoint, pivot);
         quickSort(array, pivotPoint + 1, last, pivot);
+    }
+}
+
+template <class T>
+void quickInsertionSort(T array[], const int first, const int last, Pivot pivot)
+{
+    int pivotPoint;
+
+    if (first < last)
+    {
+        // if the size of the subarray is less than or equal to 20, then use
+        // insertion sort to sort the array. otherwise, keep using the quicksort
+        // algorithm
+        if (last - first <= 20)
+        {
+            insertion(array, first, last);
+        }
+        else
+        {
+            switch (pivot)
+            {
+            case Pivot::MEDIAN:
+                pivotPoint = partitionMedian(array, first, last);
+                break;
+            // Pivot::MIDDLE
+            default:
+                pivotPoint = partitionMiddle(array, first, last);
+                break;
+            }
+            quickSort(array, first, pivotPoint, pivot);
+            quickSort(array, pivotPoint + 1, last, pivot);
+        }
     }
 }
 
