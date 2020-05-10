@@ -33,7 +33,7 @@ int main()
 
     copyArray(list, list2, listLength);
     sort::merge(list2, 0, listLength);
-    std::cout << "The array sorted using insertion sort is:\n";
+    std::cout << "The array sorted using merge sort is:\n";
     printArray(list2, listLength);
 }
 
