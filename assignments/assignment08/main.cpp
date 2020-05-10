@@ -58,7 +58,6 @@ void timeAllQuickSorts(int array[], const int size);
 double clocksToMilli(const int clocks);
 
 uint32_t SEED = time(0);
-// uint32_t SEED = NULL;
 mt19937 RNG;
 
 int main()
