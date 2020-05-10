@@ -1,8 +1,50 @@
+/** @file Sorters.cpp
+CS 236
+Joshua Saunders
+Assignment 8 - Quicksort
+Write a program to sort an array of 100,000 random elements using quicksort as
+follows:
+
+1. Sort the arrays using pivot as the middle element of the array
+2. Sort the arrays using pivot as the median of the first, last, and middle
+   elements of the array
+3. Sort the arrays using pivot as the middle element of the array. However, when
+   the size of any sub-list reduces to less than 20, sort the sub-list using
+   insertion sort.
+4. Sort the array using pivot as the median of the first, last and middle
+   elements of the array. When the size of any sub-list reduces to less than 20,
+   sort the sub-list using insertion sort.
+4. Calculate and display the CPU time for each of the preceding four steps.
+
+Example of the median of the first, last and middle elements:
+
+1 2 3 4 5 6 7 8 0 (median of 1, 5, 0 is 1)
+
+8 0 1 2 3 4 5 6 7 (median of 8, 3, 7 is 7)
+
+To calculate the CPU time, use the header <ctime>, and clock_t type. Depends on
+the CPU of your computer, your number would not be the same as in the sample
+output below.
+
+Array size = 100000
+Quick sort time, with pivot middle element: 37
+Quick sort time, with pivot median element: 35
+Quick sort and insertion time, with pivot middle element: 37
+Quick sort and insertion time, with pivot middle median: 36
+
+Array size = 300000
+Quick sort time, with pivot middle element: 115
+Quick sort time, with pivot median element: 115
+Quick sort and insertion time, with pivot middle element: 110
+Quick sort and insertion time, with pivot middle median: 110
+*/
 #include "Sorters.h"
 
+// Implements the insertion sort algorithm
 template <class T>
 void insertion(T array[], const int first, const int last)
 {
+    // go through each element and insert it into the correct location
     for (int i = first; i <= last; i++)
     {
         int location = i;
@@ -17,6 +59,7 @@ void insertion(T array[], const int first, const int last)
     }
 }
 
+// Implements the quick sort algorithm
 template <class T>
 void quickSort(T array[], const int first, const int last, const Pivot pivot)
 {
@@ -39,6 +82,7 @@ void quickSort(T array[], const int first, const int last, const Pivot pivot)
     }
 }
 
+// Implements the quick sort algorithm
 template <class T>
 void quickInsertionSort(T array[], const int first, const int last, Pivot pivot)
 {
@@ -71,6 +115,8 @@ void quickInsertionSort(T array[], const int first, const int last, Pivot pivot)
     }
 }
 
+// Finds the pivot point of a subarray using the median of the first, middle, &
+// last values
 template <class T>
 T partitionMedian(T array[], const int first, const int last)
 {
@@ -107,6 +153,7 @@ T partitionMedian(T array[], const int first, const int last)
     return partition(array, first, last, pivotIndex);
 }
 
+// Finds the pivot point of an array using the middle value of the subarray
 template <class T>
 T partitionMiddle(T array[], const int first, const int last)
 {
@@ -117,6 +164,8 @@ T partitionMiddle(T array[], const int first, const int last)
     return partition(array, first, last, middle);
 }
 
+// Partitions the elements in the subarray (elements less than the pivot value
+// go to the left of the pivot value & elements greater than go to the right)
 template <class T>
 int partition(T array[], const int first, const int last, const int pivotIndex)
 {
@@ -143,6 +192,7 @@ int partition(T array[], const int first, const int last, const int pivotIndex)
     return index;
 }
 
+// Swaps the contents of two variables
 template <class T>
 void swap(T& item1, T& item2)
 {
