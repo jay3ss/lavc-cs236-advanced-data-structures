@@ -93,7 +93,7 @@ void quickInsertionSort(T array[], const int first, const int last, Pivot pivot)
         // if the size of the subarray is less than or equal to 20, then use
         // insertion sort to sort the array. otherwise, keep using the quicksort
         // algorithm
-        if (last - first <= 20)
+        if (last - first < 20)
         {
             insertion(array, first, last);
         }
