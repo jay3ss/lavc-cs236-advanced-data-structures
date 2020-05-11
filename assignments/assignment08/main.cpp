@@ -51,10 +51,20 @@ using namespace std;
 // the timing function
 typedef void (*Callback)(int array[], const int first, const int last, Pivot pivot);
 
+// Populates an array with random values from a uniform distribution within the
+// range of <start, stop>
 void randomArray(int array[], const int size, const int start, const int stop);
+
+// Copies the contents of one array into another
 void copyArray(const int orig[], int copy[], const int length);
+
+// Times the runtime of a function (in clock cycles)
 int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback cb);
+
+// Times the amount of time it takes for the various quick sort methods to run
 void timeAllQuickSorts(int array[], const int size);
+
+// Converts the number of clock cycles into milliseconds
 double clocksToMilli(const int clocks);
 
 uint32_t SEED = time(0);
@@ -85,6 +95,14 @@ int main()
     return 0;
 }
 
+/** Populates an array with random values from a uniform distribution within the
+range of <start, stop>
+@pre: start < stop
+@param: array the array to populate with random values
+@param: size the size of the array
+@param: start the start of the range of the random values
+@param: end the end of the range of the random values
+@post: any values in the array will be overwritten */
 void randomArray(int array[], const int size, const int start, const int stop)
 {
     uniform_int_distribution<int> dist(start, stop);
@@ -95,12 +113,24 @@ void randomArray(int array[], const int size, const int start, const int stop)
     }
 }
 
+/** Copies the contents of one array into another
+@pre: the length of copy >= the length of orig
+@param: orig the array to be copied
+@param: copy the array that will have the values copied into
+@param: length the length of the array
+@post: any values in the array will be overwritten */
 void copyArray(const int orig[], int copy[], const int length)
 {
     for (int i = 0; i < length; i++)
         copy[i] = orig[i];
 }
 
+/** Times the runtime of a function (in clock cycles)
+@param: array the array
+@param: size the size of the array
+@param: pivot the enum to determine which pivot to use (middle, or median)
+@param: cb the callback function to time
+@return: the amount of time (in clock cycles) */
 int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback cb)
 {
     clock_t startTime = clock();
@@ -110,6 +140,29 @@ int timeQuickSort(int array[], const int size, const Pivot pivot, const Callback
     return endTime - startTime;
 }
 
+/** Sorts a copy of the using the following methods
+
+- quick sort with the middle index as the pivot
+- quick sort with the index of the median of the first, middle, & last values
+  as the pivot
+- quick sort with the middle index as the pivot and using insertion sort for
+  subarrays with a length <= 20
+- quick sort with the index of the median of the first, middle, & last values
+  as the pivot and using insertion sort for subarrays with a length <= 20
+
+and times the run time for the execution of each method of sorting and displays
+the amount of time it takes in milliseconds. The display will be similar to
+
+Array size: 100000
+Quick sort time, with pivot middle element: 19.755 ms
+Quick sort time, with pivot median element: 20.811 ms
+Quick sort and insertion time, with pivot middle element: 19.835 ms
+Quick sort and insertion time, with pivot middle median: 21.315 ms
+
+@pre: the array should not be empty
+@param: array the array to be sorted
+@param: size the size of the array
+@post: the statistics of the run time will be displayed in the terminal */
 void timeAllQuickSorts(int array[], const int size)
 {
     int arraycopy[size];
@@ -146,6 +199,9 @@ void timeAllQuickSorts(int array[], const int size)
     cout << clocksToMilli(numClocks) << " ms\n";
 }
 
+/** Converts the number of clock cycles into milliseconds
+@param: clocks the number of clock cycles
+@return: the number of milliseconds */
 double clocksToMilli(const int clocks)
 {
     return static_cast<double>(1000.0 * clocks / CLOCKS_PER_SEC);
