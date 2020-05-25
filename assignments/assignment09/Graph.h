@@ -61,6 +61,10 @@ public:
     /** Constructor */
     Graph();
 
+    /** Constructor
+    @param numVertices The number of vertices in the graph */
+    Graph(const int numVertices);
+
     /** Destructor */
     ~Graph();
 
@@ -74,14 +78,14 @@ public:
     bool add(const T& start, const T& end, const int edgeWeight);
 
     /** Performs a breadth-first search of this graph beginning at the given
-        vertex and calls a given function once for each vertex visited.
+        vertex and calls a given function once for each vertex visited
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
     void breadthFirstTraversal(const T& start, void callback(T&));
 
     /** Performs a depth-first search of this graph beginning at the given
-        vertex and calls a given function once for each vertex visited.
+        vertex and calls a given function once for each vertex visited
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
@@ -95,7 +99,7 @@ public:
     @return The weight of the edge */
     int edgeWeight(const T& start, const T& end);
 
-    /** Initializes
+    /** Initializes the graph
     @param numVertices The number of vertices in the graph
     @post The graph will be initiated including the adjacency matrix will be
         of the size numVertices x numVertices and will have every entry be 0 */
