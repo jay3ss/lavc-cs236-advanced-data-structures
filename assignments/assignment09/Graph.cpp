@@ -19,3 +19,78 @@ string vertices[] = {
 }; */
 
 #include "Graph.h"
+
+// Constructor
+template <class T>
+Graph<T>::Graph() {}
+
+// Constructor
+template <class T>
+Graph<T>::Graph(const int numVertices)
+    : numberOfVertices(numVertices)
+{
+    init(numVertices);
+}
+
+// Destructor
+template <class T>
+Graph<T>::~Graph() {}
+
+// Adds an edge between to vertices to the graph and if either of the vertices
+// don't exist, it creates them and adds them to the graph
+template <class T>
+bool Graph<T>::add(const T& start, const T& end, const int edgeWeight)
+{
+    return false;
+}
+
+// Performs a breadth-first search of this graph beginning at the given vertex
+// and calls a given function once for each vertex visited
+template <class T>
+void Graph<T>::breadthFirstTraversal(const T &start, void callback(T &))
+{
+
+}
+
+// Performs a depth-first search of this graph beginning at the given vertex
+// and calls a given function once for each vertex visited
+template <class T>
+void Graph<T>::depthFirstTraversal(const T &start, void callback(T &))
+{
+
+}
+
+// Gets the weight of an edge in the graph
+template <class T>
+int Graph<T>::edgeWeight(const T& start, const T& end)
+{
+    return -1;
+}
+
+// Initializes the graph
+template <class T>
+void Graph<T>::init(const int numVertices)
+{
+
+}
+
+// Gets the number of edges in the graph
+template <class T>
+int Graph<T>::numEdges() const
+{
+    return -1;
+}
+
+// Gets the number of vertices in the graph
+template <class T>
+int Graph<T>::numVertices() const
+{
+    return -1;
+}
+
+// Removes an edge from this graph
+template <class T>
+bool Graph<T>::remove(const T& start, const T& end)
+{
+    return false;
+}
