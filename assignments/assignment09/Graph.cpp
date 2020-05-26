@@ -101,7 +101,7 @@ int Graph<T>::numEdges() const
 template <class T>
 int Graph<T>::numVertices() const
 {
-    return -1;
+    return numberOfVertices;
 }
 
 // Removes an edge from this graph
