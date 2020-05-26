@@ -124,7 +124,7 @@ public:
     @pre 0 <= num < numberOfVertices
     @param num The number of the vertex
     @param val The value of the node */
-    void value(const int nun, const T& val);
+    void value(const int num, const T& val);
 
     /** Returns the value of a vertex
     @pre 0 <= num < numberOfVertices
