@@ -28,6 +28,8 @@ using namespace std;
 
 typedef pair<string, vector<string>> cities;
 
+int positionOf(vector<string> vect, string city);
+
 int main()
 {
 
@@ -78,17 +80,45 @@ int main()
 
     Graph<string> graph(NUM_VERTICES);
 
-    for (auto& vertex : vertices)
+    // Go through each vertex
+    for (int vertNum = 0; vertNum < NUM_VERTICES; vertNum++)
     {
+        string vertex = vertices[vertNum];
         auto connections = edges[vertex];
         cout << vertex << ": ";
+
+        // Go through each edge for the vertex
         for (auto& connection : connections)
         {
-            cout << connection << " ";
-            graph.add(vertex, connection, 1);
+            int connectionNum = positionOf(vertices, connection);
+
+            if (connectionNum >= 0)
+            {
+                cout << connection << " ";
+                graph.add(vertNum, connectionNum, 1);
+            }
         }
         cout << endl;
     }
 
     return 0;
+}
+
+int positionOf(vector<string> vect, string city)
+{
+    int position = -1;
+    int idx = 0;
+    bool found = false;
+
+    while (idx < vect.size() && !found)
+    {
+        if (vect[idx] == city)
+        {
+            position = idx;
+            found = true;
+        }
+        idx++;
+    }
+
+    return position;
 }
