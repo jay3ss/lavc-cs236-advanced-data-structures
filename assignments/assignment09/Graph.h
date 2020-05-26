@@ -150,6 +150,7 @@ public:
     };
 private:
     int numberOfVertices;   // The number of vertices in the graph
+    int numberOfEdges;      // The number of edges in the graph
 
     std::vector<std::vector<int>> adjMatrix;  // The adjacency matrix
     std::vector<T> vertexValues;              // Hold the values of the graph vertices

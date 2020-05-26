@@ -52,8 +52,14 @@ bool Graph<T>::add(const int start, const int end, const int edgeWeight)
     if (edgeWeight <= 0)
         throw InvalidWeight(edgeWeight);
 
+    // The start and end vertices are the same
+    // The edge already exists, so don't add it
+    if (start == end || adjMatrix[start][end] != 0)
+        return false;
+
     adjMatrix[start][end] = edgeWeight;
     adjMatrix[end][start] = edgeWeight;
+    numberOfEdges++;
 
     return true;
 }
@@ -86,6 +92,7 @@ template <class T>
 void Graph<T>::init(const int numVertices)
 {
     numberOfVertices = numVertices;
+    numberOfEdges = 0;
     vertexValues.reserve(numVertices);
     initAdjMatrix();
 }
@@ -94,7 +101,7 @@ void Graph<T>::init(const int numVertices)
 template <class T>
 int Graph<T>::numEdges() const
 {
-    return -1;
+    return numberOfEdges;
 }
 
 // Gets the number of vertices in the graph
@@ -109,6 +116,21 @@ template <class T>
 bool Graph<T>::remove(const int start, const int end)
 {
     return false;
+}
+
+// Returns the weight value for an edge
+template <class T>
+int Graph<T>::weight(const int start, const int end)
+{
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (start < 0 || numberOfVertices - 1 < start)
+        throw OutOfRange(start);
+
+    // enforce the preconditions that 0 <= end < numberOfVertices
+    if (end < 0 || numberOfVertices - 1 < end)
+        throw OutOfRange(end);
+
+    return adjMatrix[start][end];
 }
 
 // Private methods
