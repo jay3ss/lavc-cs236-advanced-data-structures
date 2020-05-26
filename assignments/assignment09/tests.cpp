@@ -95,7 +95,8 @@ int main()
             if (connectionNum >= 0)
             {
                 cout << connection << " ";
-                assert(graph.add(vertNum, connectionNum, 1)); // NOTE: Remove this!
+                // assert(graph.add(vertNum, connectionNum, 1)); // NOTE: Remove this!
+                graph.add(vertNum, connectionNum, 1);
             }
         }
         cout << endl;
@@ -104,6 +105,44 @@ int main()
     assert(graph.numVertices() == NUM_VERTICES && "Number of vertices is incorrect");
     assert(graph.weight(1, 0) == 1 && "Edge weight is incorrect");
     assert(graph.weight(0, 0) == 0 && "Edge weight is not zero");
+
+    try
+    {
+        graph.weight(15, 15);
+    }
+    catch(Graph<string>::OutOfRange e)
+    {
+        std::cerr << "Entered an invalid vertex of " << e.getValue() << '\n';
+    }
+
+    try
+    {
+        graph.add(14, 10, 1);
+    }
+    catch (Graph<string>::OutOfRange e)
+    {
+        std::cerr << "Entered an invalid vertex of " << e.getValue() << '\n';
+    }
+
+    try
+    {
+        graph.add(10, 13, 1);
+    }
+    catch (Graph<string>::OutOfRange e)
+    {
+        std::cerr << "Entered an invalid vertex of " << e.getValue() << '\n';
+    }
+
+    try
+    {
+        graph.add(10, 10, 0);
+    }
+    catch (Graph<string>::InvalidWeight e)
+    {
+        std::cerr << "Entered an invalid weight of " << e.getValue() << '\n';
+    }
+
+    cout << "The number of edges is " << graph.numEdges() << "\n";
 
     return 0;
 }
