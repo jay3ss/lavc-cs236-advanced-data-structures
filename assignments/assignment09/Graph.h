@@ -129,6 +129,17 @@ public:
         int getValue() const
             { return vertNumber; }
     };
+
+    class InvalidWeight
+    {
+    private:
+        int weight;
+    public:
+        OutOfRange(const int w)
+            { weight = w; }
+        int getValue() const
+            { return weight; }
+    };
 private:
     int numberOfVertices;   // The number of vertices in the graph
 
