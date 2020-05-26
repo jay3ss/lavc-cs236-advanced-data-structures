@@ -173,6 +173,22 @@ private:
     std::vector<std::vector<int>> adjMatrix;  // The adjacency matrix
     std::vector<T> vertexValues;              // Hold the values of the graph vertices
 
+    /** Performs a breadth-first search of this graph beginning at the given
+        vertex and calls a given function once for each vertex visited
+    @param index The index of the current vertex
+    @param visited A vector of visited vertices
+    @param callback The client-provided callback function to process the
+        vertices */
+    void bft(const int index, std::vector<bool> visited, void callback(T &));
+
+    /** Performs a dept-first search of this graph beginning at the given
+        vertex and calls a given function once for each vertex visited
+    @param index The index of the current vertex
+    @param visited A vector of visited vertices
+    @param callback The client-provided callback function to process the
+        vertices */
+    void dft(const int index, std::vector<bool> visited, void callback(T &));
+
     /** Initiates the adjacency matrix with all 0s
     @post The adjacency matrix (adjMatrix) will be all 0s. Any values currently
         in it will be overwritten */
