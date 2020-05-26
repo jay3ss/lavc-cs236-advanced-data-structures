@@ -118,6 +118,17 @@ public:
     @param end The ending vertext
     @return True if the edge was removed, false otherwise */
     bool remove(const T& start, const T& end);
+
+    class OutOfRange
+    {
+    private:
+        int vertNumber;
+    public:
+        OutOfRange(const int n)
+            { vertNumber = n; }
+        int getValue() const
+            { return vertNumber; }
+    };
 private:
     int numberOfVertices;   // The number of vertices in the graph
 
