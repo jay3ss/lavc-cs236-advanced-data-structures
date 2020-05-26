@@ -102,7 +102,8 @@ int main()
     }
 
     assert(graph.numVertices() == NUM_VERTICES && "Number of vertices is incorrect");
-    // assert(graph.);
+    assert(graph.weight(1, 0) == 1 && "Edge weight is incorrect");
+    assert(graph.weight(0, 0) == 0 && "Edge weight is not zero");
 
     return 0;
 }
