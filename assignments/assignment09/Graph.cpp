@@ -97,6 +97,27 @@ void Graph<T>::init(const int numVertices)
     initAdjMatrix();
 }
 
+//Returns a vector of indices of a vertex's neighbors
+template <class T>
+std::vector<int> Graph<T>::neighbors(const int num) const
+{
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (num < 0 || numberOfVertices - 1 < num)
+        throw OutOfRange(num);
+
+    std::vector<int> neighborsVect;
+
+    for (int i = 0; i < numberOfVertices; i++)
+    {
+        if (adjMatrix[num][i] != 0)
+        {
+            neighborsVect.push_back(i);
+        }
+    }
+
+    return neighborsVect;
+}
+
 // Gets the number of edges in the graph
 template <class T>
 int Graph<T>::numEdges() const

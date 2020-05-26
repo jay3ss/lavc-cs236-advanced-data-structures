@@ -106,6 +106,12 @@ public:
         of the size numVertices x numVertices and will have every entry be 0 */
     void init(const int numVertices);
 
+    /** Returns a vector of indices of a vertex's neighbors
+    @pre 0 <= num < numberOfVertices
+    @param num The number of the vertex
+    @return A vector containing the indices of a vertex's neighbors */
+    std::vector<int> neighbors(const int num) const;
+
     /** Gets the number of edges in the graph
     @return The number of edges in the graph */
     int numEdges() const;
