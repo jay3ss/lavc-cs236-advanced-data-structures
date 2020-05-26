@@ -187,7 +187,7 @@ private:
     @param visited A vector of visited vertices
     @param callback The client-provided callback function to process the
         vertices */
-    void bft(const int index, std::vector<bool> visited, void callback(T&));
+    void dft(const int index, std::vector<bool> visited, void callback(T&));
 
     /** Initiates the adjacency matrix with all 0s
     @post The adjacency matrix (adjMatrix) will be all 0s. Any values currently
