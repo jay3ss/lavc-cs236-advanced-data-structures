@@ -120,6 +120,13 @@ public:
     @return True if the edge was removed, false otherwise */
     bool remove(const int start, const int end);
 
+    /** Returns the weight value for an edge
+    @pre 0 <= start < numVertices and  0 <= end < numVertices
+    @param start The starting vertext
+    @param end The ending vertext
+    @return The integer value of the edge */
+    int weight(const int start, const int end);
+
     class OutOfRange
     {
     private:
