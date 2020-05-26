@@ -120,6 +120,18 @@ public:
     @return True if the edge was removed, false otherwise */
     bool remove(const int start, const int end);
 
+    /** Sets the value of a vertex
+    @pre 0 <= num < numberOfVertices
+    @param num The number of the vertex
+    @param val The value of the node */
+    void value(const int nun, const T& val);
+
+    /** Returns the value of a vertex
+    @pre 0 <= num < numberOfVertices
+    @param num The number of the vertex
+    @return The value of the node */
+    T value(const int num) const;
+
     /** Returns the weight value for an edge
     @pre 0 <= start < numVertices and  0 <= end < numVertices
     @param start The starting vertext
