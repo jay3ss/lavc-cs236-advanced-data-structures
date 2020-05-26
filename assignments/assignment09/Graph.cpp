@@ -107,9 +107,6 @@ void Graph<T>::initAdjMatrix()
     adjMatrix.reserve(numberOfVertices);
     for (int row = 0; row < numberOfVertices; row++)
     {
-        for (int col = 0; col < numberOfVertices; col++)
-        {
-            adjMatrix[row].reserve(numberOfVertices);
-        }
+        adjMatrix[row] = std::vector<int>(numberOfVertices, 0);
     }
 }
