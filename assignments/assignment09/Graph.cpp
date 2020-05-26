@@ -118,6 +118,28 @@ bool Graph<T>::remove(const int start, const int end)
     return false;
 }
 
+//  Sets the value of a vertex
+template <class T>
+void Graph<T>::value(const int num, const T &val)
+{
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (num < 0 || numberOfVertices - 1 < num)
+        throw OutOfRange(num);
+
+    vertexValues[num] = val;
+}
+
+//  Returns the value of a vertex
+template <class T>
+T Graph<T>::value(const int num) const
+{
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (num < 0 || numberOfVertices - 1 < num)
+        throw OutOfRange(num);
+
+    return vertexValues[num];
+}
+
 // Returns the weight value for an edge
 template <class T>
 int Graph<T>::weight(const int start, const int end)
