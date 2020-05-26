@@ -71,7 +71,9 @@ int Graph<T>::edgeWeight(const T& start, const T& end)
 template <class T>
 void Graph<T>::init(const int numVertices)
 {
-
+    numberOfVertices = numVertices;
+    vertexValues.reserve(numVertices);
+    initAdjMatrix();
 }
 
 // Gets the number of edges in the graph
@@ -93,4 +95,21 @@ template <class T>
 bool Graph<T>::remove(const T& start, const T& end)
 {
     return false;
+}
+
+// Private methods
+// Initiates the adjacency matrix with all 0s
+template <class T>
+void Graph<T>::initAdjMatrix()
+{
+    // reserve the correct number of rows, then iteratively reserve the correct
+    // number of columns
+    adjMatrix.reserve(numberOfVertices);
+    for (int row = 0; row < numberOfVertices; row++)
+    {
+        for (int col = 0; col < numberOfVertices; col++)
+        {
+            adjMatrix[row].reserve(numberOfVertices);
+        }
+    }
 }
