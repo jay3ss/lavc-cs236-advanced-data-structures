@@ -70,7 +70,7 @@ public:
 
     /** Adds an edge between to vertices to the graph and if either of the
         vertices don't exist, it creates them and adds them to the graph
-    @pre: 0 <= start <= numVertices - 1 and  0 <= end <= numVertices - 1
+    @pre: 0 <= start < numVertices and  0 <= end < numVertices
         0 < edgeWeight
     @param start The starting vertex
     @param end The ending vertex
