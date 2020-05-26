@@ -38,7 +38,7 @@ Graph<T>::~Graph() {}
 // Adds an edge between to vertices to the graph and if either of the vertices
 // don't exist, it creates them and adds them to the graph
 template <class T>
-bool Graph<T>::add(const T& start, const T& end, const int edgeWeight)
+bool Graph<T>::add(const int start, const int end, const int edgeWeight)
 {
     // enforce the precondition that 0 <= start < numberOfVertices
     if (start < 0 || numberOfVertices - 1 < start)
@@ -57,7 +57,7 @@ bool Graph<T>::add(const T& start, const T& end, const int edgeWeight)
 // Performs a breadth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::breadthFirstTraversal(const T &start, void callback(T &))
+void Graph<T>::breadthFirstTraversal(const int start, void callback(T &))
 {
 
 }
@@ -65,14 +65,14 @@ void Graph<T>::breadthFirstTraversal(const T &start, void callback(T &))
 // Performs a depth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::depthFirstTraversal(const T &start, void callback(T &))
+void Graph<T>::depthFirstTraversal(const int start, void callback(T &))
 {
 
 }
 
 // Gets the weight of an edge in the graph
 template <class T>
-int Graph<T>::edgeWeight(const T& start, const T& end)
+int Graph<T>::edgeWeight(const int start, const int end)
 {
     return -1;
 }
@@ -102,7 +102,7 @@ int Graph<T>::numVertices() const
 
 // Removes an edge from this graph
 template <class T>
-bool Graph<T>::remove(const T& start, const T& end)
+bool Graph<T>::remove(const int start, const int end)
 {
     return false;
 }

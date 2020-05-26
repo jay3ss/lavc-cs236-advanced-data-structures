@@ -76,21 +76,21 @@ public:
     @param end The ending vertex
     @param edgeWeight The integer weight of the edge
     @return True if the edge was added */
-    bool add(const T& start, const T& end, const int edgeWeight);
+    bool add(const int start, const int end, const int edgeWeight);
 
     /** Performs a breadth-first search of this graph beginning at the given
         vertex and calls a given function once for each vertex visited
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
-    void breadthFirstTraversal(const T& start, void callback(T&));
+    void breadthFirstTraversal(const int start, void callback(T&));
 
     /** Performs a depth-first search of this graph beginning at the given
         vertex and calls a given function once for each vertex visited
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
-    void depthFirstTraversal(const T& start, void callback(T &));
+    void depthFirstTraversal(const int start, void callback(T &));
 
     /** Gets the weight of an edge in the graph
     @param pre The edge must exist and 0 <= start <= numVertices - 1 and
@@ -98,7 +98,7 @@ public:
     @param start The starting vertex
     @param end The ending vertex
     @return The weight of the edge */
-    int edgeWeight(const T& start, const T& end);
+    int edgeWeight(const int start, const int end);
 
     /** Initializes the graph
     @param numVertices The number of vertices in the graph
@@ -118,7 +118,7 @@ public:
     @param start The starting vertext
     @param end The ending vertext
     @return True if the edge was removed, false otherwise */
-    bool remove(const T& start, const T& end);
+    bool remove(const int start, const int end);
 
     class OutOfRange
     {
@@ -136,7 +136,7 @@ public:
     private:
         int weight;
     public:
-        OutOfRange(const int w)
+        InvalidWeight(const int w)
             { weight = w; }
         int getValue() const
             { return weight; }
