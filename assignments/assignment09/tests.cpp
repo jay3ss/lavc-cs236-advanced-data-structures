@@ -154,13 +154,20 @@ int main()
     cout << "The number of edges is " << graph.numEdges() << "\n";
 
     for (int i = 0; i < NUM_VERTICES; i++)
-    {
         graph.value(i, vertices[i]);
-    }
+
+    for (int i = 0; i < NUM_VERTICES; i++)
+        assert(graph.value(i) == vertices[i]);
+
 
     for (int i = 0; i < NUM_VERTICES; i++)
     {
-        assert(graph.value(i) == vertices[i]);
+        vector<int> neighbors = graph.neighbors(i);
+        cout << vertices[i] << "'s connecting cities are: ";
+        for (int j = 0; j < neighbors.size(); j++)
+            cout << vertices[neighbors[j]] << " ";
+
+        cout << endl;
     }
 
     return 0;
