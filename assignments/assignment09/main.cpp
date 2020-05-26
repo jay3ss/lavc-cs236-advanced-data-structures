@@ -17,8 +17,78 @@ string vertices[] = {
     "Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas", "Chicago",
     "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
 }; */
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
+#include "Graph.h"
+
+using namespace std;
+
+typedef pair<string, vector<string>> cities;
 
 int main()
 {
+
+    vector<string> vertices = {
+        "Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas", "Chicago",
+        "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
+    };
+    map<string, vector<string>> edges;
+
+    // Create the connections between cities
+    // Seattle: SF, Denver, Chicago
+    edges.insert(cities(vertices[0], {vertices[1], vertices[3], vertices[5]}));
+
+    // San Francisco: Seattle, LA, Denver
+    edges.insert(cities(vertices[1], {vertices[0], vertices[2], vertices[3]}));
+
+    // LA: SF, Denver, KC, Dallas
+    edges.insert(cities(vertices[2], {vertices[1], vertices[3], vertices[4], vertices[10]}));
+
+    // Denver: Seattle, SF, LA, KC, Chicago
+    edges.insert(cities(vertices[3], {vertices[0], vertices[1], vertices[2], vertices[4], vertices[5]}));
+
+    // KC: LA, Denver, Chicago, NYC, Atlanta, Dallas
+    edges.insert(cities(vertices[4], {vertices[2], vertices[3], vertices[5], vertices[7], vertices[8], vertices[10]}));
+
+    // Chicago: Seattle, Denver, KC, Boston, NYC
+    edges.insert(cities(vertices[5], {vertices[0], vertices[3], vertices[4], vertices[6], vertices[7]}));
+
+    // Boston: Chicago, NYC
+    edges.insert(cities(vertices[6], {vertices[5], vertices[7]}));
+
+    // NYC: KC, Chicago, Boston, Atlanta
+    edges.insert(cities(vertices[7], {vertices[4], vertices[5], vertices[6], vertices[8]}));
+
+    // Atlanta: KC, NYC, Miami, Dallas, Houston
+    edges.insert(cities(vertices[8], {vertices[4], vertices[7], vertices[9], vertices[10], vertices[11]}));
+
+    // Miami: Atlanta, Houston
+    edges.insert(cities(vertices[9], {vertices[8], vertices[11]}));
+
+    // Dallas: LA, KC, Atlanta, Houston
+    edges.insert(cities(vertices[10], {vertices[2], vertices[4], vertices[8], vertices[11]}));
+
+    // Houston: Atlanta, Miami, Houston
+    edges.insert(cities(vertices[11], {vertices[8], vertices[9], vertices[10]}));
+
+    const int NUM_VERTICES = 12;
+
+    Graph<string> graph(NUM_VERTICES);
+
+    for (auto& vertex : vertices)
+    {
+        auto connections = edges[vertex];
+        cout << vertex << ": ";
+        for (auto& connection : connections)
+        {
+            cout << connection << " ";
+            graph.add(vertex, connection, 1);
+        }
+        cout << endl;
+    }
+
     return 0;
 }
