@@ -27,7 +27,6 @@ Graph<T>::Graph() {}
 // Constructor
 template <class T>
 Graph<T>::Graph(const int numVertices)
-    : numberOfVertices(numVertices)
 {
     init(numVertices);
 }
