@@ -121,7 +121,7 @@ public:
 private:
     int numberOfVertices;   // The number of vertices in the graph
 
-    std::vector<std::vector<T>> adjMatrix;  // The adjacency matrix
+    std::vector<std::vector<int>> adjMatrix;  // The adjacency matrix
 
     /** Initiates the adjacency matrix with all 0s
     @post The adjacency matrix (adjMatrix) will be all 0s. Any values currently
