@@ -51,7 +51,11 @@ bool Graph<T>::add(const int start, const int end, const int edgeWeight)
     // enforce the precondition that 0 < edgeWeight
     if (edgeWeight <= 0)
         throw InvalidWeight(edgeWeight);
-    return false;
+
+    adjMatrix[start][end] = edgeWeight;
+    adjMatrix[end][start] = edgeWeight;
+
+    return true;
 }
 
 // Performs a breadth-first search of this graph beginning at the given vertex
