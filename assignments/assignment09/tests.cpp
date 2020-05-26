@@ -126,6 +126,15 @@ int main()
 
     try
     {
+        graph.add(11, 10, 1);
+    }
+    catch (Graph<string>::OutOfRange e)
+    {
+        std::cerr << "Entered an invalid vertex of " << e.getValue() << '\n';
+    }
+
+    try
+    {
         graph.add(10, 13, 1);
     }
     catch (Graph<string>::OutOfRange e)
@@ -143,6 +152,16 @@ int main()
     }
 
     cout << "The number of edges is " << graph.numEdges() << "\n";
+
+    for (int i = 0; i < NUM_VERTICES; i++)
+    {
+        graph.value(i, vertices[i]);
+    }
+
+    for (int i = 0; i < NUM_VERTICES; i++)
+    {
+        assert(graph.value(i) == vertices[i]);
+    }
 
     return 0;
 }
