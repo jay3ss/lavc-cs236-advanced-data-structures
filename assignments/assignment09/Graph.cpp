@@ -40,6 +40,17 @@ Graph<T>::~Graph() {}
 template <class T>
 bool Graph<T>::add(const T& start, const T& end, const int edgeWeight)
 {
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (start < 0 || numberOfVertices - 1 < start)
+        throw OutOfRange(start);
+
+    // enforce the preconditions that 0 <= end < numberOfVertices
+    if (end < 0 || numberOfVertices - 1 < end)
+        throw OutOfRange(end);
+
+    // enforce the precondition that 0 < edgeWeight
+    if (edgeWeight <= 0)
+        throw InvalidWeight(edgeWeight);
     return false;
 }
 
