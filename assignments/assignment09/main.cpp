@@ -29,6 +29,7 @@ using namespace std;
 typedef pair<string, vector<string>> cities;
 
 int positionOf(vector<string> vect, string city);
+void print(const string& value);
 
 int main()
 {
@@ -121,4 +122,9 @@ int positionOf(vector<string> vect, string city)
     }
 
     return position;
+}
+
+void print(const string& value)
+{
+    cout << value << ", ";
 }
