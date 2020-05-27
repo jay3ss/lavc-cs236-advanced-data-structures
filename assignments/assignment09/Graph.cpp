@@ -69,7 +69,13 @@ bool Graph<T>::add(const int start, const int end, const int edgeWeight)
 template <class T>
 void Graph<T>::breadthFirstTraversal(const int start, void callback(const T& value))
 {
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (start < 0 || numberOfVertices - 1 < start)
+        throw OutOfRange(start);
 
+    std::vector<bool> visited = std::vector<bool>(numberOfVertices, false);
+
+    bft(start, visited, callback);
 }
 
 // Performs a depth-first search of this graph beginning at the given vertex
@@ -189,7 +195,28 @@ int Graph<T>::weight(const int start, const int end)
 template <class T>
 void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(const T& value))
 {
+    callback(vertexValues[index]);
+    std::queue<int> queue;
+    visited[index] = true;
+    queue.push(index);
 
+    while (!queue.empty())
+    {
+        int v = queue.front();
+        queue.pop();
+
+        std::vector<int> neighborsVect = neighbors(v);
+        for (int i = 0; i < neighborsVect.size(); i++)
+        {
+            int neighbor = neighborsVect[i];
+            if (!visited[neighbor])
+            {
+                callback(vertexValues[neighbor]);
+                visited[neighbor] = true;
+                queue.push(neighbor);
+            }
+        }
+    }
 }
 
 // Performs a dept-first search of this graph beginning at the given vertex and
