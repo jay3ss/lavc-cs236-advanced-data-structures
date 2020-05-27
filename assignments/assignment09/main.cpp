@@ -62,9 +62,13 @@ using namespace std;
 typedef pair<string, vector<string>> cities;
 
 void addEdges(Graph<string>& graph, vector<string>& cities);
+Graph<string> createCityGraph(vector<string>& cityNames);
 void createEdges(map<string, vector<string>>& edges, vector<string>& cities);
+int cityChoice();
+void menu(Graph<string>& graph, vector<string>& cityNames);
 int positionOf(vector<string>& vect, string city);
 void print(const string& value);
+void setCityNames(Graph<string>& graph, vector<string>& cityNames);
 
 int main()
 {
@@ -73,20 +77,8 @@ int main()
         "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
     };
 
-    const int NUM_VERTICES = 12;
-    Graph<string> graph(NUM_VERTICES);
-    addEdges(graph, vertices);
-
-    for (int i = 0; i < graph.numVertices(); i++)
-    {
-        vector<int> neighbors = graph.neighbors(i);
-        cout << setw(15);
-        cout << vertices[i] << ": ";
-        for (auto& neighbor : neighbors)
-            cout << vertices[neighbor] << ", ";
-
-        cout << endl;
-    }
+    Graph<string> graph = createCityGraph(vertices);
+    menu(graph, vertices);
 
     return 0;
 }
@@ -110,6 +102,16 @@ void addEdges(Graph<string>& graph, vector<string>& cityNames)
                 graph.add(vertNum, connectionNum, 1);
         }
     }
+}
+
+Graph<string> createCityGraph(vector<string>& cityNames)
+{
+    const int NUM_VERTICES = 12;
+    Graph<string> graph(NUM_VERTICES);
+    addEdges(graph, cityNames);
+    setCityNames(graph, cityNames);
+
+    return graph;
 }
 
 void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
@@ -169,7 +171,44 @@ int positionOf(vector<string>& vect, string city)
     return position;
 }
 
+void menu(Graph<string>& graph, vector<string>& cityNames)
+{
+    char yesOrNo = 'y';
+    int cityChoice;
+
+    string cityPrompt = "Enter starting city using number from 0 - 11 : ";
+    string continuePrompt = "\nTry another city (Y/N) ";
+    string bftMessage = "Starting at Chicago, 12 cities are searched in this Breadth-First Search order:\n";
+    string dftMessage = "Starting at Chicago, 12 cities are searched in this Depth-First Search order:\n";
+
+    cout << "Graph Traversals\n" << cityPrompt;
+    cin >> cityChoice;
+    cin.ignore();
+
+    while (tolower(yesOrNo) != 'n')
+    {
+        cout << "Starting at " << cityNames[cityChoice]
+             << ", 12 cities are searched in this Breadth-First Search order:\n";
+        graph.breadthFirstTraversal(cityChoice, print);
+
+        cout << "Starting at " << cityNames[cityChoice]
+             << ", 12 cities are searched in this Depth-First Search order:\n";
+        graph.depthFirstTraversal(cityChoice, print);
+
+        cout << continuePrompt;
+        cin >> yesOrNo;
+        cin.ignore();
+    }
+
+}
+
 void print(const string& value)
 {
     cout << value << ", ";
+}
+
+void setCityNames(Graph<string>& graph, vector<string>& cityNames)
+{
+    for (int i = 0; i < cityNames.size(); i++)
+        graph.value(i, cityNames[i]);
 }
