@@ -83,14 +83,14 @@ public:
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
-    void breadthFirstTraversal(const int start, void callback(T&));
+    void breadthFirstTraversal(const int start, void callback(const T& value));
 
     /** Performs a depth-first search of this graph beginning at the given
         vertex and calls a given function once for each vertex visited
     @param start The starting vertex
     @param callback The client-provided callback function to process the
         vertices */
-    void depthFirstTraversal(const int start, void callback(T &));
+    void depthFirstTraversal(const int start, void callback(const T& value));
 
     /** Gets the weight of an edge in the graph
     @param pre The edge must exist and 0 <= start <= numVertices - 1 and
@@ -179,7 +179,7 @@ private:
     @param visited A vector of visited vertices
     @param callback The client-provided callback function to process the
         vertices */
-    void bft(const int index, std::vector<bool>& visited, void callback(T&));
+    void bft(const int index, std::vector<bool>& visited, void callback(const T& value));
 
     /** Performs a dept-first search of this graph beginning at the given
         vertex and calls a given function once for each vertex visited
@@ -187,7 +187,7 @@ private:
     @param visited A vector of visited vertices
     @param callback The client-provided callback function to process the
         vertices */
-    void dft(const int index, std::vector<bool>& visited, void callback(T&));
+    void dft(const int index, std::vector<bool>& visited, void callback(const T& value));
 
     /** Initiates the adjacency matrix with all 0s
     @post The adjacency matrix (adjMatrix) will be all 0s. Any values currently
