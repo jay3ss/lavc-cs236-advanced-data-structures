@@ -17,6 +17,7 @@ string vertices[] = {
     "Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas", "Chicago",
     "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
 }; */
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <string>
@@ -28,81 +29,93 @@ using namespace std;
 
 typedef pair<string, vector<string>> cities;
 
+void addEdges(Graph<string>& graph, vector<string>& cities);
+void createEdges(map<string, vector<string>>& edges, vector<string>& cities);
 int positionOf(vector<string>& vect, string city);
 void print(const string& value);
 
 int main()
 {
-
     vector<string> vertices = {
         "Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas", "Chicago",
         "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
     };
-    map<string, vector<string>> edges;
-
-    // Create the connections between cities
-    // Seattle: SF, Denver, Chicago
-    edges.insert(cities(vertices[0], {vertices[1], vertices[3], vertices[5]}));
-
-    // San Francisco: Seattle, LA, Denver
-    edges.insert(cities(vertices[1], {vertices[0], vertices[2], vertices[3]}));
-
-    // LA: SF, Denver, KC, Dallas
-    edges.insert(cities(vertices[2], {vertices[1], vertices[3], vertices[4], vertices[10]}));
-
-    // Denver: Seattle, SF, LA, KC, Chicago
-    edges.insert(cities(vertices[3], {vertices[0], vertices[1], vertices[2], vertices[4], vertices[5]}));
-
-    // KC: LA, Denver, Chicago, NYC, Atlanta, Dallas
-    edges.insert(cities(vertices[4], {vertices[2], vertices[3], vertices[5], vertices[7], vertices[8], vertices[10]}));
-
-    // Chicago: Seattle, Denver, KC, Boston, NYC
-    edges.insert(cities(vertices[5], {vertices[0], vertices[3], vertices[4], vertices[6], vertices[7]}));
-
-    // Boston: Chicago, NYC
-    edges.insert(cities(vertices[6], {vertices[5], vertices[7]}));
-
-    // NYC: KC, Chicago, Boston, Atlanta
-    edges.insert(cities(vertices[7], {vertices[4], vertices[5], vertices[6], vertices[8]}));
-
-    // Atlanta: KC, NYC, Miami, Dallas, Houston
-    edges.insert(cities(vertices[8], {vertices[4], vertices[7], vertices[9], vertices[10], vertices[11]}));
-
-    // Miami: Atlanta, Houston
-    edges.insert(cities(vertices[9], {vertices[8], vertices[11]}));
-
-    // Dallas: LA, KC, Atlanta, Houston
-    edges.insert(cities(vertices[10], {vertices[2], vertices[4], vertices[8], vertices[11]}));
-
-    // Houston: Atlanta, Miami, Houston
-    edges.insert(cities(vertices[11], {vertices[8], vertices[9], vertices[10]}));
 
     const int NUM_VERTICES = 12;
-
     Graph<string> graph(NUM_VERTICES);
+    addEdges(graph, vertices);
 
-    // Go through each vertex
-    for (int vertNum = 0; vertNum < NUM_VERTICES; vertNum++)
+    for (int i = 0; i < graph.numVertices(); i++)
     {
-        string vertex = vertices[vertNum];
-        auto connections = edges[vertex];
-        cout << vertex << ": ";
+        vector<int> neighbors = graph.neighbors(i);
+        cout << setw(15);
+        cout << vertices[i] << ": ";
+        for (auto& neighbor : neighbors)
+            cout << vertices[neighbor] << ", ";
 
-        // Go through each edge for the vertex
-        for (auto& connection : connections)
-        {
-            int connectionNum = positionOf(vertices, connection);
-
-            if (connectionNum >= 0)
-            {
-                cout << connection << " ";
-                graph.add(vertNum, connectionNum, 1);
-            }
-        }
         cout << endl;
     }
 
     return 0;
+}
+
+void addEdges(Graph<string>& graph, vector<string>& cityNames)
+{
+    map<string, vector<string>> edges;
+    createEdges(edges, cityNames);
+
+    for (int vertNum = 0; vertNum < cityNames.size(); vertNum++)
+    {
+        string cityName = cityNames[vertNum];
+        auto connections = edges[cityName];
+
+        // Go through each edge for the vertex
+        for (auto &connection : connections)
+        {
+            int connectionNum = positionOf(cityNames, connection);
+
+            if (connectionNum >= 0)
+                graph.add(vertNum, connectionNum, 1);
+        }
+    }
+}
+
+void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
+{
+    edges.insert(cities(cityNames[0], {cityNames[1], cityNames[3], cityNames[5]}));
+
+    // San Francisco: Seattle, LA, Denver
+    edges.insert(cities(cityNames[1], {cityNames[0], cityNames[2], cityNames[3]}));
+
+    // LA: SF, Denver, KC, Dallas
+    edges.insert(cities(cityNames[2], {cityNames[1], cityNames[3], cityNames[4], cityNames[10]}));
+
+    // Denver: Seattle, SF, LA, KC, Chicago
+    edges.insert(cities(cityNames[3], {cityNames[0], cityNames[1], cityNames[2], cityNames[4], cityNames[5]}));
+
+    // KC: LA, Denver, Chicago, NYC, Atlanta, Dallas
+    edges.insert(cities(cityNames[4], {cityNames[2], cityNames[3], cityNames[5], cityNames[7], cityNames[8], cityNames[10]}));
+
+    // Chicago: Seattle, Denver, KC, Boston, NYC
+    edges.insert(cities(cityNames[5], {cityNames[0], cityNames[3], cityNames[4], cityNames[6], cityNames[7]}));
+
+    // Boston: Chicago, NYC
+    edges.insert(cities(cityNames[6], {cityNames[5], cityNames[7]}));
+
+    // NYC: KC, Chicago, Boston, Atlanta
+    edges.insert(cities(cityNames[7], {cityNames[4], cityNames[5], cityNames[6], cityNames[8]}));
+
+    // Atlanta: KC, NYC, Miami, Dallas, Houston
+    edges.insert(cities(cityNames[8], {cityNames[4], cityNames[7], cityNames[9], cityNames[10], cityNames[11]}));
+
+    // Miami: Atlanta, Houston
+    edges.insert(cities(cityNames[9], {cityNames[8], cityNames[11]}));
+
+    // Dallas: LA, KC, Atlanta, Houston
+    edges.insert(cities(cityNames[10], {cityNames[2], cityNames[4], cityNames[8], cityNames[11]}));
+
+    // Houston: Atlanta, Miami, Houston
+    edges.insert(cities(cityNames[11], {cityNames[8], cityNames[9], cityNames[10]}));
 }
 
 int positionOf(vector<string>& vect, string city)
