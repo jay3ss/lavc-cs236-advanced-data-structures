@@ -181,7 +181,7 @@ int Graph<T>::weight(const int start, const int end)
 // Performs a breadth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::bft(const int index, std::vector<bool> visited, void callback(T& value))
+void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(T& value))
 {
 
 }
@@ -189,7 +189,7 @@ void Graph<T>::bft(const int index, std::vector<bool> visited, void callback(T& 
 // Performs a dept-first search of this graph beginning at the given vertex and
 // calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::dft(const int index, std::vector<bool> visited, void callback(T& value))
+void Graph<T>::dft(const int index, std::vector<bool>& visited, void callback(T& value))
 {
 
 }
