@@ -177,6 +177,10 @@ int main()
     graph.depthFirstTraversal(2, print);
     cout << endl;
 
+    cout << "BFT\n";
+    graph.breadthFirstTraversal(2, print);
+    cout << endl;
+
     return 0;
 }
 
