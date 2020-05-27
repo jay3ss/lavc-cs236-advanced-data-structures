@@ -28,7 +28,7 @@ using namespace std;
 
 typedef pair<string, vector<string>> cities;
 
-int positionOf(vector<string> vect, string city);
+int positionOf(vector<string>& vect, string city);
 void print(const string& value);
 
 int main()
@@ -105,7 +105,7 @@ int main()
     return 0;
 }
 
-int positionOf(vector<string> vect, string city)
+int positionOf(vector<string>& vect, string city)
 {
     int position = -1;
     int idx = 0;
