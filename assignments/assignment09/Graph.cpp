@@ -67,7 +67,7 @@ bool Graph<T>::add(const int start, const int end, const int edgeWeight)
 // Performs a breadth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::breadthFirstTraversal(const int start, void callback(T &))
+void Graph<T>::breadthFirstTraversal(const int start, void callback(const T& value))
 {
 
 }
@@ -75,9 +75,15 @@ void Graph<T>::breadthFirstTraversal(const int start, void callback(T &))
 // Performs a depth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::depthFirstTraversal(const int start, void callback(T &))
+void Graph<T>::depthFirstTraversal(const int start, void callback(const T& value))
 {
+    // enforce the precondition that 0 <= start < numberOfVertices
+    if (start < 0 || numberOfVertices - 1 < start)
+        throw OutOfRange(start);
 
+    std::vector<bool> visited = std::vector<bool>(numberOfVertices, false);
+
+    dft(start, visited, callback);
 }
 
 // Gets the weight of an edge in the graph
@@ -181,7 +187,7 @@ int Graph<T>::weight(const int start, const int end)
 // Performs a breadth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(T& value))
+void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(const T& value))
 {
 
 }
@@ -189,10 +195,25 @@ void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(T&
 // Performs a dept-first search of this graph beginning at the given vertex and
 // calls a given function once for each vertex visited
 template <class T>
-void Graph<T>::dft(const int index, std::vector<bool>& visited, void callback(T& value))
+void Graph<T>::dft(const int index, std::vector<bool>& visited, void callback(const T& value))
 {
+    callback(vertexValues[index]);
+    visited[index] = true;
+    std::vector<int> neighborsVect = neighbors(index);
 
+    if (!neighborsVect.empty())
+    {
+        for (int i = 0; i < neighborsVect.size(); i++)
+        {
+            int neighbor = neighborsVect[i];
+            if (!visited[neighbor])
+            {
+                dft(neighbor, visited, callback);
+            }
+        }
+    }
 }
+
 // Initiates the adjacency matrix with all 0s
 template <class T>
 void Graph<T>::initAdjMatrix()
