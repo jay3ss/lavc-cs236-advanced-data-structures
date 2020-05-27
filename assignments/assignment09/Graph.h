@@ -52,6 +52,7 @@ Try another city (Y/N) N */
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <queue>
 #include <vector>
 
 template <class T>
