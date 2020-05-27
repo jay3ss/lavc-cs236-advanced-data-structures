@@ -16,6 +16,40 @@ vertices:
 string vertices[] = {
     "Seattle", "San Francisco", "Los Angeles", "Denver", "Kansas", "Chicago",
     "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston"
+};
+
+Write a C++ program to display the Depth-First Search and Breadth-First Search
+starting at any vertex (index) inputting from the user.
+
+Sample output:
+
+Graph Traversals
+Enter starting city using number from 0 - 11: 2
+You entered city name: Los Angeles
+
+Starting at Los Angeles, 12 cities are searched in this Depth-First Search
+order:
+Los Angeles, San Francisco, Seattle, Denver, Kansas, Chicago, Boston, New York,
+Atlanta, Miami, Houston, Dallas,
+Starting at Los Angeles, 12 cities are searched in this Breadth-First Search
+order:
+Los Angeles, San Francisco, Denver, Kansas, Dallas, Seattle, Chicago, New York,
+Atlanta, Houston, Boston, Miami,
+
+Try another city (Y/N) Y
+
+Enter starting city using number from 0 - 11: 5
+You entered city name: Chicago
+
+Starting at Chicago, 12 cities are searched in this Depth-First Search order:
+Chicago, Seattle, San Francisco, Los Angeles, Denver, Kansas, New York, Boston,
+Atlanta, Miami, Houston, Dallas,
+
+Starting at Chicago, 12 cities are searched in this Breadth-First Search order:
+Chicago, Seattle, Denver, Kansas, Boston, New York, San Francisco, Los Angeles,
+Atlanta, Dallas, Miami, Houston,
+Try another city (Y/N) N */
+ston ", " New York ", " Atlanta ", " Miami ", " Dallas ", " Houston "
 }; */
 #include <iomanip>
 #include <iostream>
