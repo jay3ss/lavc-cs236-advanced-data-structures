@@ -49,8 +49,6 @@ Starting at Chicago, 12 cities are searched in this Breadth-First Search order:
 Chicago, Seattle, Denver, Kansas, Boston, New York, San Francisco, Los Angeles,
 Atlanta, Dallas, Miami, Houston,
 Try another city (Y/N) N */
-ston ", " New York ", " Atlanta ", " Miami ", " Dallas ", " Houston "
-}; */
 #include <iomanip>
 #include <iostream>
 #include <map>
