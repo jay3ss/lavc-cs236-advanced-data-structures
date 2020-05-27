@@ -30,6 +30,7 @@ using namespace std;
 typedef pair<string, vector<string>> cities;
 
 int positionOf(vector<string> vect, string city);
+void print(const string& value);
 
 int main()
 {
@@ -170,6 +171,12 @@ int main()
         cout << endl;
     }
 
+    cout << endl;
+
+    cout << "DFT\n";
+    graph.depthFirstTraversal(2, print);
+    cout << endl;
+
     return 0;
 }
 
@@ -190,4 +197,9 @@ int positionOf(vector<string> vect, string city)
     }
 
     return position;
+}
+
+void print(const string& value)
+{
+    cout << value << ", ";
 }
