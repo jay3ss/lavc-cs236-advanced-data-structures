@@ -179,38 +179,47 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
     int cityChoice;
 
     string cityPrompt = "Enter starting city using number from 0 - 11 : ";
-    string continuePrompt = "\nTry another city (Y/N) ";
+    string continuePrompt = "\n\nTry another city (Y/N) ";
     string citiesMessage = ", 12 cities are searched in this Breadth-First Search order:\n";
 
-    cout << "Graph Traversals\n" << cityPrompt;
-    cin >> cityChoice;
-    cin.ignore();
+    cout << "Graph Traversals\n";
 
     while (tolower(yesOrNo) != 'n')
     {
-        if (0 <= cityChoice && cityChoice < cityNames.size())
+        cout << cityPrompt;
+        cin >> cityChoice;
+        cin.ignore();
+
+        while (0 > cityChoice || cityChoice >= cityNames.size())
         {
-            cout << "Starting at " << cityNames[cityChoice] << citiesMessage;
-            graph.breadthFirstTraversal(cityChoice, print);
+            cerr << "The vertex " << cityChoice << " does not exist. "
+                 << "Please try again.\n";
 
-            cout << "Starting at " << cityNames[cityChoice] << citiesMessage;
-            graph.depthFirstTraversal(cityChoice, print);
+            cout << cityPrompt;
+            cin >> cityChoice;
+            cin.ignore();
+        }
 
+        cout << "\nStarting at " << cityNames[cityChoice]
+             << ", 12 cities are searched in this Breadth-First Search order:\n";
+        graph.breadthFirstTraversal(cityChoice, print);
+
+        cout << "\n\nStarting at " << cityNames[cityChoice]
+             << ", 12 cities are searched in this Depth-First Search order:\n";
+        graph.depthFirstTraversal(cityChoice, print);
+
+        cout << continuePrompt;
+        cin >> yesOrNo;
+        cin.ignore();
+
+        while (tolower(yesOrNo) != 'y' && tolower(yesOrNo) != 'n')
+        {
+            cout << "Invalid choice. Please enter a 'Y' or 'N'.\n";
             cout << continuePrompt;
             cin >> yesOrNo;
             cin.ignore();
         }
-        else
-        {
-            cerr << "The vertex " << cityChoice << " does not exist. "
-                 << "Please try again.\n";
-        }
-
-        cout << cityPrompt;
-        cin >> cityChoice;
-        cin.ignore();
     }
-
 }
 
 void print(const string& value)
