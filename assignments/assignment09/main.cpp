@@ -230,14 +230,15 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
         cityChoice = getCityChoice(cityNames.size());
 
         cout << "\nStarting at " << cityNames[cityChoice]
-             << ", 12 cities are searched in this Breadth-First Search order:\n";
-        graph.breadthFirstTraversal(cityChoice, print);
-
-        cout << "\n\nStarting at " << cityNames[cityChoice]
              << ", 12 cities are searched in this Depth-First Search order:\n";
         graph.depthFirstTraversal(cityChoice, print);
 
+        cout << "\n\nStarting at " << cityNames[cityChoice]
+             << ", 12 cities are searched in this Breadth-First Search order:\n";
+        graph.breadthFirstTraversal(cityChoice, print);
+
         cout << "\n\n";
+
         continueChoice = getContinueChoice();
     }
 }
