@@ -180,7 +180,7 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
 
     string cityPrompt = "Enter starting city using number from 0 - 11 : ";
     string continuePrompt = "\nTry another city (Y/N) ";
-    string bftMessage = "Starting at Chicago, 12 cities are searched in this Breadth-First Search order:\n";
+    string citiesMessage = ", 12 cities are searched in this Breadth-First Search order:\n";
     string dftMessage = "Starting at Chicago, 12 cities are searched in this Depth-First Search order:\n";
 
     cout << "Graph Traversals\n" << cityPrompt;
@@ -189,16 +189,26 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
 
     while (tolower(yesOrNo) != 'n')
     {
-        cout << "Starting at " << cityNames[cityChoice]
-             << ", 12 cities are searched in this Breadth-First Search order:\n";
-        graph.breadthFirstTraversal(cityChoice, print);
+        if (0 <= cityChoice && cityChoice < cityNames.size())
+        {
+            cout << "Starting at " << cityNames[cityChoice] << citiesMessage;
+            graph.breadthFirstTraversal(cityChoice, print);
 
-        cout << "Starting at " << cityNames[cityChoice]
-             << ", 12 cities are searched in this Depth-First Search order:\n";
-        graph.depthFirstTraversal(cityChoice, print);
+            cout << "Starting at " << cityNames[cityChoice] << citiesMessage;
+            graph.depthFirstTraversal(cityChoice, print);
 
-        cout << continuePrompt;
-        cin >> yesOrNo;
+            cout << continuePrompt;
+            cin >> yesOrNo;
+            cin.ignore();
+        }
+        else
+        {
+            cerr << "The vertex " << cityChoice << " does not exist. "
+                 << "Please try again.\n";
+        }
+
+        cout << cityPrompt;
+        cin >> cityChoice;
         cin.ignore();
     }
 
