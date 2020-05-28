@@ -181,7 +181,6 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
     string cityPrompt = "Enter starting city using number from 0 - 11 : ";
     string continuePrompt = "\nTry another city (Y/N) ";
     string citiesMessage = ", 12 cities are searched in this Breadth-First Search order:\n";
-    string dftMessage = "Starting at Chicago, 12 cities are searched in this Depth-First Search order:\n";
 
     cout << "Graph Traversals\n" << cityPrompt;
     cin >> cityChoice;
