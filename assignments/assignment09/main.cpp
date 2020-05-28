@@ -116,6 +116,8 @@ Graph<string> createCityGraph(vector<string>& cityNames)
 
 void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
 {
+    // Create the connections between cities
+    // Seattle: SF, Denver, Chicago
     edges.insert(cities(cityNames[0], {cityNames[1], cityNames[3], cityNames[5]}));
 
     // San Francisco: Seattle, LA, Denver
