@@ -64,7 +64,7 @@ typedef pair<string, vector<string>> cities;
 void addEdges(Graph<string>& graph, vector<string>& cities);
 Graph<string> createCityGraph(vector<string>& cityNames);
 void createEdges(map<string, vector<string>>& edges, vector<string>& cities);
-int cityChoice();
+int getCityChoice(const int size);
 void menu(Graph<string>& graph, vector<string>& cityNames);
 int positionOf(vector<string>& vect, string city);
 void print(const string& value);
@@ -101,6 +101,26 @@ void addEdges(Graph<string>& graph, vector<string>& cityNames)
             if (connectionNum >= 0)
                 graph.add(vertNum, connectionNum, 1);
         }
+    }
+}
+
+int getCityChoice(const int size)
+{
+    int cityChoice;
+    string cityPrompt = "Enter starting city using number from 0 - 11 : ";
+
+    cout << cityPrompt;
+    cin >> cityChoice;
+    cin.ignore();
+
+    while (0 > cityChoice || cityChoice >= size)
+    {
+        cerr << "The vertex " << cityChoice << " does not exist. "
+             << "Please try again.\n";
+
+        cout << cityPrompt;
+        cin >> cityChoice;
+        cin.ignore();
     }
 }
 
@@ -178,7 +198,6 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
     char yesOrNo = 'y';
     int cityChoice;
 
-    string cityPrompt = "Enter starting city using number from 0 - 11 : ";
     string continuePrompt = "\n\nTry another city (Y/N) ";
     string citiesMessage = ", 12 cities are searched in this Breadth-First Search order:\n";
 
@@ -186,19 +205,7 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
 
     while (tolower(yesOrNo) != 'n')
     {
-        cout << cityPrompt;
-        cin >> cityChoice;
-        cin.ignore();
-
-        while (0 > cityChoice || cityChoice >= cityNames.size())
-        {
-            cerr << "The vertex " << cityChoice << " does not exist. "
-                 << "Please try again.\n";
-
-            cout << cityPrompt;
-            cin >> cityChoice;
-            cin.ignore();
-        }
+        cityChoice = getCityChoice(cityNames.size());
 
         cout << "\nStarting at " << cityNames[cityChoice]
              << ", 12 cities are searched in this Breadth-First Search order:\n";
