@@ -104,26 +104,6 @@ void addEdges(Graph<string>& graph, vector<string>& cityNames)
     }
 }
 
-int getCityChoice(const int size)
-{
-    int cityChoice;
-    string cityPrompt = "Enter starting city using number from 0 - 11 : ";
-
-    cout << cityPrompt;
-    cin >> cityChoice;
-    cin.ignore();
-
-    while (0 > cityChoice || cityChoice >= size)
-    {
-        cerr << "The vertex " << cityChoice << " does not exist. "
-             << "Please try again.\n";
-
-        cout << cityPrompt;
-        cin >> cityChoice;
-        cin.ignore();
-    }
-}
-
 Graph<string> createCityGraph(vector<string>& cityNames)
 {
     const int NUM_VERTICES = 12;
@@ -174,6 +154,48 @@ void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
     edges.insert(cities(cityNames[11], {cityNames[8], cityNames[9], cityNames[10]}));
 }
 
+int getCityChoice(const int size)
+{
+    int cityChoice;
+    string cityPrompt = "Enter starting city using number from 0 - 11 : ";
+
+    cout << cityPrompt;
+    cin >> cityChoice;
+    cin.ignore();
+
+    while (0 > cityChoice || cityChoice >= size)
+    {
+        cerr << "The vertex " << cityChoice << " does not exist. "
+             << "Please try again.\n";
+
+        cout << cityPrompt;
+        cin >> cityChoice;
+        cin.ignore();
+    }
+
+    return cityChoice;
+}
+
+int getContinueChoice()
+{
+    char continueChoice;
+    string continuePrompt = "Try another city (Y/N) ";
+
+    cout << continuePrompt;
+    cin >> continueChoice;
+    cin.ignore();
+
+    while (tolower(continueChoice) != 'y' && tolower(continueChoice) != 'n')
+    {
+        cout << "Invalid choice. Please enter a 'Y/y' or 'N/n'.\n";
+        cout << continuePrompt;
+        cin >> continueChoice;
+        cin.ignore();
+    }
+
+    return continueChoice;
+}
+
 int positionOf(vector<string>& vect, string city)
 {
     int position = -1;
@@ -195,7 +217,7 @@ int positionOf(vector<string>& vect, string city)
 
 void menu(Graph<string>& graph, vector<string>& cityNames)
 {
-    char yesOrNo = 'y';
+    char continueChoice = 'y';
     int cityChoice;
 
     string continuePrompt = "\n\nTry another city (Y/N) ";
@@ -203,7 +225,7 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
 
     cout << "Graph Traversals\n";
 
-    while (tolower(yesOrNo) != 'n')
+    while (tolower(continueChoice) != 'n')
     {
         cityChoice = getCityChoice(cityNames.size());
 
@@ -215,17 +237,8 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
              << ", 12 cities are searched in this Depth-First Search order:\n";
         graph.depthFirstTraversal(cityChoice, print);
 
-        cout << continuePrompt;
-        cin >> yesOrNo;
-        cin.ignore();
-
-        while (tolower(yesOrNo) != 'y' && tolower(yesOrNo) != 'n')
-        {
-            cout << "Invalid choice. Please enter a 'Y' or 'N'.\n";
-            cout << continuePrompt;
-            cin >> yesOrNo;
-            cin.ignore();
-        }
+        cout << "\n\n";
+        continueChoice = getContinueChoice();
     }
 }
 
