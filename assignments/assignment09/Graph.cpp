@@ -250,11 +250,11 @@ void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(co
 
     while (!queue.empty())
     {
-	// remove vertex v from the queue
+	    // remove vertex v from the queue
         int v = queue.front();
         queue.pop();
-	
-	// get the vertices adjacent to the vertex v
+
+	    // get the vertices adjacent to the vertex v
         std::vector<int> neighborsVect = neighbors(v);
         for (int i = 0; i < neighborsVect.size(); i++)
         {
@@ -263,7 +263,7 @@ void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(co
             int neighbor = neighborsVect[i];
             if (!visited[neighbor])
             {
-		// process the neighbor vertex
+		    // process the neighbor vertex
                 callback(vertexValues[neighbor]);
                 visited[neighbor] = true;
                 queue.push(neighbor);
@@ -284,8 +284,8 @@ void Graph<T>::dft(const int index, std::vector<bool>& visited, void callback(co
 
     if (!neighborsVect.empty())
     {
-	// for each neighbor that is adjacent to v, if it hasn't been visited,
-	// recursively traverse it
+        // for each neighbor that is adjacent to v, if it hasn't been visited,
+        // recursively traverse it
         for (int i = 0; i < neighborsVect.size(); i++)
         {
             int neighbor = neighborsVect[i];
