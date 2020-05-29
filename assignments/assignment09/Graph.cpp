@@ -205,6 +205,18 @@ T Graph<T>::value(const int num) const
     return vertexValues[num];
 }
 
+// Returns a vector of the values in the vertices
+template <class T>
+std::vector<T> Graph<T>::values() const
+{
+    std::vector<T> vertVals;
+
+    for (int i = 0; i < numVertices(); i++)
+        vertVals.push_back(vertexValues[i]);
+
+    return vertVals;
+}
+
 // Returns the weight value for an edge
 template <class T>
 int Graph<T>::weight(const int start, const int end)
@@ -221,7 +233,6 @@ int Graph<T>::weight(const int start, const int end)
 }
 
 // Private methods
-
 // Performs a breadth-first search of this graph beginning at the given vertex
 // and calls a given function once for each vertex visited
 template <class T>

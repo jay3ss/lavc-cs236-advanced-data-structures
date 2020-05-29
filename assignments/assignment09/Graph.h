@@ -139,6 +139,11 @@ public:
     @return The value of the node */
     T value(const int num) const;
 
+    /** Returns a vector of the values in the vertices
+    @pre The values of the vertices should have already been set
+    @return A vector of the values of the vertices */
+    std::vector<T> values() const;
+
     /** Returns the weight value for an edge
     @pre 0 <= start < numVertices and  0 <= end < numVertices
     @param start The starting vertext
