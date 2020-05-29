@@ -61,13 +61,31 @@ using namespace std;
 
 typedef pair<string, vector<string>> cities;
 
+// Adds edges to the graph
 void addEdges(Graph<string>& graph, vector<string>& cities);
+
+// Creates the graph of the cities
 Graph<string> createCityGraph(vector<string>& cityNames);
+
+// Creates a map of cities (vertex) and their neighbors (edges)
 void createEdges(map<string, vector<string>>& edges, vector<string>& cities);
+
+// Gets, validates, and returns the city choice of the user
 int getCityChoice(const int size);
-void menu(Graph<string>& graph, vector<string>& cityNames);
+
+// Gets, validates, and returns the choice of whether or not to continue from the user
+int getContinueChoice();
+
+// Displays a menu to the user and interacts with the user
+void menu(Graph<string>& graph);
+
+// Finds and returns the position of a string within an vector<string>
 int positionOf(vector<string>& vect, string city);
+
+// Callback function that prints the values in the graph
 void print(const string& value);
+
+// Sets the names of the cities in the graph
 void setCityNames(Graph<string>& graph, vector<string>& cityNames);
 
 int main()
@@ -78,11 +96,16 @@ int main()
     };
 
     Graph<string> graph = createCityGraph(vertices);
-    menu(graph, vertices);
+    menu(graph);
 
     return 0;
 }
 
+/** Adds edges to the graph
+@param: graph The graph to add edges to
+@param: cityNames The vector holding the names of the cities
+@post: The graph will have its vertices associated with the names of the
+    cities */
 void addEdges(Graph<string>& graph, vector<string>& cityNames)
 {
     map<string, vector<string>> edges;
@@ -104,6 +127,10 @@ void addEdges(Graph<string>& graph, vector<string>& cityNames)
     }
 }
 
+/** Creates the graph of the cities
+@param: cityNames The vector containing the names of the cities
+@return: A Graph object with the cities as vertices and vertex values and
+    neighboring cities as edges */
 Graph<string> createCityGraph(vector<string>& cityNames)
 {
     const int NUM_VERTICES = 12;
@@ -114,6 +141,11 @@ Graph<string> createCityGraph(vector<string>& cityNames)
     return graph;
 }
 
+/** Creates a map of cities (vertex) and their neighbors (edges)
+@param: edges A map
+@param: cityNames A vector containing the names of cities
+@post: The map object (edges) will have city names as the keys and the neighboring
+    cities as the values */
 void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
 {
     // Create the connections between cities
@@ -154,6 +186,9 @@ void createEdges(map<string, vector<string>>& edges, vector<string>& cityNames)
     edges.insert(cities(cityNames[11], {cityNames[8], cityNames[9], cityNames[10]}));
 }
 
+/** Gets, validates, and returns the city choice of the user
+@param: size The integer number of cities
+@return: The choice of the user 0 <= cityChoice < size */
 int getCityChoice(const int size)
 {
     int cityChoice;
@@ -176,6 +211,9 @@ int getCityChoice(const int size)
     return cityChoice;
 }
 
+/** Gets, validates, and returns the choice of whether or not to continue from
+    the user
+@return: The choice of the user: either Y/y/N/n */
 int getContinueChoice()
 {
     char continueChoice;
@@ -196,6 +234,10 @@ int getContinueChoice()
     return continueChoice;
 }
 
+/** Finds and returns the position of a string within an vector<string>
+@param: vect The vector to search
+@param: city The city to find
+@return: The position of the city within the vector, if found, -1 if not found */
 int positionOf(vector<string>& vect, string city)
 {
     int position = -1;
@@ -215,8 +257,12 @@ int positionOf(vector<string>& vect, string city)
     return position;
 }
 
-void menu(Graph<string>& graph, vector<string>& cityNames)
+/** Displays a menu to the user and interacts with the user
+@param: graph The graph to traverse
+@param: cityNames Vector holding the names */
+void menu(Graph<string>& graph)
 {
+    vector<string> cityNames = graph.values();
     char continueChoice = 'y';
     int cityChoice;
 
@@ -228,8 +274,9 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
     while (tolower(continueChoice) != 'n')
     {
         cityChoice = getCityChoice(cityNames.size());
+        cout << "You entered city name: " << cityNames[cityChoice] << "\n\n";
 
-        cout << "\nStarting at " << cityNames[cityChoice]
+        cout << "Starting at " << cityNames[cityChoice]
              << ", 12 cities are searched in this Depth-First Search order:\n";
         graph.depthFirstTraversal(cityChoice, print);
 
@@ -243,11 +290,18 @@ void menu(Graph<string>& graph, vector<string>& cityNames)
     }
 }
 
+/** Callback function that prints the values in the graph
+@param: value The vertex value to be printed to the console
+@post: The vertex values will be printed to the console */
 void print(const string& value)
 {
     cout << value << ", ";
 }
 
+/** Sets the names of the cities in the graph
+@param: graph The graph to set the city names to
+@param: cityName The city names that will populate the graph
+@post: The graph will have the city names as the vertex values */
 void setCityNames(Graph<string>& graph, vector<string>& cityNames)
 {
     for (int i = 0; i < cityNames.size(); i++)
