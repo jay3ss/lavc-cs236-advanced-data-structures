@@ -105,6 +105,7 @@ void Graph<T>::breadthFirstTraversal(const int start, void callback(const T& val
     if (start < 0 || numberOfVertices - 1 < start)
         throw OutOfRange(start);
 
+    // Add each vertex in the graph to the vector and mark it as unvisited
     std::vector<bool> visited = std::vector<bool>(numberOfVertices, false);
 
     bft(start, visited, callback);
@@ -238,22 +239,30 @@ int Graph<T>::weight(const int start, const int end)
 template <class T>
 void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(const T& value))
 {
+    // process the first vertex
     callback(vertexValues[index]);
     std::queue<int> queue;
+
+    // mark the vertex as visited and push it onto the queue
     visited[index] = true;
     queue.push(index);
 
     while (!queue.empty())
     {
+	// remove vertex v from the queue
         int v = queue.front();
         queue.pop();
-
+	
+	// get the vertices adjacent to the vertex v
         std::vector<int> neighborsVect = neighbors(v);
         for (int i = 0; i < neighborsVect.size(); i++)
         {
+	    // for every neighbor of v, add it to the queue if it hasn't been
+	    // visited yet and mark it as visited
             int neighbor = neighborsVect[i];
             if (!visited[neighbor])
             {
+		// process the neighbor vertex
                 callback(vertexValues[neighbor]);
                 visited[neighbor] = true;
                 queue.push(neighbor);
