@@ -120,6 +120,7 @@ void Graph<T>::depthFirstTraversal(const int start, void callback(const T& value
     if (start < 0 || numberOfVertices - 1 < start)
         throw OutOfRange(start);
 
+    // Add each vertex in the graph to the vector and mark it as unvisited
     std::vector<bool> visited = std::vector<bool>(numberOfVertices, false);
 
     dft(start, visited, callback);
@@ -276,12 +277,15 @@ void Graph<T>::bft(const int index, std::vector<bool>& visited, void callback(co
 template <class T>
 void Graph<T>::dft(const int index, std::vector<bool>& visited, void callback(const T& value))
 {
+    // process the vertex, mark it as visited, and get all of its neighbors
     callback(vertexValues[index]);
     visited[index] = true;
     std::vector<int> neighborsVect = neighbors(index);
 
     if (!neighborsVect.empty())
     {
+	// for each neighbor that is adjacent to v, if it hasn't been visited,
+	// recursively traverse it
         for (int i = 0; i < neighborsVect.size(); i++)
         {
             int neighbor = neighborsVect[i];
